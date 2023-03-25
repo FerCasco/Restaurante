@@ -47,14 +47,6 @@
             check.check()
             localStorage.removeItem('theme')
         }
-        // Whenever the user explicitly chooses light mode
-
-
-        // Whenever the user explicitly chooses dark mode
-
-
-        // Whenever the user explicitly chooses to respect the OS preference
-        //localStorage.removeItem('theme')
         function sistema(){
             if (check.prop('checked')){
                 localStorage.removeItem('theme')
@@ -63,6 +55,7 @@
         }
         function changeMode(){
             document.documentElement.classList.toggle("dark")
+            check.prop('checked', false)
             if(input.prop('checked')){
                 localStorage.theme = 'dark'
             } else {
