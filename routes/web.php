@@ -22,6 +22,10 @@ Route::get('/graficas', function () {
     return view('graficas');
 });
 
+Route::get('/pruebalivewire', function () {
+    return view('prubaLivewire');
+});
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
