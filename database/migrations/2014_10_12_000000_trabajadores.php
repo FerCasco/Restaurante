@@ -13,11 +13,22 @@ return new class extends Migration
     {
         Schema::create('trabajadores', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+
             $table->string("nombre");
-            $table->string("contrato");
-            $table->string("funcion");
-            $table->decimal("remuneracion");
+            $table->string("apellidos");
+            $table->string("dni");
+
+            $table->unsignedBigInteger("idNomina");
+            $table->foreign("idNomina")->on("nominas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
             $table->string("horario");
+            $table->timestamps();
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }

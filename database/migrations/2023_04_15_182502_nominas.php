@@ -13,12 +13,29 @@ return new class extends Migration
     {
         Schema::create('nominas', function (Blueprint $table) {
             $table->id();
+
+            //Encabezado
+            $table->string("grupoProfesional");//la función que desempeña
+            $table->string("grupoCotizaciones");//salario en el que intervalo se encuentra
+            $table->string("numAfiliacionSS");// num de alta en la SS
+            $table->date("fechaContratacion");
+            $table->string("codigoContrato");//Indica el tipo de contrato, si es indefinido,...
+
             $table->unsignedBigInteger("idEmpresa");
             $table->foreign("idEmpresa")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
             $table->unsignedBigInteger("idTrabajador");
             $table->foreign("idTrabajador")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            //Periodo de liquidación
+            $table->string("periodoLiquidacion");//fecha de inicio-fecha de fin/->total de días
+
+            //Devengos
             $table->unsignedBigInteger("idDevengo");
             $table->foreign("idDevengo")->on("Devengos")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+
+
             $table->unsignedBigInteger("idDeduccion");
             $table->foreign("idDeduccion")->on("Deducciones")->references("id")->onDelete("cascade")->onUpdate("cascade");
             $table->decimal("totalTrabajador");

@@ -18,10 +18,12 @@ return new class extends Migration
 
             //No aparecían en el esquema de bd y creo q no deben desaparecer
             $table->boolean("reservado")->default(false);
-            $table->time("horaReserva");
+            $table->dateTime("fechaReserva");
+            $table->boolean("unir");//para indicar q es el tipo de mesa q se puede juntar con otras
 
-            $table->unsignedBigInteger("idCamarero");
+            /*$table->unsignedBigInteger("idCamarero");
             $table->foreign("idCamarero")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            */
             $table->unsignedBigInteger("idSala");
             $table->foreign("idSala")->on("salas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 

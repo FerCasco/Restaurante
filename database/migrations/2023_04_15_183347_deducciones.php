@@ -13,11 +13,30 @@ return new class extends Migration
     {
         Schema::create('deducciones', function (Blueprint $table) {
             $table->id();
-            $table->decimal("contigenciasComunes");
-            $table->decimal("desempleo");
-            $table->decimal("formacionProfesional");
-            $table->decimal("IRPF");
-            $table->decimal("otras");
+
+            //Apotaciones a SS /-> Cont. Comunes+Desempleo+FP+HE
+
+                //Cont. Comunes = 4.7% x bcCC
+                $table->unsignedBigInteger("idBcCC");
+                $table->foreign("idBcCC")->on("idBcCC")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+                //Desempleo =  porc. x bcCP
+                $table->decimal("porcentajeDesempleo");//contratos indefi,relevo,pract,interi:1,55 ó tempo:1,6
+                $table->decimal("bcCP");//bsCC (campo totalContigenciasComunes -> tabla ContigenciasComunes) + HE ( campo tiempo -> tabla horasExtras)
+
+                //FP =0,1x bcCP
+                $table->decimal("Desempleo");
+
+                //BCHE = HE
+                $table->decimal("bcHE");//campo tiempo -> tabla horasExtras
+
+                $table->decimal("totalSS");
+
+            //IRPF /-> Birpf x porcent.
+            $table->decimal("birpf");// campo totalDevengo - CNS
+            $table->decimal("porcentIrpf");
+            $table->decimal("totalIRPF");
+
             $table->timestamps();
         });
     }

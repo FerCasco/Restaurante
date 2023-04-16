@@ -9,18 +9,30 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
+
+    //salario bruto
     public function up(): void
     {
         Schema::create('devengos', function (Blueprint $table) {
             $table->id();
+
             $table->decimal("salarioBase");
-            $table->decimal("complementoSalariales");//Debería ser una tabla
-            $table->decimal("complementoAjuste");
-            $table->decimal("horasExtras");
-            $table->decimal("incentivos");
-            $table->decimal("pagasExtra");
-            $table->decimal("plusTransporte");
-            $table->decimal("plusProductividad");
+
+            //Percepciones salariales
+            $table->unsignedBigInteger("idComplementoSalariales");
+            $table->foreign("idComplementoSalariales")->on("complementoSalariales")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            //Percepciones no salariales/extrasalariales
+            $table->decimal("plusTransporteUrbano");
+            $table->decimal("plusDistancia");
+            $table->decimal("dietas");
+            $table->decimal("locomoción");//kilometraje
+            $table->decimal("ropaTrabajoDesgasteHerramientas");
+            $table->decimal("quebrantoMoneda");
+
+            //Percepciones salariales + Percepciones no salariales/extrasalariales
+            $table->decimal("totalDevengo");
+
             $table->timestamps();
         });
     }

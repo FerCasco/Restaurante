@@ -9,14 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
-    //no veo utilidad
     public function up(): void
     {
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
+            $table->string("domicilioFiscal");
             $table->string('CIF');
+            $table->string('codigoCuentaCotizacion');
             $table->timestamps();
         });
     }
