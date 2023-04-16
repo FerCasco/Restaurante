@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('trabajadores', function (Blueprint $table) {
             $table->id();
+
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -24,9 +25,6 @@ return new class extends Migration
 
             $table->unsignedBigInteger("idNomina");
             $table->foreign("idNomina")->on("nominas")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
-            $table->string("horario");
-            $table->timestamps();
 
             $table->rememberToken();
             $table->timestamps();

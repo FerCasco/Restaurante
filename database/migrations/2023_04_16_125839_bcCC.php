@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('bcCC', function (Blueprint $table) {
             $table->id();
 
-            $table->
             $table->decimal("salarioBruto");// campo totalDevengo -> tabla Devengos
             $table->decimal("complementosSalariales"); // campo totalComplementoSalariales -> tabla ComplementoSalariales
             $table->decimal("pagasExtras"); // en caso de se prorrateada (2xsalario/diaX30)/365

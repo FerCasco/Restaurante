@@ -17,7 +17,11 @@ return new class extends Migration
             $table->decimal("complementosPersonales");//antigüedad,plus de idiomas,posesión de títulos
             $table->decimal("complementosPuestoTrabajo");//plus peligrosidad, toxicidad, nocturnidad, atención al público, convenio
             $table->decimal("complementosCantidad");//incentivos, primas, comisiones, plus de asistencia y puntualidad, horas extras
-            $table->decimal("pagasExtras");//Hay que tener en cuenta el salario min base/ 2 pagas extras al año (opcion entre prorrateada o no)/ si se desea meter paga de benificio(suele ser en marzo en base a un % de beneficios)
+
+            //se calcula a través del campo salarioBase de tabla Devengos
+            $table->decimal("pagasExtras");//salario base/ 2 pagas extras al año (opcion entre prorrateada o no)/ si se desea meter paga de benificio(suele ser en marzo en base a un % de beneficios)
+
+            //se calcula con la suma de todos los campos de esta tabla en un registro concreto
             $table->decimal("totalComplementoSalariales");
 
             $table->timestamps();
