@@ -10,7 +10,9 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+    {/*
+    TODO:HACER TABLA DE COTIZACION PARA EL COSTE A LA EMPRESA
+    */
         Schema::create('deducciones', function (Blueprint $table) {
             $table->id();
 
@@ -34,7 +36,7 @@ return new class extends Migration
 
             //IRPF /-> Birpf x porcent.
             $table->decimal("birpf");// campo totalDevengo - CNS
-            $table->decimal("porcentIrpf");
+            $table->decimal("porcentIrpf"); //Obtener del INE
             $table->decimal("totalIRPF");
 
             $table->timestamps();

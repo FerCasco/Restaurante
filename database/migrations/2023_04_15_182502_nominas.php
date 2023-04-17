@@ -19,8 +19,9 @@ return new class extends Migration
             $table->string("grupoCotizaciones");//salario en el que intervalo se encuentra
             $table->string("numAfiliacionSS");// num de alta en la SS
             $table->date("fechaContratacion");
-            $table->string("codigoContrato");//Indica el tipo de contrato, si es indefinido,...
+            $table->string("codigoContrato");//Indica el tipo de contrato, si es indefinido,...->CREAR TABLA CONTRATO QUE RELACIONE COD CON EL TIPO
 
+            //Crear tabla restaurante
             $table->unsignedBigInteger("idEmpresa");
             $table->foreign("idEmpresa")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
@@ -35,7 +36,7 @@ return new class extends Migration
             $table->foreign("idDevengo")->on("Devengos")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
 
-
+            //Deducciones
             $table->unsignedBigInteger("idDeduccion");
             $table->foreign("idDeduccion")->on("Deducciones")->references("id")->onDelete("cascade")->onUpdate("cascade");
             $table->decimal("totalTrabajador");

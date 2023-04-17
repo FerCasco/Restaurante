@@ -17,7 +17,8 @@ return new class extends Migration
             $table->decimal("salarioBruto");// campo totalDevengo -> tabla Devengos
             $table->decimal("complementosSalariales"); // campo totalComplementoSalariales -> tabla ComplementoSalariales
             $table->decimal("pagasExtras"); // en caso de se prorrateada (2xsalario/diaX30)/365
-            $table->decimal("pagasExtras");//Hay que tener en cuenta el salario min base/ 2 pagas extras al año (opcion entre prorrateada o no)/ si se desea meter paga de benificio(suele ser en marzo en base a un % de beneficios)
+
+            $table->decimal("CNsiContizan"); //tabla de cotiza CS //SIN HACER -> UNA TABLA
 
             //sb+CS+(PE/6 ó 0 y se añade la PE en mes)+CNS si cotizan
             $table->decimal("totalBcCC");
