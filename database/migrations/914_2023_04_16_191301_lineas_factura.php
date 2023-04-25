@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('lineasFactura', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("idTicket");
-            $table->foreign("idTicket")->on("ticket")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idTickets");
+            $table->foreign("idTickets")->on("tickets")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->rememberToken();
             $table->timestamps();
