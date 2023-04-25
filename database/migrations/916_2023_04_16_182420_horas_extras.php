@@ -19,6 +19,8 @@ return new class extends Migration
 
             $table->decimal("tiempo"); //Num concreto de tiempo que hace en un día un trabajador
             $table->date("fecha");
+
+            $table->rememberToken();
             $table->timestamps();
         });
     }

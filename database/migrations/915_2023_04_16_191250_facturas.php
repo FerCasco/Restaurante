@@ -23,7 +23,7 @@ return new class extends Migration
             //Aquí también tendríamos que poner la información del restaurante.
             $table->string("fechaFactura");
             $table->integer("total");
-            
+
             $table->rememberToken();
             $table->timestamps();
         });
