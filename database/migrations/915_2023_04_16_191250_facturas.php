@@ -23,8 +23,7 @@ return new class extends Migration
             //Aquí también tendríamos que poner la información del restaurante.
             $table->string("fechaFactura");
             $table->integer("total");
-            $table->timestamps();
-
+            
             $table->rememberToken();
             $table->timestamps();
         });
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingredientes');
+        Schema::dropIfExists('facturas');
     }
 };
