@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elaboraciones', function (Blueprint $table) {
+        Schema::create('restaurante', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
-            $table->unsignedBigInteger("idIngrediente");
-            $table->foreign("idIngrediente")->on("ingredientes")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
+            $table->string("nombre");
+            $table->string("domicilioFiscal");
+            $table->string('CIF');
+            $table->binary('logo');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -27,7 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('elaboraciones');
-
+        Schema::dropIfExists('restaurante');
     }
 };

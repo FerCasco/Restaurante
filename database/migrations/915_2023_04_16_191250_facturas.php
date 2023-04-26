@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger("idLineasFactura");
-            $table->foreign("idLineasFactura")->on("lineasFacturas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("idLineasFactura")->on("lineasFactura")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->unsignedBigInteger("idEmpresas");
             $table->foreign("idEmpresas")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");
@@ -23,7 +23,6 @@ return new class extends Migration
             //Aquí también tendríamos que poner la información del restaurante.
             $table->string("fechaFactura");
             $table->integer("total");
-            $table->timestamps();
 
             $table->rememberToken();
             $table->timestamps();
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingredientes');
+        Schema::dropIfExists('facturas');
     }
 };

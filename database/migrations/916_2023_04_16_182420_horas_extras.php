@@ -11,11 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lineasFactura', function (Blueprint $table) {
+        Schema::create('horasExtras', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("idTicket");
-            $table->foreign("idTicket")->on("ticket")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idTrabajador");
+            $table->foreign("idTrabajador")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            $table->decimal("tiempo"); //Num concreto de tiempo que hace en un día un trabajador
+            $table->date("fecha");
 
             $table->rememberToken();
             $table->timestamps();
@@ -27,6 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingredientes');
+        Schema::dropIfExists('horasExtras');
+
     }
 };

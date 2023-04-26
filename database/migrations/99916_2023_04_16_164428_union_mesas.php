@@ -8,7 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
+
 
     //Cuando creemos un objeto de este tipo, crearemos una nueva mesa
     public function up(): void
@@ -27,10 +27,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('unionMesas');
 
-    }
+    }     */
 };

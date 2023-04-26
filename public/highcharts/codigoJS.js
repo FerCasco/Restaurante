@@ -85,4 +85,36 @@ function prueba2(){
     });
 });*/
 
+let input = $("#Toggle2")
+let check = $("#showAgain")
+// On page load or when changing themes, best to add inline in `head` to avoid FOUC
+if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+    input.prop('checked', true)
+    localStorage.theme = 'dark'
+} else {
+    document.documentElement.classList.remove('dark')
+    input.prop('checked', false)
+    localStorage.theme = 'light'
+}
+if(localStorage.theme === null){
+    check.check()
+    localStorage.removeItem('theme')
+}
+function sistema(){
+    if (check.prop('checked')){
+        localStorage.removeItem('theme')
+        location.reload()
+    }
+}
+function changeMode(){
+    document.documentElement.classList.toggle("dark")
+    check.prop('checked', false)
+    if(input.prop('checked')){
+        localStorage.theme = 'dark'
+    } else {
+        localStorage.theme = 'light'
+    }
+}
+
 

@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string("codigoQr");//res_qr_(idPersona)_(codigoContrato)
             $table->binary("imagenQr");//blob
 
-            $table->unsignedBigInteger("idNomina");
-            $table->foreign("idNomina")->on("nominas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            // $table->unsignedBigInteger("idNomina");
+            // $table->foreign("idNomina")->on("nominas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->rememberToken();
             $table->timestamps();

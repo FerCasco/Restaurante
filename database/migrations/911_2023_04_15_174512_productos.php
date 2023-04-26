@@ -14,10 +14,9 @@ return new class extends Migration
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
 
-            //no necesario no? ya está la cantidad a vender en la comanda
-            $table->integer("cantidadVender");
+            $table->unsignedBigInteger("idElaboracion");
+            $table->foreign("idElaboracion")->on("elaboraciones")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
-            $table->string("elaboracion");
             $table->string("descripcion");
             $table->decimal("precio");
             $table->timestamps();

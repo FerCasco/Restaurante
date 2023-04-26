@@ -8,11 +8,11 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     */
+
     public function up(): void
     {/*
     TODO:HACER TABLA DE COTIZACION PARA EL COSTE A LA EMPRESA
-    */
+
         Schema::create('deducciones', function (Blueprint $table) {
             $table->id();
 
@@ -45,10 +45,10 @@ return new class extends Migration
 
     /**
      * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('deducciones');
 
-    }
+    }     */
 };

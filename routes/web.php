@@ -56,3 +56,9 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+Route::get('/salas', \App\Http\Livewire\Sala::class, 'render')->name('misSalas');
+Route::get('/mesas/{id}', \App\Http\Livewire\Mesa::class)->name('misMesas');
