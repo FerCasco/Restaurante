@@ -18,6 +18,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/users', function () {
+    return view('users');
+});
+
+
+Route::get('/login', function () {
+    return view('login');
+});
+
+
+Route::get('/principal', function () {
+    return view('principal');
+});
+
+Route::get('/productos', function () {
+    return view('productos');
+});
+
 Route::get('/graficas', function () {
     return view('graficas');
 });
