@@ -17,7 +17,9 @@
         <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <ul class="space-y-2 font-medium">
                 <?php
-                $productos = \App\Models\producto::all()
+                $productos = \App\Models\producto::all();
+                $tipos = \App\Models\producto::select('tipo','idFamilia')->distinct()->get();
+
                 ?>
                 <!--
                 @foreach($productos as $producto)
@@ -97,18 +99,18 @@
             Contenido de prueba
         </div>
     </div>
-    <script>
+    <script> 
         const bebidas = document.getElementById('bebidas');
         const barra = document.getElementById('entrantes');
         const comedor1 = document.getElementById('primeros');
         const comedor2 = document.getElementById('segundos');
         const inventario = document.getElementById('postres');
         const contenido = document.getElementById('contenido');
-
+       
         bebidas.addEventListener('click', function() {
-            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Bebidas</h1>    @foreach($productos as $producto) <button class="border-4 border-black w-20 h-20 mt-4 ml-2">{{$producto->nombre}}</button>  @endforeach </div>';
+            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Bebidas</h1> @foreach($tipos as $tipo) @if($tipo->idFamilia==1) <button class="border-4 border-black w-20 h-20 mt-4 ml-2 id="{{$tipo->tipo}}"">{{$tipo->tipo}}</button> @endif @endforeach </div>';
         });
-
+      
         barra.addEventListener('click', function() {
             contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Barra</h1> <button class="border-4 border-black w-20 h-20 mt-4 ml-2"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button></div>';
         });
@@ -123,6 +125,10 @@
         });
         graficos.addEventListener('click', function() {
             contenido.innerHTML = 'Contenido del botón 2';
+        });
+        const refrescos = document.getElementById(' refresco');
+        refrescos.addEventListener('click', function() {
+            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Bebidas</h1> @foreach($productos as $producto) @if($producto->idFamilia==1 and $producto->tipo="Refresco") <button class="border-4 border-black w-20 h-20 mt-4 ml-2 ">{{$producto->nombre}}</button> @endif @endforeach </div>';
         });
     </script>
 </body>
