@@ -1,8 +1,10 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Livewire\Sala;
 use App\Models\Mesa;
 use App\Models\Producto;
+use App\Models\Sala as ModelsSala;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,7 +35,9 @@ Route::get('/login', function () {
 
 //Rutas de vista principal para Livewire
 Route::get('/principal', function () {
-    return view('principal');
+    return view('principal',[
+        'salas' => ModelsSala::all()
+    ]);
 });
 
 
