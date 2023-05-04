@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Sala;
+use App\Models\Familia;
 use App\Models\Mesa;
 use App\Models\Producto;
 use App\Models\Sala as ModelsSala;
@@ -64,7 +65,9 @@ Route::get('/principal/barra', function () {
 
 //Rutas de vista Productos para Livewire
 Route::get('/productos/{idMesa}', function () {
-    return view('productos');
+    return view('productos',[
+        'familias' => Familia::all()
+    ]);
 }); 
 
 Route::get('/productos/{idMesa}/bebidas', function () {
@@ -73,12 +76,16 @@ Route::get('/productos/{idMesa}/bebidas', function () {
     ]);
 });
 
-Route::get('/productos/{idMesa}entrantes', function () {
+Route::get('/productos/{idMesa}/entrantes', function () {
     return view('partials.productos',[
         'productos' => Producto::where('idFamilia','2')->get()
     ]);
 });
-
+Route::get('/productos/{idMesa}/postres', function () {
+    return view('partials.productos',[
+        'productos' => Producto::where('idFamilia','3')->get()
+    ]);
+});
 
 
 
