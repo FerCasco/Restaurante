@@ -18,7 +18,7 @@
             <ul class="space-y-2 font-medium">
                 <?php
                 $productos = \App\Models\producto::all();
-                $tipos = \App\Models\producto::select('tipo','idFamilia')->distinct()->get();
+                $tipos = \App\Models\producto::select('tipo', 'idFamilia')->distinct()->get();
 
                 ?>
                 <!--
@@ -96,9 +96,26 @@
     </aside>
     <div class="p-4 sm:ml-64">
         <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 h-full" id="contenido">
-            Contenido de prueba
+            <ul></ul>
         </div>
     </div>
+    <script>
+        document.getElementById('bebidas').addEventListener('click', function(event){
+             fetch('productos/bebidas').then(res=>res.text()).then(html=>{
+                document.getElementById('contenido').innerHTML = html
+             })
+        })
+
+        document.getElementById('entrantes').addEventListener('click', function(event){
+             fetch('productos/entrantes').then(res=>res.text()).then(html=>{
+                document.getElementById('contenido').innerHTML = html
+             })
+        })
+    </script>
+
+
+
+    <!--
     <script> 
         const bebidas = document.getElementById('bebidas');
         const barra = document.getElementById('entrantes');
@@ -131,6 +148,7 @@
             contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Bebidas</h1> @foreach($productos as $producto) @if($producto->idFamilia==1 and $producto->tipo="Refresco") <button class="border-4 border-black w-20 h-20 mt-4 ml-2 ">{{$producto->nombre}}</button> @endif @endforeach </div>';
         });
     </script>
+    -->
 </body>
 
 

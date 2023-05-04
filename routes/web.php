@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Mesa;
+use App\Models\Producto;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,13 +30,55 @@ Route::get('/login', function () {
 });
 
 
+
+//Rutas de vista principal para Livewire
 Route::get('/principal', function () {
     return view('principal');
 });
 
-Route::get('/productos', function () {
-    return view('productos');
+
+Route::get('/principal/terraza', function () {
+    return view('partials.mesas',[
+        'mesas' => Mesa::where('idSala','1')->get()
+    ]);
 });
+Route::get('/principal/comedor', function () {
+    return view('partials.mesas',[
+        'mesas' => Mesa::where('idSala','2')->get()
+    ]);
+});
+Route::get('/principal/barra', function () {
+    return view('partials.mesas',[
+        'mesas' => Mesa::where('idSala','3')->get()
+    ]);
+});
+
+
+
+
+
+
+//Rutas de vista Productos para Livewire
+Route::get('/productos/{idMesa}', function () {
+    return view('productos');
+}); 
+
+Route::get('/productos/{idMesa}/bebidas', function () {
+    return view('partials.productos',[
+        'productos' => Producto::where('idFamilia','1')->get()
+    ]);
+});
+
+Route::get('/productos/{idMesa}entrantes', function () {
+    return view('partials.productos',[
+        'productos' => Producto::where('idFamilia','2')->get()
+    ]);
+});
+
+
+
+
+
 
 Route::get('/graficas', function () {
     return view('graficas');
