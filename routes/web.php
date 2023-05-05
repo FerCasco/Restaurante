@@ -66,7 +66,7 @@ Route::get('/principal/barra', function () {
 //Rutas de vista Productos para Livewire
 Route::get('/productos/{idMesa}', function () {
     return view('productos',[
-        'familias' => Familia::all()
+        'familias' => Familia::all(),
     ]);
 }); 
 
