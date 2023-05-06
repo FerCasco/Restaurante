@@ -10,8 +10,7 @@
         @livewireStyles
     </head>
     <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
-        @livewire('sala')
-        @livewire('principal')
+        @livewire('main')
         @livewireScripts
 
         <script src="/highcharts/codigoJS.js"></script>

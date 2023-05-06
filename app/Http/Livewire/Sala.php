@@ -11,7 +11,6 @@ class Sala extends Component
     public $salas;
     public SalaModel $sala;
 
-
     //Como un contructor inicializador
     public function mount()
     {
@@ -19,9 +18,10 @@ class Sala extends Component
         $this->sala= new SalaModel();
     }
 
-    public function verMesas($id)
+    public function enviarSalaId($id)
     {
-        return redirect()->route('misMesas', ['id' => $id]);
+        //return redirect()->route('misMesas', ['id' => $id]);
+        // return redirect()->route('misMesas');
     }
     public function render()
     {

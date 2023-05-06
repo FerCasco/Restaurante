@@ -9,18 +9,19 @@ use App\Models\Mesa as MesaModel;
 class Mesa extends Component
 {
     public $mesas;
-    public $idSala;
-    public MesaModel $mesa;
+    protected $listeners = ['enviarSalaId' => 'actualizarSalaSeleccionada'];
 
 
     //Como un contructor inicializador
-    public function mount($id)
+    public function mount($idSala)
     {
-        $this->idSala=$id;
-        $this->mesas=MesaModel::all();
-        $this->mesa= new MesaModel();
+        $this->actualizarSalaSeleccionada($idSala);
     }
 
+    public function actualizarSalaSeleccionada($idSala)
+    {
+        $this->mesas=MesaModel::where('idSala', $idSala)->get();
+    }
     public function render()
     {
         return view('livewire.mesa');

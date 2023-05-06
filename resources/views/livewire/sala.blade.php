@@ -1,7 +1,9 @@
-<div class='flex justify-center items-center space-x-44 h-12 fixed-top mt-2'>
-    @forelse($salas as $sala)
-        <button wire:click="verMesas({{$sala->id}})"type="button" class='py-2.5 px-5 mr-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-full border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700'>{{$sala->nombre}}</button>
-    @empty
-        <h3>No existen salas para mostrar</h3>
-    @endforelse
-</div>
+<nav class="flex justify-center bg-white shadow-lg sm:mt-4">
+    <ul class="text-lg font-semibold mb-4">
+        @foreach($salas as $sala)
+            <li class="border border-gray-500 rounded-md p-6 mr-6 inline-block">
+                <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button">{{$sala->nombre}}</button>
+            </li>
+        @endforeach
+    </ul>
+</nav>

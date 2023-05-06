@@ -4,7 +4,7 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class Principal extends Component
+class Familias extends Component
 {
     public $salas;
     public function render()
@@ -12,6 +12,6 @@ class Principal extends Component
         return view('livewire.principal');
     }
 
-   
+
 
 }
