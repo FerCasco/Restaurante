@@ -33,7 +33,7 @@ Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 
 
 
-Route::get('/users', function () {
+/*Route::get('/users', function () {
     return view('users');
 });
 
@@ -127,3 +127,4 @@ require __DIR__.'/auth.php';
 
 Route::get('/salas', \App\Http\Livewire\Sala::class, 'render')->name('misSalas');
 Route::get('/mesas/{id}', \App\Http\Livewire\Mesa::class)->name('misMesas');
+*/

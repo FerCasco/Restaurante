@@ -4,10 +4,11 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 
-class MenuPrincipal extends Component
+class MenuLateral extends Component
 {
+
     public function render()
     {
-        return view('livewire.menu-principal');
+        return view('livewire.menu-lateral');
     }
 }
