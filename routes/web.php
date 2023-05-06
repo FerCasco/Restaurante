@@ -23,6 +23,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::view('/cocina', 'cocina-plantilla');
+Route::view('/inventario', 'inventario-plantilla');
+Route::view('/contactos', 'contactos-plantilla');
+Route::view('/graficas', 'graficas-plantilla');
+Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
+
+
+
+
+
 Route::get('/users', function () {
     return view('users');
 });
@@ -68,7 +78,7 @@ Route::get('/productos/{idMesa}', function () {
     return view('productos',[
         'familias' => Familia::all(),
     ]);
-}); 
+});
 
 Route::get('/productos/{idMesa}/bebidas', function () {
     return view('partials.productos',[

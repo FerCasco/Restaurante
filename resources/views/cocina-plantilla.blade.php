@@ -10,10 +10,7 @@
         @livewireStyles
     </head>
     <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
-
-        @livewire('main')
-
-        @livewireScripts
+        @livewire('cocina')
 
         <script src="/highcharts/codigoJS.js"></script>
     </body>

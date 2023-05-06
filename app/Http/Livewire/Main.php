@@ -10,17 +10,12 @@ class Main extends Component
     public $idSala;
     public $idMesa;
 
-    protected $listeners = ['enviarSalaId','componenteMenuLateral','atenderMesa',];
+    protected $listeners = ['enviarSalaId','atenderMesa',];
 
     public function enviarSalaId($idSala)
     {
         $this->idSala=$idSala;
         $this->componenteActivar('mesa');
-    }
-
-    public function componenteMenuLateral($nombre)
-    {
-        $this->componenteActivar($nombre);
     }
 
     public function atenderMesa($idMesa)

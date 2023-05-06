@@ -17,12 +17,6 @@ class Sala extends Component
         $this->salas=SalaModel::all();
         $this->sala= new SalaModel();
     }
-
-    public function enviarSalaId($id)
-    {
-        //return redirect()->route('misMesas', ['id' => $id]);
-        // return redirect()->route('misMesas');
-    }
     public function render()
     {
         return view('livewire.sala');
