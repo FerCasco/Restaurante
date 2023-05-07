@@ -3,12 +3,12 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Sala as SalaModel;
 
-class MenuLateral extends Component
+class Menu extends Component
 {
-
     public function render()
     {
-        return view('livewire.menu-lateral');
+        return view('livewire.menu');
     }
 }

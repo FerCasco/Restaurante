@@ -2,12 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Sala as SalaModel;
+use Livewire\Component;
 
 class Sala extends Component
 {
-
     public $salas;
     public SalaModel $sala;
 

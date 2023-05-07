@@ -1,4 +1,4 @@
-<h1 class="mt-12 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesa->id}}</h1>
+<h1 class="mt-40 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesa->id}}</h1>
 
 <div class="grid grid-cols-3 gap-4 ml-72 mt-12 pl-28">
     @foreach($familias as $familia)

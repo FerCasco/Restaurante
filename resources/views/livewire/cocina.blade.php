@@ -5,9 +5,9 @@
         </svg>
     </button>
 
-    <div id="menu" class=" mt-6 fixed top-0 left-0 z-40 flex flex-col items-start justify-start w-64 h-full px-4 py-8 bg-white shadow-lg overflow-y-auto transform -translate-x-full transition duration-200 ease-in-out">
+    <div id="menu" class="mt-4 fixed top-0 left-0 z-40 flex flex-col items-start justify-start w-64 h-full px-4 py-8 bg-white shadow-lg overflow-y-auto">
 
-        <input type="text" wire:model="miIngrediente">
+        <input class="bg-gray-300 mt-10 mb-8" type="text" wire:model="miIngrediente" placeholder=" Buscar ingredientes">
 
         @foreach($this->mercancias as $mercancia)
             <button class="flex items-center justify-center bg-indigo-500 rounded-full shadow-md cursor-pointer">
@@ -16,12 +16,18 @@
             </button>
         @endforeach
     </div>
+
+    <div class="relative">
+
+    </div>
 </div>
 
 
 <script>
-    document.getElementById('toggleMenu').addEventListener('click', function () {
-        document.getElementById('menu').classList.toggle('-translate-x-full');
-        document.getElementById('menu').classList.toggle('translate-x-0');
+    var btnMenu = document.getElementById('toggleMenu');
+
+    btnMenu.addEventListener('click', function () {
+        document.getElementById('menu').classList.toggle('hidden');
+        document.getElementById('menu').classList.toggle('inline');
     });
 </script>

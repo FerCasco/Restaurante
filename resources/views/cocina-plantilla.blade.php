@@ -14,9 +14,12 @@
 </head>
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
+@livewire('menu')
 @livewire('cocina')
 
 @livewireScripts
 <script src="/highcharts/codigoJS.js"></script>
+</script><script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Livewire\Sala;
+use App\Http\Livewire\Menu;
 use App\Models\Familia;
 use App\Models\Mesa;
 use App\Models\Producto;
@@ -125,6 +125,6 @@ require __DIR__.'/auth.php';
 
 
 
-Route::get('/salas', \App\Http\Livewire\Sala::class, 'render')->name('misSalas');
+Route::get('/salas', \App\Http\Livewire\Menu::class, 'render')->name('misSalas');
 Route::get('/mesas/{id}', \App\Http\Livewire\Mesa::class)->name('misMesas');
 */

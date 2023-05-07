@@ -4,8 +4,8 @@ session_start();
 
 ?>
 <div>
+    @livewire('menu')
     @livewire('sala')
-    @livewire('menu-lateral')
     @if ($componenteActivo === 'mesa')
         <div>
             @livewire('mesa',['idSala' => $idSala])
