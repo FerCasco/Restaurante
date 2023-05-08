@@ -18,7 +18,12 @@
     </div>
 
     <div class="relative">
-
+        @foreach($this->productos as $productos)
+            <button class="flex items-center justify-center bg-indigo-500 rounded-full shadow-md cursor-pointer">
+                <a href="#"
+                   class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-full shadow-md cursor-pointer">{{$mercancia->nombre}}</a>
+            </button>
+        @endforeach
     </div>
 </div>
 

@@ -29,6 +29,7 @@ Route::view('/contactos', 'contactos-plantilla');
 Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 
+Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
 
 
 
