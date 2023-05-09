@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->string("domicilioFiscal");
+            $table->string("direccion");
+            $table->string("telefono");
             $table->string('CIF');
             $table->binary('logo');
             $table->timestamps();

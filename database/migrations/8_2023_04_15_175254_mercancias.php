@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string("nombre");
             $table->integer("cantidad");
+            $table->unsignedBigInteger("tipo");
+            $table->foreign("tipo")->on("tipos")->references("id")->onDelete("cascade")->onUpdate("cascade");
+          
             $table->decimal("precioUnidad");
             $table->unsignedBigInteger("idProveedor");
             $table->foreign("idProveedor")->on("proveedores")->references("id")->onDelete("cascade")->onUpdate("cascade");
