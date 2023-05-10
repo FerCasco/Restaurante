@@ -48,7 +48,7 @@
             <button data-tooltip-target="tooltip-wallet" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group">
                 <a href="{{ url('/datosAlmacenados') }}" >
                     <div class="text-3xl">
-                        <ion-icon name="create"></ion-icon>
+                        <ion-icon name="calendar-outline"></ion-icon>
                     </div>
                 </a>
             </button>

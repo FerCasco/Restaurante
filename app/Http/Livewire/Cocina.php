@@ -17,13 +17,13 @@ class Cocina extends Component
     }
     public function updatedMiIngrediente()
     {
+        $this->productos=ProductoModel::all();
         if($this->miIngrediente!=null){
             $menuIngredientes=true;
             return $this->mercancias = MercanciaModel::where('nombre', 'like', '%' . $this->miIngrediente . '%')->get();
-            $this->productos=ProductoModel::all();
+
         }else{
             $this->mercancias=MercanciaModel::all();
-            $this->productos=ProductoModel::all();
         }
     }
     public function render()
