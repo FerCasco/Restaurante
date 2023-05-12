@@ -21,7 +21,9 @@ return new class extends Migration
             $table->foreign("idElaboraciones")->on("elaboraciones")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->string("descripcion");
-            $table->string("tipo");
+            $table->unsignedBigInteger("idTipo");
+            $table->foreign("idTipo")->on("tipos_producto")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
             $table->decimal("precio");
             $table->timestamps();
         });

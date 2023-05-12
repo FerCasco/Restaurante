@@ -20,8 +20,9 @@ return new class extends Migration
             $table->integer("comensales");
             $table->string("hora");
             $table->date("fecha");
-            $table->boolean("grupo");
             $table->string("intoleranciaComensal");
+            $table->unsignedBigInteger("idMesa");
+            $table->foreign("idMesa")->on("mesas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->rememberToken();
             $table->timestamps();

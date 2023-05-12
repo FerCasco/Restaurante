@@ -17,9 +17,6 @@ return new class extends Migration
             $table->integer("comensales")->default(0);
 
             //No aparecían en el esquema de bd y creo q no deben desaparecer
-            $table->boolean("reservado")->default(false);
-            $table->dateTime("fechaReserva");
-            $table->boolean("unir");//para indicar q es el tipo de mesa q se puede juntar con otras
 
             /*$table->unsignedBigInteger("idCamarero");
             $table->foreign("idCamarero")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
