@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Mercancia;
 use App\Models\Tipo;
 use Livewire\Component;
 
 class GestionarAlmacen extends Component
 {
-    public $tipo;
     public $mercancias;
-    protected $listeners = ['gestionarTipo'];
+    public $tipo;
+    protected $listeners = ['enviarTipoId'=>'gestionarTipo'];
 
     public function mount($idTipo)
     {
@@ -18,8 +19,8 @@ class GestionarAlmacen extends Component
 
     public function gestionarTipo($idTipo)
     {
-        $this->mercancias = \App\Models\Familia::all();
-        $this->tipo=Tipo::where('id', $idTipo)->get()->first();
+        $this->tipo = Tipo::where('id',$idTipo)->get()->first();
+        $this->mercancias=Mercancia::where('tipo', $idTipo)->get();
     }
     public function render()
     {
