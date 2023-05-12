@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer("comensales");
             $table->string("hora");
             $table->date("fecha");
-            $table->string("intoleranciaComensal");
+            $table->string("anotaciones");
             $table->unsignedBigInteger("idMesa");
             $table->foreign("idMesa")->on("mesas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 

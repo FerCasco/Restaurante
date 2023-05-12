@@ -7,11 +7,10 @@ use Livewire\Component;
 class DatosAlmacenados extends Component
 {
     public $componenteActivo;
-    
-    protected $listeners = ['componenteActivar'];
-    public function componenteActivar($nombre)
+    public function cambiar($nombre)
     {
-        $this->componenteActivo = $nombre;
+        $this->componenteActivo=$nombre;
+        //$this->render();
     }
     public function render()
     {

@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('mercancias', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->integer("cantidad");
+            $table->decimal("cantidadActual");
+            $table->decimal("stockMin")->nullable();
+            $table->decimal("stockMax")->nullable();
             $table->unsignedBigInteger("tipo");
             $table->foreign("tipo")->on("tipos")->references("id")->onDelete("cascade")->onUpdate("cascade");
-          
+
             $table->decimal("precioUnidad");
             $table->unsignedBigInteger("idProveedor");
             $table->foreign("idProveedor")->on("proveedores")->references("id")->onDelete("cascade")->onUpdate("cascade");

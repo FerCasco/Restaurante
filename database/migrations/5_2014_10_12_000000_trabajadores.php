@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string("rol");
             $table->string("nombre");
             $table->string("apellidos");
+            $table->string("telefono");
             $table->string("dni");
             $table->string("codigoQr");//res_qr_(idPersona)_(codigoContrato)
             $table->binary("imagenQr");//blob

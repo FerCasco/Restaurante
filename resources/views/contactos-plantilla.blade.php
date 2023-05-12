@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Cocina</title>
+    <title>Contactos</title>
 
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
@@ -15,6 +15,7 @@
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
 @livewire('menu')
+@livewire('contacto')
 
 @livewireScripts
 </script><script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>

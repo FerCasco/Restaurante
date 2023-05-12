@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Reserva extends Model
+class Proveedores extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     /**
@@ -20,11 +20,7 @@ class Reserva extends Model
         'nombre',
         'apellidos',
         'telefono',
-        'comensales',
-        'hora',
-        'fecha',
-        'grupo',
-        'anotaciones',
+        'email',
     ];
 
 

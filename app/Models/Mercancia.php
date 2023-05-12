@@ -9,7 +9,9 @@ class Mercancia extends Model
     protected $fillable = [
         'id',
         'nombre',
-        'cantidad',
+        'cantidadActual',
+        'stockMin',
+        'stockMax',
         'precioUnidad',
         'idProveedor',
     ];

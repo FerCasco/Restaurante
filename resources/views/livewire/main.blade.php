@@ -1,8 +1,3 @@
-<?php
-// Iniciar sesión
-session_start();
-
-?>
 <div>
     @livewire('menu')
     @livewire('sala')
