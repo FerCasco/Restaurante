@@ -10,17 +10,27 @@ class MenuDiario extends Component
 {
     public $productos;
     public $menu;
+    public MenuDiarioModel $m;
+    protected $listeners = ['CrearMenu'];
 
     public function mount(){
         $this->productos=ProductoModel::all();
         $this->menu=MenuDiarioModel::all();
+
+        if($this->menu!=null){
+            $this->productos = ProductoModel::whereNotIn('nombre', function ($query) {
+                $query->select('nombre')->from('menu_diarios');
+            })->get();
+        }
     }
+    public function CrearMenu($datos){
+        $m = new MenuDiarioModel();
+        $m->nombre = $datos['data'];
+        $m->plato = $datos['destino'];
+        $m->save();
+        $this->m = $m;
 
-    public function reorder($orderedIds){
-        $this->productos = collect($orderedIds)->map(function ($id){
-            return collect($this->productos)->where('id', (int) $id)->first();
-
-        })->toArray();
+        $this->mount();
     }
 
 

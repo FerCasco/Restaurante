@@ -14,6 +14,32 @@
 </head>
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
+<script>
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+    }
+
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        var destino = ev.target.id;
+        ev.target.appendChild(document.getElementById(data));
+
+        /*let component = 'menu-diario';
+        component.call('CrearMenu', data,destino)*/
+
+        var datos = {
+            data: data,
+            destino: destino
+        };
+        Livewire.emit('CrearMenu', datos);
+    }
+</script>
+
 @livewire('menu')
 @livewire('datos-almacenados')
 
