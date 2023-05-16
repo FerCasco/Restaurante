@@ -69,24 +69,30 @@
 
 
 <div class="flex m-auto justify-center">
-    <div class="flex bg-gray-100 hover:bg-gray-200 rounded-lg transition p-1 dark:bg-gray-700 dark:hover:bg-gray-600">
+    <div class="fixed my-4 flex bg-gray-100 hover:bg-gray-200 rounded-lg transition p-1 dark:bg-gray-700 dark:hover:bg-gray-600">
         <nav class="flex space-x-2">
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#" aria-current="page">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/">
+                <ion-icon name="home"></ion-icon>
                 Home
             </a>
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/cocina">
+                <ion-icon name="restaurant"></ion-icon>
                 Cocina
             </a>
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/inventario">
+                <ion-icon name="cube"></ion-icon>
                 Inventario
             </a>
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/contactos">
+                <ion-icon name="mail-unread"></ion-icon>
                 Contactos
             </a>
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/graficas">
+                <ion-icon name="bar-chart"></ion-icon>
                 Graficos
             </a>
-            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="#">
+            <a class="py-3 px-4 inline-flex items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/datosAlmacenados">
+                <ion-icon name="calendar"></ion-icon>
                 Diario
             </a>
         </nav>
