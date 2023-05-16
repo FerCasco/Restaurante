@@ -1,16 +1,13 @@
 <div>
     <div class="m-8">
         @if ($componenteActivo === 'menu-diario')
-            <div>
-                <!--Menu diario-->
-                @livewire('menu-diario')
-            </div>
+            <!--Menu diario-->
+            @livewire('menu-diario')
+
         @endif
         @if ($componenteActivo === 'reserva')
-            <div>
                 <!--Reserva-->
                 @livewire('reserva')
-            </div>
         @endif
     </div>
 
