@@ -81,9 +81,9 @@
 {{--    </button>--}}
 {{--    <!-- End Navigation Toggle -->--}}
 
-<div class="grid grid-cols-6">
+<div class="grid grid-cols-8">
     <aside id="docs-sidebar"
-           class="flex hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+           class=" col-span-1 flex hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6">
             <a class="flex-none text-xl font-semibold dark:text-white" href="javascript:;" aria-label="Brand">Buscar Ingredientes</a>
         </div>
@@ -107,18 +107,45 @@
             </ul>
         </nav>
     </aside>
-    <main class="flex-1 justify-center w-full h-screen col-span-5">
+    <main class="flex-1 justify-center w-full h-screen col-span-6">
         <div class="flex flex-col flex-wrap justify-center items-center pt-24">
             <input type="text" wire:model="miProducto"
                    class="py-2 px-3 block w-1/6 h-12 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                    placeholder="Buscar Productos">
-            @foreach($this->mercancias as $mercancia)
-                <button wire:click="$emit('cargarProductos',{{$mercancia->id}})"
-                        class="flex w-48 items-center border border-gray-200 bg-gray-200 dark:bg-gray-800 py-2 my-4 px-2.5 text-sm text-slate-700 rounded-md hover:bg-white dark:hover:bg-white dark:text-slate-400 dark:hover:text-slate-300">
-                    <a href="#"
-                       class="w-48">{{$mercancia->nombre}}</a>
-                </button>
-            @endforeach
+            @foreach($this->productos as $producto)
+            <button wire:click="$emit('cargarEmplatado',{{$producto['id']}})"
+                    class="flex items-center border border-gray-200 py-2 my-4 hover:color-gray-400 bg-white px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
+                <a href="#"
+                   class="w-60 ">{{$producto['nombre']}}</a>
+            </button>
+        @endforeach
         </div>
     </main>
+    <aside id="docs-sidebar emplatado"
+           class=" col-span-3 flex hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-6">
+            <a class="flex-none text-xl font-semibold dark:text-white" onclick="showDrawer()" aria-label="Brand">Buscar Elaboraciones</a>
+        </div>
+        <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
+            <ul class="space-y-1.5">
+                <li>
+                    @if($productoSeleccionado!=null)
+                        <div id="menuEmplatado"
+                             class="mt-4 top-0 left-0 z-40 flex flex-col items-start justify-start w-96 h-full px-4 py-8 bg-white shadow-lg">
+                            <h2>{{$productoSeleccionado->nombre}}</h2>
+                        </div>
+                    @endif
+                </li>
+            </ul>
+        </nav>
+    </aside>
 </div>
+
+<script>
+    function showDrawer(){
+        const element = document.getElementById('docs-sidebar emplatado');
+
+        element.classList.toggle('opacity-100');
+        element.classList.toggle('opacity-0');
+    }
+</script>
