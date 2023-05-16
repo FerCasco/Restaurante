@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string("rol");
+            $table->unsignedBigInteger("idRol");
+            $table->foreign("idRol")->on("roles")->references("id")->onDelete("cascade")->onUpdate("cascade");
             $table->string("apellidos");
             $table->string("telefono");
             $table->string("dni");

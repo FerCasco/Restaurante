@@ -20,7 +20,7 @@ class GestionarAlmacen extends Component
     public function gestionarTipo($idTipo)
     {
         $this->tipo = Tipo::where('id',$idTipo)->get()->first();
-        $this->mercancias=Mercancia::where('tipo', $idTipo)->get();
+        $this->mercancias=Mercancia::where('idTipos', $idTipo)->get();
     }
     public function render()
     {

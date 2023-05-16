@@ -3,8 +3,9 @@
 
         <div class="flex justify-end mx-8 my-8 bg-gray-100">
             <input class="bg-pink-35 mt-10 mb-8" type="text" wire:model="miContacto" placeholder=" Buscar contacto">
-            <button>Proveedores</button>
-            <button>Trabajadores</button>
+            <button onclick="changeTab('proveedores')">Proveedores</button>
+            <button onclick="changeTab('trabajadores')">Trabajadores</button>
+
         </div>
 
         <div class="w-3/4 mx-auto p-8 bg-gray-100 rounded">
@@ -15,30 +16,30 @@
             <table class="w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ver</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Ver</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($proveedores as $proveedor)
                     <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->nombre}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->email}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->telefono}}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
-                    </td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->nombre}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->email}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->telefono}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                                <ion-icon name="eye-outline"></ion-icon>
+                            </button>
+                        </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
-                <div>
-                    <!--{$proveedores->links()}}-->
-                </div>
+            <div>
+                {{ $proveedores->appends(['tab' => 'proveedores'])->links() }} <!-- Agregar la barra de paginación -->
+            </div>
         </div>
 
 
@@ -61,9 +62,9 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                     @foreach($trabajadores as $trabajador)
                     <tr>
-                        <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->nombre}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->name}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->apellidos}}</td>
-                        <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->rol}}</td>
+                        <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->idRol}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">{{$trabajador->email}}</td>
                         <td class="px-6 py-4 whitespace-nowrap">telefono</td>
                         <td class="px-6 py-4 whitespace-nowrap">
@@ -76,7 +77,7 @@
                 </tbody>
             </table>
             <div>
-                <!--{$trabajadores->links()}}-->
+                {{ $trabajadores->appends(['tab' => 'trabajadores'])->links() }}
             </div>
         </div>
     </div>
@@ -157,23 +158,28 @@
 </div>
 
 <script>
+    function changeTab(tab) {
+        const url = new URL(window.location.href);
+        url.searchParams.set('tab', tab);
+        window.location.href = url.toString();
+    }
     var btnTrabajador = document.getElementById('nuevoTrabajador');
 
-    btnTrabajador.addEventListener('click', function () {
+    btnTrabajador.addEventListener('click', function() {
         document.getElementById("trabajadorModal").classList.remove("hidden");
     });
 
-    /*var modal = document.getElementById("opacidad");
+    var modal = document.getElementById("opacidad");
     modal.addEventListener("click", function(event) {
         if (event.target !== modal && !modal.contains(event.target)) {
-            document.getElementById("trabajadorModal").classList.Add("hidden");
+            document.getElementById("trabajadorModal").classList.add("hidden");
         }
-    });*/
+    });
 
-   /* var btnProveedor = document.getElementById('nuevoProveedor');
+    var btnProveedor = document.getElementById('nuevoProveedor');
 
-    btnProveedor.addEventListener('click', function () {
+    btnProveedor.addEventListener('click', function() {
         document.getElementById('').classList.toggle('hidden');
         document.getElementById('').classList.toggle('inline');
-    });*/
+    });
 </script>

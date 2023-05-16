@@ -11,20 +11,25 @@ class Contacto extends Component
 {
 
     use WithPagination;
-    public $proveedores;
-    public $trabajadores;
+    protected $proveedores;
+    protected $trabajadores;
 
-   public function mount(){
-        $this->proveedores=ProveedorModel::all();
-        $this->trabajadores=TrabajadorModel::all();
+    public function mount()
+    {
+        $this->proveedores = ProveedorModel::all();
+        $this->trabajadores = TrabajadorModel::all();
     }
     public function render()
     {
+        $proveedores = ProveedorModel::paginate(5, ['*'], 'proveedoresPage');
+        $trabajadores = TrabajadorModel::paginate(5, ['*'], 'trabajadoresPage');
+
         return view('livewire.contacto', [
-            'proveedores' => ProveedorModel::paginate(3),
-            'trabajadores' => TrabajadorModel::paginate(2),
+            'proveedores' => $proveedores,
+            'trabajadores' => $trabajadores
         ]);
     }
+
 
     /*
     public $perPage = 5;
