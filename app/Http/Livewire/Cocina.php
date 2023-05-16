@@ -12,6 +12,7 @@ class Cocina extends Component
     /*ingredientes*/
     public $miIngrediente;
     public $mercancias;
+    public $productoReceta;
 
     /*productos*/
     public $miProducto;
@@ -61,16 +62,16 @@ class Cocina extends Component
 
             foreach ($recetasElaMer as $receta){
                 //coger mis productos que tengan ese id de elaboración
-                $productoReceta = ProductoModel::where('idElaboraciones', $receta[0]->idElaboracion)->get()->first();
-                array_push($this->productos, $productoReceta);
+                $this->productoReceta = ProductoModel::where('idElaboraciones', $receta[0]->idElaboracion)->get();
+                $this->productos[] = $this->productoReceta[0];
             }
         }
+
     }
 
     public function cargarEmplatado($idProducto)
     {
-        $this->productos = ProductoModel::where('id', $idProducto)->get()->first();
-
+        $this->productoSeleccionado = ProductoModel::where('id', $idProducto)->get()->first();
     }
 
     /*public function productoSeleccionadoNull()

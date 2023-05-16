@@ -11,7 +11,7 @@
                 <a href="{{ url('/') }}" >
                     <div class="relative">
                         <ion-icon name="home" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
-                        <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Salas</div>
+                        <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Salas</div>
                     </div>
                 </a>
             </button>
@@ -21,7 +21,7 @@
                     <div class="relative">
                         <ion-icon name="restaurant-sharp" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
                         <div class="relative">
-                            <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Cocina</div>
+                            <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Cocina</div>
                         </div>
                     </div>
                 </a>
@@ -31,7 +31,7 @@
                 <a href="{{ url('/inventario') }}" >
                     <div class="relative">
                         <ion-icon name="cube" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
-                        <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Inventario</div>
+                        <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Inventario</div>
                     </div>
                 </a>
             </button>
@@ -40,7 +40,7 @@
                 <a href="{{ url('/contactos') }}" >
                     <div class="relative">
                         <ion-icon name="people" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
-                        <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Contactos</div>
+                        <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Contactos</div>
                     </div>
                 </a>
             </button>
@@ -49,7 +49,7 @@
                 <a href="{{ url('/graficas') }}" >
                     <div class="relative">
                         <ion-icon name="stats-chart" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
-                        <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Gráficas</div>
+                        <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Gráficas</div>
                     </div>
                 </a>
             </button>
@@ -58,7 +58,7 @@
                 <a href="{{ url('/datosAlmacenados') }}" >
                     <div class="relative">
                         <ion-icon name="calendar-outline" class="text-lg desplazamiento w-8 h-8 group-hover:-translate-y-2 group-hover:shadow-lg transition-all" style="font-size: 1.5rem;"></ion-icon>
-                        <div class="absolute bottom-0 left-0 right-0 text-center opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Diario</div>
+                        <div class="m-auto opacity-0 group-hover:opacity-100 group-hover:translate-y-2 group-hover:transition-all">Diario</div>
                     </div>
                 </a>
             </button>
