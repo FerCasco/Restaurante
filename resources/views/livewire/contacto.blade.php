@@ -11,7 +11,7 @@
         <div class="w-3/4 mx-auto p-8 bg-gray-100 rounded">
             <div class="flex justify-between mb-1.5">
                 <h3>Proveedores</h3>
-                <button id="nuevoProveedor" class=" inline-block bg-pink-100 p-4 rounded">Agregar Proveedor</button>
+                <button data-modal-target="modalProveedores" data-modal-toggle="modalProveedores" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Agregar Proveedor</button>
             </div>
             <table class="w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
@@ -46,8 +46,8 @@
         <div class="w-3/4 mx-auto p-8 bg-gray-100 rounded">
             <div class="flex justify-between mb-1.5">
                 <h3>Trabajadores</h3>
-                <button id="nuevoTrabajador" class=" inline-block bg-pink-300 p-4 rounded">Agregar Trabajador</button>
-            </div>
+                <button data-modal-target="modalTrabajadores" data-modal-toggle="modalTrabajadores" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">Agregar Trabajador</button>
+           </div>
             <table class="w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
@@ -83,75 +83,60 @@
     </div>
 
     <div>
-        <!-- Modal proveedor
-        <div class="fixed inset-0 z-50 overflow-auto flex items-center justify-center">
-            <div class="absolute inset-0 bg-gray-900 opacity-50"></div>
-            <div class="bg-white rounded-lg p-8">
-                <h2 class="text-xl font-bold mb-4">Nuevo proveedor</h2>
-                <form>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="nombre">Nombre:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre del trabajador">
+        <!-- Modal proveedores -->
+        <div id="modalProveedores" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="modalProveedores">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Dar de alta un proveedor</h3>
+                        <form class="space-y-6" action="#">
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                            </div>
+                            <div>
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                            </div>
+                            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Alta</button>
+                        </form>
                     </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="apellido">Apellido:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="apellido" type="text" placeholder="Apellido del trabajador">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="email">Email:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email del trabajador">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="telefono">Teléfono:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono" type="tel" placeholder="Teléfono del trabajador">
-                    </div>
-                </form>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Close</button>
+                </div>
             </div>
-        </div>-->
-
-        <!-- Modal trabajador-->
-        <div id="trabajadorModal" class="hidden shadow-lg overflow-y-auto fixed inset-0 z-50 overflow-auto flex items-center justify-center">
-            <div id="opacidad" class="absolute inset-0 bg-gray-900 opacity-50"></div>
-            <div class="bg-white rounded-lg p-8">
-                <h2 class="text-xl font-bold mb-4">Nuevo trabajador</h2>
-                <form>
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="nombre">Nombre:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="nombre" type="text" placeholder="Nombre del trabajador">
+        </div>
+        <!-- Mpdal trabajadores -->
+        <div id="modalTrabajadores" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative w-full max-w-md max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                    <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-hide="modalTrabajadores">
+                        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="sr-only">Close modal</span>
+                    </button>
+                    <div class="px-6 py-6 lg:px-8">
+                        <h3 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Dar de alta un trabajador</h3>
+                        <form class="space-y-6" action="#">
+                            <div>
+                                <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="name@company.com" required>
+                            </div>
+                            <div>
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                            </div>
+                            <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Alta</button>
+                        </form>
                     </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="apellido">Apellido:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="apellido" type="text" placeholder="Apellido del trabajador">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="puesto">Rol:</label>
-                        <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="rol">
-                            <option>Selecciona el puesto del trabajador</option>
-                            <option>Camarero</option>
-                            <option>Cocinero</option>
-                            <option>X</option>
-                        </select>
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="email">Email:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" type="email" placeholder="Email del trabajador">
-                    </div>
-
-                    <div class="mb-4">
-                        <label class="block text-gray-700 font-bold mb-2" for="telefono">Teléfono:</label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="telefono" type="tel" placeholder="Teléfono del trabajador">
-                    </div>
-
-                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Agregar Trabajador</button>
-                </form>
-                <button class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Close</button>
+                </div>
             </div>
         </div>
     </div>
@@ -163,23 +148,14 @@
         url.searchParams.set('tab', tab);
         window.location.href = url.toString();
     }
-    var btnTrabajador = document.getElementById('nuevoTrabajador');
+    import {
+        Modal,
+        Ripple,
+        initTE,
+    } from "tw-elements";
 
-    btnTrabajador.addEventListener('click', function() {
-        document.getElementById("trabajadorModal").classList.remove("hidden");
-    });
-
-    var modal = document.getElementById("opacidad");
-    modal.addEventListener("click", function(event) {
-        if (event.target !== modal && !modal.contains(event.target)) {
-            document.getElementById("trabajadorModal").classList.add("hidden");
-        }
-    });
-
-    var btnProveedor = document.getElementById('nuevoProveedor');
-
-    btnProveedor.addEventListener('click', function() {
-        document.getElementById('').classList.toggle('hidden');
-        document.getElementById('').classList.toggle('inline');
+    initTE({
+        Modal,
+        Ripple
     });
 </script>
