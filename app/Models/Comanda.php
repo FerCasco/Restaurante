@@ -17,11 +17,8 @@ class Comanda extends Model
      */
     protected $fillable = [
         'id',
-        'idMesa',
-        'idTrabajador',
-        'idProducto',
-        'cantidad',
-        'enviado',
+        'idLineasComanda',
+        'precioTotal',
     ];
 
 

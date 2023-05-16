@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lineasFactura', function (Blueprint $table) {
+        Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger("idTickets");
-            $table->foreign("idTickets")->on("tickets")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
-            $table->rememberToken();
+            $table->string("nombre");
+            $table->string("email");
+            $table->string("telefono");
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lineasFactura');
+        Schema::dropIfExists('proveedores');
     }
 };

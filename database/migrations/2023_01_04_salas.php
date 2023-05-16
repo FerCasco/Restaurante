@@ -11,17 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elaboraciones', function (Blueprint $table) {
+        Schema::create('salas', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
-
-            $table->unsignedBigInteger("idIngredientes");
-            $table->foreign("idIngredientes")->on("ingredientes")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
-            $table->string('receta');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -29,7 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('elaboraciones');
-
+        Schema::dropIfExists('salas');
     }
 };

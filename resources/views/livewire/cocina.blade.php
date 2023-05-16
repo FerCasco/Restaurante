@@ -19,8 +19,8 @@
     <!--Productos para buscar-->
     <div class="h-screen w-full relative bg-yellow-400 ">
         <input class="bg-gray-300 mb-8 w-2/5 block mx-auto mt-32" type="text" wire:model="miProducto" placeholder=" Buscar productos">
-    </dd>
-        @foreach($this->productos as $producto)
+        @if(this->productoSeleccionado) @endif
+        @foreach($this->productoSeleccionado as $producto)
             <button wire:click="$emit('cargarEmplatado',{{$producto->id}})" class="flex items-center justify-center bg-orange-800 rounded-full shadow-md cursor-pointer">
                 <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-gray-200 rounded-full shadow-md cursor-pointer">{{$producto->nombre}}</a>
             </button>

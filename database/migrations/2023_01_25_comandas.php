@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('ingredientes', function (Blueprint $table) {
+        Schema::create('comandas', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("idMercancia");
-            $table->foreign("idMercancia")->on("mercancias")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idLineasComanda");
+            $table->foreign("idLineasComanda")->on("lineas_comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
-            $table->integer('cantidad'); // Cantidada para realizar la receta.
+            $table->double('precioTotal');
+
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ingredientes');
+        Schema::dropIfExists('comandas');
     }
 };

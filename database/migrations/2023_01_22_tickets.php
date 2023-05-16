@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("idComandas");
-            $table->foreign("idComandas")->on("comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idLineasComandas");
+            $table->foreign("idLineasComandas")->on("lineas_comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             //Campos solo para la comanda.
             $table->time("hora"); //Para generar la comanda. Para saber cuanto tiempo hace que se pidió la comanda.

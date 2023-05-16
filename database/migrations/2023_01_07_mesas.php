@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id();
             $table->integer("capacidad");
+            $table->string('nombre');
             $table->integer("comensales")->default(0);
 
             //No aparecían en el esquema de bd y creo q no deben desaparecer

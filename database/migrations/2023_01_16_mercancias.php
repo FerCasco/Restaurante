@@ -17,8 +17,8 @@ return new class extends Migration
             $table->decimal("cantidadActual");
             $table->decimal("stockMin")->nullable();
             $table->decimal("stockMax")->nullable();
-            $table->unsignedBigInteger("tipo");
-            $table->foreign("tipo")->on("tipos")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idTipos");
+            $table->foreign("idTipos")->on("tipos")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->decimal("precioUnidad");
             $table->unsignedBigInteger("idProveedor");

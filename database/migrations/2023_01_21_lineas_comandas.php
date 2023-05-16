@@ -9,9 +9,9 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
-        Schema::create('comandas', function (Blueprint $table) {
+        Schema::create('lineas_comandas', function (Blueprint $table) {
             $table->id();
 
             $table->unsignedBigInteger("idMesa");
@@ -38,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('comandas');
+        Schema::dropIfExists('lineasComandas');
     }
 };

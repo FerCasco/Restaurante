@@ -69,7 +69,8 @@ class Cocina extends Component
 
     public function cargarEmplatado($idProducto)
     {
-        $this->productoSeleccionado=ProductoModel::where('id', $idProducto)->get()->first();
+        $this->productos = ProductoModel::where('id', $idProducto)->get()->first();
+
     }
 
     /*public function productoSeleccionadoNull()

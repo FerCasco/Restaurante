@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger("idLineasFactura");
-            $table->foreign("idLineasFactura")->on("lineasFactura")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("idLineasFactura")->on("lineas_factura")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->unsignedBigInteger("idEmpresas");
             $table->foreign("idEmpresas")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");

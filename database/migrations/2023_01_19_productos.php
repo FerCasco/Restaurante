@@ -11,15 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('elaboraciones_ingredientes', function (Blueprint $table) {
+        Schema::create('productos', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger("idIngredientes");
-            $table->foreign("idIngredientes")->on("ingredientes")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->string("nombre");
+            $table->unsignedBigInteger("idFamilia");
+            $table->foreign("idFamilia")->on("familias")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->unsignedBigInteger("idElaboraciones");
             $table->foreign("idElaboraciones")->on("elaboraciones")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
+            $table->string("descripcion");
+            $table->unsignedBigInteger("idTipo");
+            $table->foreign("idTipo")->on("tipos_producto")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            $table->decimal("precio");
             $table->timestamps();
         });
     }
@@ -29,6 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('elaboraciones_ingredientes');
+        Schema::dropIfExists('productos');
+
     }
 };
