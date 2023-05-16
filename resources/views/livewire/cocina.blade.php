@@ -15,7 +15,7 @@
 {{--                <button wire:click="$emit('cargarProductos',{{$mercancia->id}})"--}}
 {{--                        class="mx-auto my-4 text-white rounded-lg bg-blue-800 shadow-md cursor-pointer">--}}
 {{--                    <a href="#"--}}
-{{--                       class="w-60 block px-4 text-white rounded-lg py-2 text-gray-800 hover:bg-blue-400 shadow-md cursor-pointer">{{$mercancia->nombre}}</a>--}}
+{{--                       class="w-60 block px-4 text-white rounded-lg py-2 hover:bg-blue-400 shadow-md cursor-pointer">{{$mercancia->nombre}}</a>--}}
 {{--                </button>--}}
 {{--            @endforeach--}}
 {{--        </div>--}}
@@ -29,7 +29,7 @@
 {{--            <button wire:click="$emit('cargarEmplatado',{{$producto['id']}})"--}}
 {{--                    class="mx-auto my-4 text-white rounded-lg flex items-center justify-center bg-orange-800 shadow-md cursor-pointer">--}}
 {{--                <a href="#"--}}
-{{--                   class="w-60 block px-4 text-white rounded-lg py-2 text-gray-800 hover:bg-red-400 shadow-md cursor-pointer">{{$producto['nombre']}}</a>--}}
+{{--                   class="w-60 block px-4 text-white rounded-lg py-2  hover:bg-red-400 shadow-md cursor-pointer">{{$producto['nombre']}}</a>--}}
 {{--            </button>--}}
 {{--        @endforeach--}}
 {{--    </div>--}}
@@ -68,84 +68,71 @@
 {{--        //Livewire.emit('productoSeleccionadoNull');--}}
 {{--    });--}}
 {{--</script>--}}
-
-{{--<div>--}}
-{{--    <!-- Navigation Toggle -->--}}
-{{--    <button type="button" class="text-gray-500 hover:text-gray-600" data-hs-overlay="#docs-sidebar"--}}
-{{--            aria-controls="docs-sidebar" aria-label="Toggle navigation">--}}
-{{--        <span class="sr-only">Toggle Navigation</span>--}}
-{{--        <svg class="w-5 h-5" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">--}}
-{{--            <path fill-rule="evenodd"--}}
-{{--                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>--}}
-{{--        </svg>--}}
-{{--    </button>--}}
-{{--    <!-- End Navigation Toggle -->--}}
-
-<div class="grid grid-cols-8">
-    <aside id="docs-sidebar"
-           class=" col-span-1 flex hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
-        <div class="px-6">
-            <a class="flex-none text-xl font-semibold dark:text-white" href="javascript:;" aria-label="Brand">Buscar Ingredientes</a>
+<div>
+    <div id="right-side-bar"
+        class="transition-all duration-300 transform fixed top-0 left-0 bottom-0 z-[60] w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-6 flex flex-nowrap flex-row">
+            <a class="inline text-xl font-semibold dark:text-white" href="javascript:;" aria-label="Brand">Buscar
+                Ingredientes</a>
+            <button type="button" class="inline w-6 h-6" onclick="toggleRightSideBar('Cerrar')">
+                <svg class="w-3 h-3" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path
+                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                </svg>
+            </button>
         </div>
         <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
             <ul class="space-y-1.5">
                 <li>
-                    <label>
-                        <input type="text" wire:model="miIngrediente"
-                               class="py-2 px-3 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
-                               placeholder="Buscar Ingredientes">
-                    </label>
+                    <input
+                        class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm w-full text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-900 dark:text-white "
+                        type="text" wire:model="miIngrediente"
+                        placeholder=" Buscar ingredientes">
                 </li>
                 <li>
                     @foreach($this->mercancias as $mercancia)
                         <button wire:click="$emit('cargarProductos',{{$mercancia->id}})"
-                                class="flex items-center border border-gray-200 py-2 my-4 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
+                                class="w-full border border-gray-200 flex my-4 items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
                             <a href="#"
-                               class="w-48">{{$mercancia->nombre}}</a>
+                               class="w-full">{{$mercancia->nombre}}</a>
                         </button>
-                    @endforeach</li>
+                    @endforeach
+                </li>
             </ul>
-        </nav>
-    </aside>
-    <main class="flex-1 justify-center w-full h-screen col-span-6">
+        </nav>0
+    </div>
+    <button type="button" class="inline w-6 h-6" onclick="toggleRightSideBar('Abrir')">
+        <svg class="w-3 h-3" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path
+                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+        </svg>
+    </button>
+    <main class="flex-1 justify-center w-full h-screen ">
         <div class="flex flex-col flex-wrap justify-center items-center pt-24">
             <input type="text" wire:model="miProducto"
                    class="py-2 px-3 block w-1/6 h-12 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                    placeholder="Buscar Productos">
             @foreach($this->productos as $producto)
-            <button wire:click="$emit('cargarEmplatado',{{$producto['id']}})"
-                    class="flex items-center border border-gray-200 py-2 my-4 hover:color-gray-400 bg-white px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
-                <a href="#"
-                   class="w-60 ">{{$producto['nombre']}}</a>
-            </button>
-        @endforeach
+                <button wire:click="$emit('cargarEmplatado',{{$producto['id']}})"
+                        class="flex items-center border border-gray-200 py-2 my-4 hover:color-gray-400 bg-white px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300"
+                        data-hs-overlay="#hs-overlay-body-scrolling">
+                    <a href="#"
+                       class="w-60 ">{{$producto['nombre']}}</a>
+                </button>
+            @endforeach
         </div>
     </main>
-    <aside id="docs-sidebar emplatado"
-           class=" col-span-3 flex hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
-        <div class="px-6">
-            <a class="flex-none text-xl font-semibold dark:text-white" onclick="showDrawer()" aria-label="Brand">Buscar Elaboraciones</a>
-        </div>
-        <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
-            <ul class="space-y-1.5">
-                <li>
-                    @if($productoSeleccionado!=null)
-                        <div id="menuEmplatado"
-                             class="mt-4 top-0 left-0 z-40 flex flex-col items-start justify-start w-96 h-full px-4 py-8 bg-white shadow-lg">
-                            <h2>{{$productoSeleccionado->nombre}}</h2>
-                        </div>
-                    @endif
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    <script>
+        function toggleRightSideBar(buttonType){
+            let sideBar = document.getElementById('right-side-bar');
+            let button = document.getElementById('open-right-side-bar-button')
+            if(buttonType === 'Cerrar'){
+                sideBar.classList.toggle('hidden');
+            } else {
+                sideBar.classList.remove('hidden');
+                sideBar.classList.toggle('opacity-100')
+            }
+        }
+    </script>
 </div>
 
-<script>
-    function showDrawer(){
-        const element = document.getElementById('docs-sidebar emplatado');
-
-        element.classList.toggle('opacity-100');
-        element.classList.toggle('opacity-0');
-    }
-</script>

@@ -1,11 +1,18 @@
 {
   "resources/js/app.js": {
-    "file": "assets/app.8f8522ab.js",
+    "file": "assets/app.560d4e63.js",
     "src": "resources/js/app.js",
-    "isEntry": true
+    "isEntry": true,
+    "dynamicImports": [
+      "_preline.c676b130.js"
+    ]
+  },
+  "_preline.c676b130.js": {
+    "file": "assets/preline.c676b130.js",
+    "isDynamicEntry": true
   },
   "resources/css/app.css": {
-    "file": "assets/app.b8e41b7d.css",
+    "file": "assets/app.6080de70.css",
     "src": "resources/css/app.css",
     "isEntry": true
   }
