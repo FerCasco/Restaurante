@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Producto as ProductoModel;
 use App\Models\MenuDiario as MenuDiarioModel;
+use App\Models\Familia as FamiliaModel;
 
 class MenuDiario extends Component
 {
@@ -14,11 +15,12 @@ class MenuDiario extends Component
     public $miComida;
     protected $listeners = ['InteractuarMenu'];
 
-    public function mount(){
-        $this->productos=ProductoModel::all();
-        $this->menu=MenuDiarioModel::all();
+    public function mount()
+    {
+        $this->productos = ProductoModel::all();
+        $this->menu = MenuDiarioModel::all();
 
-        if($this->menu!=null){
+        if ($this->menu != null) {
             $this->productos = ProductoModel::whereNotIn('nombre', function ($query) {
                 $query->select('nombre')->from('menu_diarios');
             })->get();
@@ -27,30 +29,51 @@ class MenuDiario extends Component
 
     public function updatedMiComida()
     {
-        if($this->miComida!=null){
-            return $this->productos =  ProductoModel::whereNotIn('nombre', function ($query) {
+        if ($this->miComida != null) {
+            return $this->productos = ProductoModel::whereNotIn('nombre', function ($query) {
                 $query->select('nombre')->from('menu_diarios');
             })->where('nombre', 'like', '%' . $this->miComida . '%')->get();
 
-        }else{
+        } else {
             $this->mount();
         }
     }
 
-    public function InteractuarMenu($datos){
+    public function InteractuarMenu($datos)
+    {
         $m = new MenuDiarioModel();
 
-        if($datos['destino']=="Comidas" || $datos['destino']=="")
-        { 
-            $m=MenuDiarioModel::where('nombre',$datos['data'])->first()->delete();
-        }else{
+        if ($datos['destino'] == "Comidas") {
+            $m = MenuDiarioModel::where('nombre', $datos['data'])->first()->delete();
+        } else {
+
             $m->nombre = $datos['data'];
             $m->plato = $datos['destino'];
-            $m->save();
-            $this->m = $m;
-    
+
+            //Para poder mover el registro de menú a otra familia
+            $entrar=true;
+            foreach ($this->menu as $r){
+                if($r->nombre==$datos['data']){
+                    $r->plato = $m->plato;
+                    $r->save();
+                    $entrar=false;
+                }
+            }
+            if($entrar==true){
+                if ($datos['destino'] == "Entrantes" || $datos['destino'] == "Primeros" || $datos['destino'] == "Segundos" || $datos['destino'] == "Postres") {
+
+                    $m->save();
+                    $this->m = $m;
+                } else {
+                    //Por si nos ponemos encima de otro registro de menú coger su familia, no el nombre
+                    $mInferior = MenuDiarioModel::where('nombre', $datos['destino'])->first();
+                    $familia = $mInferior->plato;
+                    $m->plato = $familia;
+                    $m->save();
+                }
+            }
+
         }
-        
         $this->mount();
     }
 
