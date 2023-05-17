@@ -29,14 +29,11 @@
         var destino = ev.target.id;
         ev.target.appendChild(document.getElementById(data));
 
-        /*let component = 'menu-diario';
-        component.call('CrearMenu', data,destino)*/
-
         var datos = {
             data: data,
             destino: destino
         };
-        Livewire.emit('CrearMenu', datos);
+        Livewire.emit('InteractuarMenu', datos);
     }
 </script>
 
@@ -48,10 +45,8 @@
 <script src="https://cdn.jsdelivr.net/gh/livewire/sortable@v0.x.x/dist/livewire-sortable.js"></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.7/index.global.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/@fullcalendar/daygrid@6.1.7/index.global.min.js'></script>
-
-</script><script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-
 <script src="/highcharts/codigoJS.js"></script>
 </body>
 </html>
