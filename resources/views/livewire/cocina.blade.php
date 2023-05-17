@@ -69,19 +69,18 @@
 {{--    });--}}
 {{--</script>--}}
 <div>
-    <div id="right-side-bar"
-        class="transition-all duration-300 transform fixed top-0 left-0 bottom-0 z-[60] w-64 bg-white border-r border-gray-200 pt-7 pb-10 overflow-y-auto scrollbar-y lg:block lg:translate-x-0 lg:right-auto lg:bottom-0 dark:scrollbar-y dark:bg-gray-800 dark:border-gray-700">
+    <div id="left-side-bar"
+         class=" transition-all -translate-x-full fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row">
-            <a class="inline text-xl font-semibold dark:text-white" href="javascript:;" aria-label="Brand">Buscar
+            <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Buscar
                 Ingredientes</a>
-            <button type="button" class="inline w-6 h-6" onclick="toggleRightSideBar('Cerrar')">
-                <svg class="w-3 h-3" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path
-                        d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+            <button id="close-left-side-bar-button" type="button" class="h-8 w-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                <svg id="close-left-side-bar-button" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
         </div>
-        <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap">
+        <nav class="p-6 w-full flex flex-col flex-wrap">
             <ul class="space-y-1.5">
                 <li>
                     <input
@@ -99,40 +98,133 @@
                     @endforeach
                 </li>
             </ul>
-        </nav>0
+        </nav>
     </div>
-    <button type="button" class="inline w-6 h-6" onclick="toggleRightSideBar('Abrir')">
-        <svg class="w-3 h-3" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path
-                d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+    <button id="open-left-side-bar-button" type="button" class="w-10 h-10 m-6 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+        <svg id="open-left-side-bar-button" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
         </svg>
     </button>
-    <main class="flex-1 justify-center w-full h-screen ">
+    <main class="flex-1 justify-center w-full">
         <div class="flex flex-col flex-wrap justify-center items-center pt-24">
             <input type="text" wire:model="miProducto"
                    class="py-2 px-3 block w-1/6 h-12 border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400"
                    placeholder="Buscar Productos">
             @foreach($this->productos as $producto)
-                <button wire:click="$emit('cargarEmplatado',{{$producto['id']}})"
+                <button id="open-right-side-bar-button-{{$producto['id']}}" wire:click="$emit('cargarEmplatado',{{$producto['id']}})"
                         class="flex items-center border border-gray-200 py-2 my-4 hover:color-gray-400 bg-white px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300"
                         data-hs-overlay="#hs-overlay-body-scrolling">
-                    <a href="#"
+                    <a id="open-right-side-bar-a-{{$producto['id']}}" href="#"
                        class="w-60 ">{{$producto['nombre']}}</a>
                 </button>
             @endforeach
         </div>
     </main>
+    <div id="right-side-bar"
+         class="transition-all translate-x-full fixed top-0 right-0 bottom-0 w-96 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+        <div class="px-6 flex flex-nowrap flex-row justify-between">
+            <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Elaboraciones</a>
+            <button id="close-right-side-bar-button" type="button" class="h-8 w-8 mr-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
+                <svg fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+        <nav class="p-6 w-full flex flex-col flex-wrap">
+            <ul class="space-y-1.5">
+                <li>
+                    @if($productoSeleccionado!=null)
+                        <div id="menuEmplatado"
+                             class="w-full border border-gray-200 flex my-4 items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
+                            <h2>{{$productoSeleccionado->nombre}}</h2>
+                        </div>
+                    @endif
+                </li>
+            </ul>
+        </nav>
+    </div>
     <script>
-        function toggleRightSideBar(buttonType){
-            let sideBar = document.getElementById('right-side-bar');
-            let button = document.getElementById('open-right-side-bar-button')
-            if(buttonType === 'Cerrar'){
-                sideBar.classList.toggle('hidden');
+        //Bool para comprobar si estaban o no cerrados los sideBars
+        let openLeft = false;
+        let openRight = false;
+
+        //Botones
+        let buttonClose = document.getElementById('close-left-side-bar-button');
+        let buttonOpen = document.getElementById('open-left-side-bar-button');
+
+        //SideBars
+        let sideBar = document.getElementById('left-side-bar');
+        let rightSideBar = document.getElementById('right-side-bar');
+
+        //Método de comprobación de los open
+        setInterval(() => {
+            if(openLeft){
+                setTimeout(() => {
+                    sideBar.classList.remove('-translate-x-full');
+                    sideBar.classList.add('translate-x-0');
+                }, 300)
             } else {
-                sideBar.classList.remove('hidden');
-                sideBar.classList.toggle('opacity-100')
+                setTimeout(() => {
+                    sideBar.classList.remove('translate-x-0');
+                    sideBar.classList.add('-translate-x-full');
+                }, 300)
             }
-        }
+
+            if(openRight){
+                setTimeout(() => {
+                    rightSideBar.classList.remove('translate-x-full');
+                    rightSideBar.classList.add('translate-x-0');
+                }, 300)
+
+            } else {
+                setTimeout(() => {
+                    rightSideBar.classList.add('translate-x-full');
+                    rightSideBar.classList.remove('translate-x-0');
+                }, 300)
+
+            }
+        }, 500)
+
+        //Cierra el sideBar de la izquierda
+        buttonClose.addEventListener('click', () => {
+            openLeft = false;
+        });
+
+        //Abre el sideBar de la izquierda
+        buttonOpen.addEventListener('click', () => {
+            openLeft = true;
+            openRight = false;
+            isRightOpen = false;
+        });
+
+        /*
+        * Cierra el sideBar de la izquierda cuando se clica fuera y abre el
+        * de la derecha cuando se clica en uno de esos botones
+        */
+        document.addEventListener('click', function(event) {
+            let isARightClicked = false;
+            let isButtonClicked = false;
+
+            const target = event.target;
+            const isEvenInSideBar = sideBar.contains(target);
+
+            if(target.id.includes('open-left-side-bar-button')) isButtonClicked = true;
+            if(target.id.includes('open-right-side-bar-a') || target.id.includes('open-right-side-bar-button')) {
+                isARightClicked = true
+            }
+
+            if(!isEvenInSideBar && !isButtonClicked && !isARightClicked){
+                openLeft = false;
+                openRight = false;
+                isRightOpen = false;
+            }
+
+            if(isARightClicked) {
+                openRight = true;
+                openLeft = false;
+            }
+
+        })
     </script>
 </div>
 
