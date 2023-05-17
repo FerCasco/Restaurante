@@ -70,7 +70,7 @@
 {{--</script>--}}
 <div>
     <div id="left-side-bar"
-         class=" transition-all -translate-x-full fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+         class=" transition-all fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Buscar
                 Ingredientes</a>
@@ -159,15 +159,11 @@
         //Método de comprobación de los open
         setInterval(() => {
             if(openLeft){
-                setTimeout(() => {
-                    sideBar.classList.remove('-translate-x-full');
-                    sideBar.classList.add('translate-x-0');
-                }, 300)
+                sideBar.classList.remove('-translate-x-full');
+                sideBar.classList.add('translate-x-0');
             } else {
-                setTimeout(() => {
-                    sideBar.classList.remove('translate-x-0');
-                    sideBar.classList.add('-translate-x-full');
-                }, 300)
+                sideBar.classList.remove('translate-x-0');
+                sideBar.classList.add('-translate-x-full');
             }
 
             if(openRight){
