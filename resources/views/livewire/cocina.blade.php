@@ -101,8 +101,8 @@
         </nav>
     </div>
     <button id="open-left-side-bar-button" type="button" class="w-10 h-10 m-6 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
-        <svg id="open-left-side-bar-button" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+        <svg id="open-left-side-bar-button" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path clip-rule="evenodd" fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"></path>
         </svg>
     </button>
     <main class="flex-1 justify-center w-full">
@@ -208,7 +208,7 @@
             const target = event.target;
             const isEvenInSideBar = sideBar.contains(target);
 
-            if(target.id.includes('open-left-side-bar-button')) isButtonClicked = true;
+            if(target.id.includes('button')) isButtonClicked = true;
             if(target.id.includes('open-right-side-bar-a') || target.id.includes('open-right-side-bar-button')) {
                 isARightClicked = true
             }
