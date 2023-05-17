@@ -73,29 +73,29 @@
         <nav class="flex space-x-2">
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/">
                 <ion-icon name="home" class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Home</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Home</p>
             </a>
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/cocina">
                 <ion-icon name="restaurant"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Cocina</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Cocina</p>
 
             </a>
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/cocina">
                 <ion-icon name="cube"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Inventario</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Inventario</p>
 
             </a>
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/contactos">
                 <ion-icon name="mail-unread"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Contactos</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Contactos</p>
             </a>
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/graficas">
                 <ion-icon name="bar-chart"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Grafivos</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Graficos</p>
             </a>
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/datosAlmacenados">
                 <ion-icon name="calendar"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
-                <p class="-translate-y-2 group-hover:translate-y-0">Diario</p>
+                <p class="-translate-y-3 group-hover:translate-y-0">Diario</p>
             </a>
         </nav>
     </div>

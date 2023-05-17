@@ -70,7 +70,10 @@
 {{--</script>--}}
 <div>
     <div id="left-side-bar"
-         class=" transition-all fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+         class=" transition-transform fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+        <script>
+            let sideBar = document.getElementById('left-side-bar');
+        </script>
         <div class="px-6 flex flex-nowrap flex-row">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Buscar
                 Ingredientes</a>
@@ -99,6 +102,7 @@
                 </li>
             </ul>
         </nav>
+
     </div>
     <button id="open-left-side-bar-button" type="button" class="w-10 h-10 m-6 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
         <svg id="open-left-side-bar-button" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -121,7 +125,7 @@
         </div>
     </main>
     <div id="right-side-bar"
-         class="transition-all translate-x-full fixed top-0 right-0 bottom-0 w-96 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+         class=" transition-transform fixed top-0 right-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row justify-between">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Elaboraciones</a>
             <button id="close-right-side-bar-button" type="button" class="h-8 w-8 mr-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
@@ -144,6 +148,7 @@
         </nav>
     </div>
     <script>
+        sideBar.classList.add('-translate-x-full');
         //Bool para comprobar si estaban o no cerrados los sideBars
         let openLeft = false;
         let openRight = false;
@@ -152,9 +157,9 @@
         let buttonClose = document.getElementById('close-left-side-bar-button');
         let buttonOpen = document.getElementById('open-left-side-bar-button');
 
-        //SideBars
-        let sideBar = document.getElementById('left-side-bar');
         let rightSideBar = document.getElementById('right-side-bar');
+        rightSideBar.classList.add('translate-x-full');
+        rightSideBar.classList.add('opacity-0');
 
         //Método de comprobación de los open
         setInterval(() => {
@@ -167,17 +172,12 @@
             }
 
             if(openRight){
-                setTimeout(() => {
-                    rightSideBar.classList.remove('translate-x-full');
-                    rightSideBar.classList.add('translate-x-0');
-                }, 300)
-
+                rightSideBar.classList.remove('translate-x-full');
+                rightSideBar.classList.remove('opacity-0');
+                rightSideBar.classList.add('translate-x-0');
             } else {
-                setTimeout(() => {
-                    rightSideBar.classList.add('translate-x-full');
-                    rightSideBar.classList.remove('translate-x-0');
-                }, 300)
-
+                rightSideBar.classList.remove('translate-x-0');
+                rightSideBar.classList.add('translate-x-full');
             }
         }, 500)
 
@@ -190,7 +190,6 @@
         buttonOpen.addEventListener('click', () => {
             openLeft = true;
             openRight = false;
-            isRightOpen = false;
         });
 
         /*
@@ -212,7 +211,6 @@
             if(!isEvenInSideBar && !isButtonClicked && !isARightClicked){
                 openLeft = false;
                 openRight = false;
-                isRightOpen = false;
             }
 
             if(isARightClicked) {

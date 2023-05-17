@@ -1,5 +1,5 @@
 <div>
-    <div class="m-8">
+    <div class="">
         @if ($componenteActivo === 'menu-diario')
             <!--Menu diario-->
             @livewire('menu-diario')
