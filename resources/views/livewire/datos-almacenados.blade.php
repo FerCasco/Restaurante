@@ -3,7 +3,6 @@
         @if ($componenteActivo === 'menu-diario')
             <!--Menu diario-->
             @livewire('menu-diario')
-
         @endif
         @if ($componenteActivo === 'reserva')
                 <!--Reserva-->
@@ -39,8 +38,6 @@
                         <ion-icon name="calendar-outline"></ion-icon>
                     </div>
                 </button>
-
             </div>
         </div>
 </div>
-
