@@ -80,7 +80,7 @@
                 <p class="-translate-y-3 group-hover:translate-y-0">Cocina</p>
 
             </a>
-            <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/cocina">
+            <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/inventario">
                 <ion-icon name="cube"  class="-translate-y-20 transition-all group-hover:translate-y-0 text-2xl"></ion-icon>
                 <p class="-translate-y-3 group-hover:translate-y-0">Inventario</p>
 

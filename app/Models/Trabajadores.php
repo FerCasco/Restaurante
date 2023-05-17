@@ -11,11 +11,12 @@ class Trabajadores extends Model
 
     protected $fillable = [
         'id',
-        'nombre',
+        'name',
+        'email',
+        'idRol',
         'apellidos',
-        'telefono',
         'dni',
-        'rol',
-        'email'
+        'codigoQr',
+        'imagenQr'
     ];
 }

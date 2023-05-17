@@ -13,7 +13,10 @@ class Contacto extends Component
     use WithPagination;
     protected $proveedores;
     protected $trabajadores;
-
+    public $trabajadorModal;
+    public $showTrabajadorDetails = 'hidden';
+    protected $listeners = ['showTrabajadorDetails'=> 'mostrarModal'];
+    
     public function mount()
     {
         $this->proveedores = ProveedorModel::all();
@@ -29,8 +32,22 @@ class Contacto extends Component
             'trabajadores' => $trabajadores
         ]);
     }
+    public function showTrabajadorDetails(TrabajadorModel $trabajadorModal)
+    {
+        $this->trabajadorModal = $trabajadorModal;
+        json_decode($this->trabajadorModal);
+        $this->emit('showTrabajadorDetails',$this->trabajadorModal);
+    
+  
+        // Puedes ajustar la lógica para obtener los detalles del trabajador según tu estructura de base de datos y modelos
+    }
 
-
+    public function mostrarModal($trabajadorModal){
+        $this->showTrabajadorDetails='';
+    }
+    public function cerrarModal(){
+        $this->showTrabajadorDetails='hidden';
+    }
     /*
     public $perPage = 5;
     public function render()
