@@ -44,7 +44,11 @@ class MenuDiario extends Component
         $m = new MenuDiarioModel();
 
         if ($datos['destino'] == "Comidas") {
-            $m = MenuDiarioModel::where('nombre', $datos['data'])->first()->delete();
+            $m = MenuDiarioModel::where('nombre', $datos['data'])->first();
+            //Control de error de si se saca y entra de nuevo el producto en comidas
+                if($m!=null){
+                    $m->delete();
+                }
         } else {
 
             $m->nombre = $datos['data'];
@@ -54,7 +58,17 @@ class MenuDiario extends Component
             $entrar=true;
             foreach ($this->menu as $r){
                 if($r->nombre==$datos['data']){
-                    $r->plato = $m->plato;
+                    if ($datos['destino'] == "Entrantes" || $datos['destino'] == "Primeros" || $datos['destino'] == "Segundos" || $datos['destino'] == "Postres")
+                    {
+                        $r->plato = $m->plato;
+                    }else
+                    {
+                        //Por si nos ponemos encima de otro registro de menú coger su familia, no el nombre
+                        $mInferior = MenuDiarioModel::where('nombre', $datos['destino'])->first();
+                        $familia = $mInferior->plato;
+                        $r->plato = $familia;
+                    }
+
                     $r->save();
                     $entrar=false;
                 }
