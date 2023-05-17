@@ -1,5 +1,5 @@
 <center>
-<h1 class="mt-24 w-full text-center mb-4 text-2xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Tipo: {{$tipo->nombre}}</h1>
+<h1 class="mt-28 ml-40 w-full text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white inline-block">Tipo: {{$tipo->nombre}}</h1>
 
 <div class="grid grid-cols-3 gap-4 ml-52 mt-12 pl-28">
     @foreach($mercancias as $mercancia)
