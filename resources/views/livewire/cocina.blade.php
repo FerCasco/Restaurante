@@ -70,10 +70,7 @@
 {{--</script>--}}
 <div>
     <div id="left-side-bar"
-         class=" transition-transform fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
-        <script>
-            let sideBar = document.getElementById('left-side-bar');
-        </script>
+         class=" transition-transform translate-x-0 fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Buscar
                 Ingredientes</a>
@@ -104,11 +101,8 @@
         </nav>
 
     </div>
-    <button id="open-left-side-bar-button" type="button" class="w-10 h-10 m-6 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2 dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
-        <svg id="open-left-side-bar-button" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path clip-rule="evenodd" fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"></path>
-        </svg>
-    </button>
+    <div class="w-10 h-10 m-6">
+    </div>
     <main class="flex-1 justify-center w-full">
         <div class="flex flex-col flex-wrap justify-center items-center pt-24">
             <input type="text" wire:model="miProducto"
@@ -125,7 +119,7 @@
         </div>
     </main>
     <div id="right-side-bar"
-         class=" transition-transform fixed top-0 right-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+         class=" transition-transform translate-x-full fixed top-0 right-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row justify-between">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Elaboraciones</a>
             <button id="close-right-side-bar-button" type="button" class="h-8 w-8 mr-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
@@ -148,49 +142,25 @@
         </nav>
     </div>
     <script>
-        sideBar.classList.add('-translate-x-full');
         //Bool para comprobar si estaban o no cerrados los sideBars
         let openLeft = false;
         let openRight = false;
 
         //Botones
-        let buttonClose = document.getElementById('close-left-side-bar-button');
         let buttonOpen = document.getElementById('open-left-side-bar-button');
 
         let rightSideBar = document.getElementById('right-side-bar');
-        rightSideBar.classList.add('translate-x-full');
-        rightSideBar.classList.add('opacity-0');
 
         //Método de comprobación de los open
         setInterval(() => {
-            if(openLeft){
-                sideBar.classList.remove('-translate-x-full');
-                sideBar.classList.add('translate-x-0');
-            } else {
-                sideBar.classList.remove('translate-x-0');
-                sideBar.classList.add('-translate-x-full');
-            }
-
             if(openRight){
                 rightSideBar.classList.remove('translate-x-full');
-                rightSideBar.classList.remove('opacity-0');
                 rightSideBar.classList.add('translate-x-0');
             } else {
                 rightSideBar.classList.remove('translate-x-0');
                 rightSideBar.classList.add('translate-x-full');
             }
         }, 500)
-
-        //Cierra el sideBar de la izquierda
-        buttonClose.addEventListener('click', () => {
-            openLeft = false;
-        });
-
-        //Abre el sideBar de la izquierda
-        buttonOpen.addEventListener('click', () => {
-            openLeft = true;
-            openRight = false;
-        });
 
         /*
         * Cierra el sideBar de la izquierda cuando se clica fuera y abre el
@@ -201,21 +171,17 @@
             let isButtonClicked = false;
 
             const target = event.target;
-            const isEvenInSideBar = sideBar.contains(target);
 
-            if(target.id.includes('button')) isButtonClicked = true;
             if(target.id.includes('open-right-side-bar-a') || target.id.includes('open-right-side-bar-button')) {
                 isARightClicked = true
             }
 
-            if(!isEvenInSideBar && !isButtonClicked && !isARightClicked){
-                openLeft = false;
+            if(!isButtonClicked && !isARightClicked){
                 openRight = false;
             }
 
             if(isARightClicked) {
                 openRight = true;
-                openLeft = false;
             }
 
         })
