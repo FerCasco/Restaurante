@@ -12,7 +12,7 @@
     <div class="cajaGrafico">
         <div id="container" class="w-3/4 h-full"></div>
     </div>
-    
+
 </div>
 
 
@@ -180,7 +180,4 @@
         }
         });
     }
-    
-    
-    
 </script>
