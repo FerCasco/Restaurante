@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Proveedores extends Model
+class Roles extends Model
 {
     use HasApiTokens, HasFactory, Notifiable;
     /**
@@ -17,9 +17,7 @@ class Proveedores extends Model
      */
     protected $fillable = [
         'id',
-        'nombre',
-        'telefono',
-        'email',
+        'nombre'
     ];
 
 
