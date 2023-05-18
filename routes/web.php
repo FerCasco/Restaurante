@@ -30,7 +30,7 @@ Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 
 Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
-
+Route::get('/mercancias', [App\Http\Controllers\MercanciaController::class, 'show'])->name('mercancias');
 
 
 

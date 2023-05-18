@@ -5,7 +5,17 @@
     <div class="cajaGrafico">
         <div id="precioProduct" class="w-3/4 h-full"></div>
     </div>
+
+    <div class="mt-16">
+        <button id="btnDrill"  type="button" class="bg-red-900 text-white rounded-md px-4 py-2">Drill</button>
+    </div>
+    <div class="cajaGrafico">
+        <div id="container" class="w-3/4 h-full"></div>
+    </div>
+    
 </div>
+
+
 
 <script>
     var btngrafica = document.getElementById('btnBD');
@@ -67,7 +77,7 @@
                 headerFormat: "<span class='text-sm'> {series.name}</span><br>",
                 pointFormat: "<span style='color:{point.color}'>{point.name}</span>: <b>{point.y:.2f}</b>",
                 style: {
-                    backgroundColor: '#fff',
+                    backgroundColor: '#purple',
                     borderColor: '#000',
                     fontSize: '0.875rem',
                     padding: '0.5rem',
@@ -80,4 +90,97 @@
             }]
         }
     }
+
+
+    /***********************/
+
+    var btngrafica2 = document.getElementById('btnDrill');
+    btngrafica2.addEventListener('click', function () {
+        peticionDrill();
+    });
+
+    function peticionDrill(){
+        $.ajax({
+            url: '{{ route("mercancias") }}',
+            type: 'GET',
+            dataType: "json",
+            success: function (response) {
+                console.log(response);
+                drilldown(response)
+            },
+            error: function () {
+                alert('No conseguido');
+            },
+            contentType: 'application/json'
+        });
+    }
+
+    function drilldown(response) {
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Stock de mercancías'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Cantidad de actual mercancías'
+                },
+            },
+            series: [{
+                name: 'Cantidad actual',
+                data: response.map(function (mercancia) {
+                    return {
+                        name: mercancia.nombre,
+                        y: parseFloat(mercancia.cantidadActual),
+                        color: '#B26EFF',
+                        drilldown: mercancia.nombre
+                    };
+                })
+            }],
+            drilldown: {
+            series: response.map(function (mercancia) {
+                return {
+                    id: mercancia.nombre,
+                    type: 'bar',
+                    stacking: 'normal',
+                    data: [
+                        {
+                            name: 'Cantidad actual',
+                            y: parseFloat(mercancia.cantidadActual),
+                            color: '#B26EFF'
+                        },
+                        {
+                            name: 'Stock mínimo',
+                            y: parseFloat(mercancia.stockMin),
+                            color: '#FF5858'
+                        },
+                        {
+                            name: 'Hacer encargo',
+                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/4),
+                            color: '#FF9358 '
+                        },
+                        {
+                            name: 'Equilibrio',
+                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2),
+                            color: '#FFEA58 '
+                        },
+                        {
+                            name: 'Stock máximo',
+                            y: parseFloat(mercancia.stockMax),
+                            color: '#BAFF58 '
+                        }
+                    ]
+                };
+            })
+        }
+        });
+    }
+    
+    
+    
 </script>

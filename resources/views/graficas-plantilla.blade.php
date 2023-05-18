@@ -15,6 +15,7 @@
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
 @livewire('menu')
+
 @livewire('graficas')
 
 @livewireScripts
