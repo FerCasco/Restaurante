@@ -147,6 +147,7 @@
                 return {
                     id: mercancia.nombre,
                     data: [
+                        ['Cantidad actual', parseFloat(mercancia.cantidadActual)],
                         ['Stock mínimo', parseFloat(mercancia.stockMin)],
                         ['Hacer encargo', (((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2)/2)],
                         ['Equilibrio', ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2)],
