@@ -10,7 +10,7 @@
         <button id="btnDrill"  type="button" class="bg-red-900 text-white rounded-md px-4 py-2">Drill</button>
     </div>
     <div class="cajaGrafico">
-        <div id="container" class="w-full h-full"></div>
+        <div id="container" class="w-3/4 h-full"></div>
     </div>
     
 </div>
@@ -116,53 +116,70 @@
     }
 
     function drilldown(response) {
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Gráficos de columnas con profundidad'
-        },
-        xAxis: {
-            type: 'category'
-        },
-        yAxis: {
-            title: {
-                text: 'Cantidad de modelos por Marca'
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
             },
-        },
-        series: [{
-            name: 'Cantidad actual',
-            data: response.map(function (mercancia) {
-                return {
-                    name: mercancia.nombre,
-                    y: parseFloat(mercancia.cantidadActual),
-                    color: '#B26EFF',
-                    drilldown: mercancia.nombre
-                };
-            })
-        }],
-        drilldown: {
+            title: {
+                text: 'Stock de mercancías'
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    text: 'Cantidad de actual mercancías'
+                },
+            },
+            series: [{
+                name: 'Cantidad actual',
+                data: response.map(function (mercancia) {
+                    return {
+                        name: mercancia.nombre,
+                        y: parseFloat(mercancia.cantidadActual),
+                        color: '#B26EFF',
+                        drilldown: mercancia.nombre
+                    };
+                })
+            }],
+            drilldown: {
             series: response.map(function (mercancia) {
                 return {
                     id: mercancia.nombre,
+                    type: 'bar',
+                    stacking: 'normal',
                     data: [
-                        ['Cantidad actual', parseFloat(mercancia.cantidadActual)],
-                        ['Stock mínimo', parseFloat(mercancia.stockMin)],
-                        ['Hacer encargo', (((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2)/2)],
-                        ['Equilibrio', ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2)],
-                        ['Stock máximo', parseFloat(mercancia.stockMax)],
-                    ].map(function (datos) {
-                        return {
-                            name: datos[0],
-                            y: datos[1]
-                        };
-                    })
+                        {
+                            name: 'Cantidad actual',
+                            y: parseFloat(mercancia.cantidadActual),
+                            color: '#B26EFF'
+                        },
+                        {
+                            name: 'Stock mínimo',
+                            y: parseFloat(mercancia.stockMin),
+                            color: '#FF5858'
+                        },
+                        {
+                            name: 'Hacer encargo',
+                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/4),
+                            color: '#FF9358 '
+                        },
+                        {
+                            name: 'Equilibrio',
+                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2),
+                            color: '#FFEA58 '
+                        },
+                        {
+                            name: 'Stock máximo',
+                            y: parseFloat(mercancia.stockMax),
+                            color: '#BAFF58 '
+                        }
+                    ]
                 };
             })
         }
-    });
-}
+        });
+    }
     
     
     
