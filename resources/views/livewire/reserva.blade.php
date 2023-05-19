@@ -1,31 +1,5 @@
 <div>
-    <script src='/fullcalendar/dist/index.global.js'></script>
-    <script src='/fullcalendar/dist/index.global.min.js'></script>
-    <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>
-    <script src="/tdk/scripts/jquery.min.js" type="text/javascript"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="/tdk/scripts/bootstrap.js" type="text/javascript"></script>
-    <script src="/tdk/scripts/jquery.dataTables.js" type="text/javascript"></script>
-    <script src="/tdk/scripts/dataTables.bootstrap.js" type="text/javascript"></script>
-    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
-
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-
-
-    <div id='calendar' class="bg-white rounded-lg shadow-lg p-4 cursor-pointer"></div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth'
-            });
-            calendar.render();
-        });
-    </script>
-    <!--<form wire:submit.prevent="save">
+    <form wire:submit.prevent="save">
         <label for="name">Nombre:</label>
         <input type="text" id="name" name="name" required>
 
@@ -92,73 +66,5 @@
 
         <button type="submit">Reservar</button>
         <button type="submit">Solicitud de grupo</button>
-    </form>-->
+    </form>
 </div>
-<!--
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendario');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-
-            eventMouseEnter: function(info) {
-                $(info.el).tooltip({
-                    title: info.event.title
-                });
-            },
-
-            initialView: 'dayGridMonth',
-            locale: 'es',
-            firstDay: 1,
-
-            monthNames: [
-                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-            ],
-
-            monthNamesShort: [
-                'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun',
-                'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic'
-            ],
-
-            dayNames: [
-                'Domingo', 'Lunes', 'Martes', 'Miércoles',
-                'Jueves', 'Viernes', 'Sábado'
-            ],
-
-            dayNamesShort: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
-
-            headerToolbar: {
-                left: 'prev,next',
-                center: 'title',
-                right: 'dayGridMonth,listMonth'
-
-            },
-            buttonText: {
-                today: 'Hoy',
-                month: 'Mes',
-                list: 'Lista',
-            },
-            events: [
-                @foreach($reservas as $reserva) {
-                    title: '{{$reserva->hora}} -> {{$reserva->nombre}} con {{$reserva->comensales}} comensales',
-                    start: '{{$reserva->fecha}}',
-                },
-                @endforeach
-            ],
-            selectable: false,
-            editable: false,
-            dayMaxEvents: true,
-
-            eventMouseLeave: function(info) {
-                var tooltip = info.el._tippy;
-                if (tooltip) {
-                    tooltip.hide();
-                    tooltip.destroy();
-                }
-            },
-        });
-        calendar.render();
-    });
-</script>
--->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/locale-all.js'></script>
