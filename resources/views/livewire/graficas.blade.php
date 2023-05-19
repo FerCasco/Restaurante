@@ -1,25 +1,33 @@
 <div>
     <div class="mt-16">
-        <button id="btnBD"  type="button" class="bg-gray-900 text-white rounded-md px-4 py-2">Gráficos desde BD</button>
+        <button id="btnBD" type="button" class="bg-gray-900 text-white rounded-md px-4 py-2">Gráficos desde BD</button>
     </div>
     <div class="cajaGrafico">
         <div id="precioProduct" class="w-3/4 h-full"></div>
     </div>
 
     <div class="mt-16">
-        <button id="btnDrill"  type="button" class="bg-red-900 text-white rounded-md px-4 py-2">Drill</button>
+        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2">Drill</button>
     </div>
     <div class="cajaGrafico">
         <div id="container" class="w-3/4 h-full"></div>
     </div>
-
+  
 </div>
 
 
-
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth'
+        });
+        calendar.render();
+    });
+</script>
 <script>
     var btngrafica = document.getElementById('btnBD');
-    btngrafica.addEventListener('click', function () {
+    btngrafica.addEventListener('click', function() {
         miBD();
     });
 
@@ -31,12 +39,12 @@
             url: '{{ route("preciosProductos") }}',
             type: 'GET',
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 options.series[0].data = response;
                 chart1 = new Highcharts.Chart(options);
                 console.log(response);
             },
-            error: function () {
+            error: function() {
                 alert('No conseguido');
             },
             contentType: 'application/json'
@@ -95,20 +103,20 @@
     /***********************/
 
     var btngrafica2 = document.getElementById('btnDrill');
-    btngrafica2.addEventListener('click', function () {
+    btngrafica2.addEventListener('click', function() {
         peticionDrill();
     });
 
-    function peticionDrill(){
+    function peticionDrill() {
         $.ajax({
             url: '{{ route("mercancias") }}',
             type: 'GET',
             dataType: "json",
-            success: function (response) {
+            success: function(response) {
                 console.log(response);
                 drilldown(response)
             },
-            error: function () {
+            error: function() {
                 alert('No conseguido');
             },
             contentType: 'application/json'
@@ -133,7 +141,7 @@
             },
             series: [{
                 name: 'Cantidad actual',
-                data: response.map(function (mercancia) {
+                data: response.map(function(mercancia) {
                     return {
                         name: mercancia.nombre,
                         y: parseFloat(mercancia.cantidadActual),
@@ -143,41 +151,40 @@
                 })
             }],
             drilldown: {
-            series: response.map(function (mercancia) {
-                return {
-                    id: mercancia.nombre,
-                    type: 'bar',
-                    stacking: 'normal',
-                    data: [
-                        {
-                            name: 'Cantidad actual',
-                            y: parseFloat(mercancia.cantidadActual),
-                            color: '#B26EFF'
-                        },
-                        {
-                            name: 'Stock mínimo',
-                            y: parseFloat(mercancia.stockMin),
-                            color: '#FF5858'
-                        },
-                        {
-                            name: 'Hacer encargo',
-                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/4),
-                            color: '#FF9358 '
-                        },
-                        {
-                            name: 'Equilibrio',
-                            y: ((parseFloat(mercancia.stockMin)+parseFloat(mercancia.stockMax))/2),
-                            color: '#FFEA58 '
-                        },
-                        {
-                            name: 'Stock máximo',
-                            y: parseFloat(mercancia.stockMax),
-                            color: '#BAFF58 '
-                        }
-                    ]
-                };
-            })
-        }
+                series: response.map(function(mercancia) {
+                    return {
+                        id: mercancia.nombre,
+                        type: 'bar',
+                        stacking: 'normal',
+                        data: [{
+                                name: 'Cantidad actual',
+                                y: parseFloat(mercancia.cantidadActual),
+                                color: '#B26EFF'
+                            },
+                            {
+                                name: 'Stock mínimo',
+                                y: parseFloat(mercancia.stockMin),
+                                color: '#FF5858'
+                            },
+                            {
+                                name: 'Hacer encargo',
+                                y: ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4),
+                                color: '#FF9358 '
+                            },
+                            {
+                                name: 'Equilibrio',
+                                y: ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2),
+                                color: '#FFEA58 '
+                            },
+                            {
+                                name: 'Stock máximo',
+                                y: parseFloat(mercancia.stockMax),
+                                color: '#BAFF58 '
+                            }
+                        ]
+                    };
+                })
+            }
         });
     }
 </script>

@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Datos Almacenados</title>
-
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.7/index.global.min.js'></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>
+    @section('head')
+    @endsection
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
