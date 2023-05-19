@@ -11,6 +11,7 @@ class GestionarAlmacen extends Component
     public $mercancias;
     public $tipo;
     protected $listeners = ['enviarTipoId'=>'gestionarTipo'];
+    public $showModalMercancias = false;
 
     public function mount($idTipo)
     {

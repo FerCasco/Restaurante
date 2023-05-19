@@ -4,10 +4,10 @@
             <!--Menu diario-->
             @livewire('menu-diario')
         @endif
-        @if ($componenteActivo === 'reserva')
+
                 <!--Reserva-->
                 @livewire('reserva')
-        @endif
+
     </div>
 
         <!-- Menú inferior-->
