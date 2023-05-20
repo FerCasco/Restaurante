@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comanda;
-use App\Models\LineaComanda;
+use App\Models\LineasComanda;
 use App\Models\Mesa;
 use App\Models\MesaProducto;
 use App\Models\Producto;
@@ -21,7 +21,7 @@ class ApiController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         return response()->json([
             'message' => 'Para recibir datos use el método show. Ruta: http://localhost:8000/api/getResources/show',
@@ -33,7 +33,7 @@ class ApiController extends Controller
      */
     public function store(Request $request): \Illuminate\Http\JsonResponse
     {
-        $nuevaLinea = new LineaComanda();
+        $nuevaLinea = new LineasComanda();
         $nuevaLinea->id = $request->id;
         $nuevaLinea->idMesa = $request->idMesa;
         $nuevaLinea->idTrabajador = $request->idTrabajador;
@@ -60,7 +60,7 @@ class ApiController extends Controller
      * 6-mesasProducto
      * 7-lineasComanda
      */
-    public function show()
+    public function show(): \Illuminate\Http\JsonResponse
     {
         /* Variables */
         $usuariosQr = [];
@@ -69,7 +69,7 @@ class ApiController extends Controller
         $productos = Producto::all();
         $mesaProducto = MesaProducto::all();
         $comandas = Comanda::all();
-        $lineasComanda = LineaComanda::all();
+        $lineasComanda = LineasComanda::all();
         $usuarios = Trabajadores::all();
 
         foreach ($usuarios as $usuario) {
@@ -90,13 +90,13 @@ class ApiController extends Controller
         }
 
         return response()->json([
-            $salas,
-            $mesas,
-            $productos,
-            $comandas,
-            $usuariosQr,
-            $mesaProducto,
-            $lineasComanda
+            'salas'=> $salas,
+            'mesas' => $mesas,
+            'productos' => $productos,
+            'comandas' => $comandas,
+            'usuarios' => $usuariosQr,
+            'mesasProductos' => $mesaProducto,
+            'lineaComanda' => $lineasComanda
         ]);
     }
 
@@ -115,7 +115,7 @@ class ApiController extends Controller
                 break;
             case '2':
                 $type = 'LineaComanda';
-                if(LineaComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
+                if(LineasComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
                 break;
             default:
                 return response()->json([
@@ -154,7 +154,7 @@ class ApiController extends Controller
                 break;
             case '2':
                 $tipo = 'LineaComanda';
-                if(LineaComanda::destroy($request->id) > 0) $success = true;
+                if(LineasComanda::destroy($request->id) > 0) $success = true;
                 break;
             default:
                 return response()->json([

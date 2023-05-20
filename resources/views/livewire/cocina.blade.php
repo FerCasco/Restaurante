@@ -119,7 +119,7 @@
         </div>
     </main>
     <div id="right-side-bar"
-         class=" transition-transform translate-x-full fixed top-0 right-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
+         class=" transition-transform translate-x-0 fixed top-0 right-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="px-6 flex flex-nowrap flex-row justify-between">
             <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Elaboraciones</a>
             <button id="close-right-side-bar-button" type="button" class="h-8 w-8 mr-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">
@@ -150,6 +150,7 @@
         let buttonOpen = document.getElementById('open-left-side-bar-button');
 
         let rightSideBar = document.getElementById('right-side-bar');
+        rightSideBar.classList.add('opacity-0');
 
         //Método de comprobación de los open
         setInterval(() => {
