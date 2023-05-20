@@ -15,10 +15,12 @@ class Contacto extends Component
     protected $proveedores;
     protected $trabajadores;
     protected $roles;
-    public $trabajadorModal;
+    /*public $trabajadorModal;
     public $showTrabajadorDetails = 'hidden';
-    protected $listeners = ['showTrabajadorDetails'=> 'mostrarModal'];
-    
+
+
+    protected $listeners = ['showTrabajadorDetails'=> 'mostrarModal'];*/
+
     //Propiedades para crear Proveedores
     public $nombreProveedor;
     public $correoProveedor;
@@ -33,11 +35,27 @@ class Contacto extends Component
     public $apellidosTrabajador;
     public $dniTrabajador;
 
+    //Propiedad para ver tablas
+    public $tablaVisible;
+    //Propiedad para ver modal
+    public $modalVisible;
+    public function verTabla($ver)
+    {
+        $this->tablaVisible = $ver;
+    }
+    public function verModal($ver)
+    {
+        $this->modalVisible = $ver;
+    }
+
+    public function verContacto($id)
+    {
+        return redirect()->to('/ver-contacto?id=' . $id);    }
     public function mount()
     {
-        $this->proveedores = ProveedorModel::all();
+        /*$this->proveedores = ProveedorModel::all();
         $this->roles = Roles::all();
-        $this->trabajadores = TrabajadorModel::all();
+        $this->trabajadores = TrabajadorModel::all();*/
     }
     public function render()
     {
@@ -50,13 +68,13 @@ class Contacto extends Component
             'trabajadores' => $trabajadores
         ]);
     }
-    public function showTrabajadorDetails(TrabajadorModel $trabajadorModal)
+    /*public function showTrabajadorDetails(TrabajadorModel $trabajadorModal)
     {
         $this->trabajadorModal = $trabajadorModal;
         json_decode($this->trabajadorModal);
         $this->emit('showTrabajadorDetails',$this->trabajadorModal);
-    
-  
+
+
         // Puedes ajustar la lógica para obtener los detalles del trabajador según tu estructura de base de datos y modelos
     }
 
@@ -65,7 +83,7 @@ class Contacto extends Component
     }
     public function cerrarModal(){
         $this->showTrabajadorDetails='hidden';
-    }
+    }*/
 
     public function addProveedor(){
         $proveedor = new ProveedorModel();
