@@ -1,28 +1,28 @@
 <div>
-    <div wire:submit.prevent="reservar" class="bg-white mt-36 mx-auto w-3/5 rounded-lg shadow-lg flex flex-col flex-wrap p-8">
+    <form wire:submit.prevent="reservar" class="bg-white mt-36 mx-auto w-3/5 rounded-lg shadow-lg flex flex-col flex-wrap p-8">
         <div class="flex justify-between mb-8">
             <div>
                 <label for="nombre">Nombre:</label>
-                <input class="rounded-lg" type="text" id="nombre" name="nombre">
+                <input class="rounded-lg border border-gray-200" type="text" id="nombre" name="nombre">
             </div>
             <div>
                 <label for="apellidos">Apellidos:</label>
-                <input class="w-96 rounded-lg" type="text" id="apellidos" name="apellidos">
+                <input class="w-96 rounded-lg border border-gray-200" type="text" id="apellidos" name="apellidos">
             </div>
         </div>
 
         <label for="fecha">Fecha:</label>
-        <input  class="w-80 mb-8 rounded-lg" type="date" id="fecha" name="fecha">
+        <input  class="w-80 mb-8 rounded-lg border border-gray-200" type="date" id="fecha" name="fecha">
 
         <div class="flex justify-between mb-8">
-            
+
             <div class="relative flex justify-center items-center gap-5 pt-20">
-                <button class="relative flex justify-center items-center bg-white border focus:outline-none shadow text-gray-600 rounded focus:ring ring-gray-200 group" id="selectPersonas">
+                <div class="relative flex justify-center items-center bg-white border focus:outline-none shadow text-gray-600 rounded focus:ring ring-gray-200 group" id="selectPersonas">
                     <p class="px-4"> <ion-icon name="accessibility-outline"></ion-icon> Número de personas </p>
                     <span class="border-l p-2 hover:bg-gray-100">
                                 <ion-icon name="chevron-down-outline"></ion-icon>
                             </span>
-                </button>
+                </div>
                 <div class="absolute hidden group-focus:block top-full min-w-full w-max bg-white shadow-md mt-1 rounded transition" id="opcionesPersonas">
                     <ul class="text-left border rounded">
                         <li class="px-4 py-1 hover:bg-gray-100 border-b" >1 persona</li>
@@ -45,12 +45,12 @@
 
 
             <div class="relative flex justify-center items-center gap-5">
-                <button class="relative flex justify-center items-center bg-white border focus:outline-none shadow text-gray-600 rounded focus:ring ring-gray-200 group" id="selectHoras">
+                <div class="relative flex justify-center items-center bg-white border focus:outline-none shadow text-gray-600 rounded focus:ring ring-gray-200 group" id="selectHoras">
                     <p class="px-4"><ion-icon name="time-outline"></ion-icon> Hora </p>
                     <span class="border-l p-2 hover:bg-gray-100">
                         <ion-icon name="chevron-down-outline"></ion-icon>
                     </span>
-                </button>
+                </div>
                 <div class="absolute hidden group-focus:block top-full min-w-full w-max bg-white shadow-md mt-1 rounded transition" id="opcionesHoras">
                     <ul class="text-left border rounded h-64 overflow-auto">
                         <li class="px-4 py-1 hover:bg-gray-100 border-b" >13:00</li>
@@ -79,15 +79,15 @@
         </div>
 
         <label for="telefono">Teléfono:</label>
-        <input  class="w-96 mb-8 rounded-lg" type="tel" id="telefono" name="telefono">        
+        <input  class="w-96 mb-8 rounded-lg border border-gray-200" type="tel" id="telefono" name="telefono">
 
 
         <label for="comments">Anotaciones:</label>
-        <textarea class="mb-8 rounded-lg" id="comments" name="comments"></textarea>  
+        <textarea class="mb-8 rounded-lg border border-gray-200" id="comments" name="comments"></textarea>
         <div class="text-center">
             <button class="mb-8 rounded-lg p-4 bg-red-100 w-1/4 mx-auto block" type="submit">Reservar</button>
         </div>
-</div>
+</form>
 </div>
 
 
@@ -95,10 +95,10 @@
 <script>
     document.getElementById('selectPersonas').addEventListener('click', function() {
         document.getElementById('opcionesPersonas').classList.toggle('hidden');
-    }); 
+    });
 
     document.getElementById('selectHoras').addEventListener('click', function() {
         document.getElementById('opcionesHoras').classList.toggle('hidden');
-    }); 
+    });
 
 </script>
