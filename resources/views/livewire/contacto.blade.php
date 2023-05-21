@@ -41,10 +41,10 @@
                             <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->email}}</td>
                             <td class="px-6 py-4 whitespace-nowrap">{{$proveedor->telefono}}</td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <button
+                                <a href="{{route('verContacto',['email'=>$proveedor->email])}}"
                                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                                     <ion-icon wire:ignore name="eye-outline"></ion-icon>
-                                </button>
+                                </a>
                             </td>
                         </tr>
                     @endforeach

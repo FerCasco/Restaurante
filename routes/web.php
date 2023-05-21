@@ -26,7 +26,7 @@ Route::get('/', function () {
 Route::view('/cocina', 'cocina-plantilla');
 Route::view('/inventario', 'inventario-plantilla');
 Route::view('/contactos', 'contactos-plantilla');
-//Route::view('/contacto/{id}', 'ver-contacto')->name('verContacto');
+Route::view('/contacto/{email}', 'ver-contacto')->name('verContacto');
 Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 

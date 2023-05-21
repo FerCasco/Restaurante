@@ -17,7 +17,7 @@
 </head>
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
-@livewire('contacto-seleccionado')
+@livewire('contacto-seleccionado',['email' => $email])
 
 @livewireScripts
 <script src="/highcharts/codigoJS.js"></script>

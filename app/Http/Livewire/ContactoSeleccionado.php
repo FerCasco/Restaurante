@@ -15,12 +15,13 @@ class ContactoSeleccionado extends Component
         $id = $request->input('id');
     }
 
-    public function recibirContacto( $id)
+    public function mount($email)
     {
-        if(class_basename($id)=="Proveedores"){
-            $this->contacto=ProveedoresModel::where('id', $id)->get()->first();
+        if(ProveedoresModel::where('email', $email)->get()->first()!=null)
+        {
+            $this->contacto=ProveedoresModel::where('email', $email)->get()->first();
         }else{
-            $this->contacto=TrabajadoresModel::where('id', $id)->get()->first();
+            $this->contacto=TrabajadoresModel::where('email', $email)->get()->first();
         }
 
     }
