@@ -39,6 +39,8 @@ class Contacto extends Component
     public $tablaVisible;
     //Propiedad para ver modal
     public $modalVisible;
+    //Buscar contacto
+    public $buscarContacto;
     public function verTabla($ver)
     {
         $this->tablaVisible = $ver;
@@ -48,20 +50,44 @@ class Contacto extends Component
         $this->modalVisible = $ver;
     }
 
+    public function updatedBuscarContacto()
+    {
+        if ($this->tablaVisible == "proveedores") {
+            if ($this->buscarContacto != null) {
+                $proveedoresBusqueda = ProveedorModel::where('nombre', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'proveedoresPage');
+                $this->proveedores = $proveedoresBusqueda;
+            } else {
+                $this->proveedores = null; // Establece a null para evitar conflictos con la paginación en caso de cambio rápido
+            }
+        }
+
+        if ($this->tablaVisible == "trabajadores") {
+            if ($this->buscarContacto != null) {
+                $trabajadoresBusqueda = TrabajadorModel::where('name', 'like', '%' . $this->buscarContacto . '%')->
+                            orWhere('apellidos', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'trabajadoresPage');
+                $this->trabajadores = $trabajadoresBusqueda;
+            } else {
+                $this->trabajadores = null; // Establece a null para evitar conflictos con la paginación en caso de cambio rápido
+            }
+        }
+    }
+
     public function verContacto($id)
     {
         return redirect()->to('/ver-contacto?id=' . $id);    }
     public function mount()
     {
+        $this->verTabla("proveedores");
         /*$this->proveedores = ProveedorModel::all();
         $this->roles = Roles::all();
         $this->trabajadores = TrabajadorModel::all();*/
     }
     public function render()
     {
-        $proveedores = ProveedorModel::paginate(5, ['*'], 'proveedoresPage');
-        $trabajadores = TrabajadorModel::paginate(5, ['*'], 'trabajadoresPage');
+        $proveedores = $this->proveedores ?: ProveedorModel::paginate(7, ['*'], 'proveedoresPage');
+        $trabajadores = $this->trabajadores ?: TrabajadorModel::paginate(7, ['*'], 'trabajadoresPage');
         $roles = Roles::all();
+
         return view('livewire.contacto', [
             'roles' => $roles,
             'proveedores' => $proveedores,

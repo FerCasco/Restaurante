@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-between mb-1.5 bg-gray-100 mt-36 p-8 mx-8">
             <div>
-                <input class="bg-pink-35" type="text" wire:model="miContacto" placeholder=" Buscar contacto">
+                <input class="bg-pink-35" type="text" wire:model="buscarContacto" placeholder=" Buscar contacto">
             </div>
             <div>
                 <button wire:click="verTabla('proveedores')" class="bg-orange-200 p-2 rounded">Proveedores</button>
