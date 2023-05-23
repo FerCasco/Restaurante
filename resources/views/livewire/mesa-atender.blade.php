@@ -1,59 +1,19 @@
 <h1 class="mt-40 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesaAtender->id}}</h1>
 
 <div class="grid grid-cols-3 gap-4 ml-72 mt-12 pl-28">
-
-    <!-- @foreach($miLista as $elemento)
-        @if(gettype($elemento)=="Familia")
-            <a wire:click="$emit('cargarProductos',{{$elemento->id}})" class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$familia->nombre}}</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-            </a>
-
-        @endif
-        @if(gettype($elemento)=="Producto")
-            <a wire:click="$emit('añadirComanda',{{$elemento->id}})" class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$familia->nombre}}</h5>
-                <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-            </a>
-
-        @endif
-        @endforeach-->
-
-
-        <!-- @if($familias!=null)
-            @foreach($familias as $familia)
-                <a wire:click="$emit('cargarProductos',{{$familia->id}})" class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$familia->nombre}}</h5>
-                     <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-                </a>
-
-            @endforeach
-        @endif
-        @if($productos!=null)
-            @foreach($productos as $producto)
-                <a wire:click="$emit('añadirComanda',{{$producto->id}})" class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$producto->nombre}}</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-                </a>
-
-            @endforeach
-        @endif -->
-
-        @foreach($familias as $elemento)
+    
+        @foreach($miLista as $elemento)
             @if(class_basename($elemento)=="Familia")
-
-                <a wire:click="$emit('cargarProductos',{{$elemento->id}})"
+                <button wire:click="$emit('cargarProductos',{{$elemento->id}})"
                    class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-                </a>
+                </button>
             @endif
             @if(class_basename($elemento)=="Producto")
-                <a wire:click="$emit('añadirComanda',{{$elemento->id}})"
+                <button wire:click="$emit('añadirComanda',{{$elemento->id}})"
                    class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
-                    <p class="font-normal text-gray-700 dark:text-gray-400">Prueba</p>
-                </a>
+                </button>
             @endif
         @endforeach
 

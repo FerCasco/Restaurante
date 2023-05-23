@@ -1,42 +1,6 @@
 <div class="grid grid-cols-12 h-screen justify-center items-center gap-16 gap-y-16">
 
-    {{--    <!--Comidas-->--}}
-    {{--    <div id="left-side-bar"--}}
-    {{--         class="transition-transform col-span-2 fixed top-0 left-0 bottom-0 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">--}}
-    {{--        <script>--}}
-    {{--            let sideBar = document.getElementById('left-side-bar');--}}
-    {{--        </script>--}}
-    {{--        <div class="px-6 flex flex-nowrap flex-row">--}}
-    {{--            <a class="inline text-xl font-semibold dark:text-white" href="javascript:;">Buscar--}}
-    {{--                Ingredientes</a>--}}
-    {{--            <button id="close-left-side-bar-button" type="button" class="h-8 w-8 text-blue-700 border border-blue-700 hover:bg-blue-700 hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center dark:border-blue-500 dark:text-blue-500 dark:hover:text-white dark:focus:ring-blue-800 dark:hover:bg-blue-500">--}}
-    {{--                <svg id="close-left-side-bar-button" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">--}}
-    {{--                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>--}}
-    {{--                </svg>--}}
-    {{--            </button>--}}
-    {{--        </div>--}}
-    {{--        <nav class="p-6 w-full flex flex-col flex-wrap">--}}
-    {{--            <ul class="space-y-1.5">--}}
-    {{--                <li>--}}
-    {{--                    <input--}}
-    {{--                        class="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm w-full text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-900 dark:text-white "--}}
-    {{--                        type="text" wire:model="miComida"--}}
-    {{--                        placeholder=" Buscar Comida">--}}
-    {{--                </li>--}}
-    {{--                <li>--}}
-    {{--                    @if($productos!=null)--}}
-    {{--                        @foreach($productos as $producto)--}}
-    {{--                            <div id="{{$producto['nombre']}}" class="w-full p-4 bg-gray-100" draggable="true" ondragstart="drag(event)">--}}
-    {{--                                <div class="flex justify-between">--}}
-    {{--                                    <span>{{$producto['nombre']}}</span>--}}
-    {{--                                </div>--}}
-    {{--                            </div>--}}
-    {{--                        @endforeach--}}
-    {{--                    @endif--}}
-    {{--                </li>--}}
-    {{--            </ul>--}}
-    {{--        </nav>--}}
-
+    <!--Comidas-->  
     <div id="Comidas" class="col-span-3 bg-gray-200 shadow-2xl mt-20 ml-8 h-5/6 rounded-xl box-border w-full p-4 mb-8" ondrop="drop(event)"
          ondragover="allowDrop(event)">
 

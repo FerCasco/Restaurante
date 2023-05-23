@@ -43,7 +43,7 @@ class MenuDiario extends Component
     {
         $m = new MenuDiarioModel();
 
-        if ($datos['destino'] == "Comidas") {
+        if ($datos['destino'] == "Comidas" ) {
             $m = MenuDiarioModel::where('nombre', $datos['data'])->first();
             //Control de error de si se saca y entra de nuevo el producto en comidas
                 if($m!=null){
@@ -61,18 +61,28 @@ class MenuDiario extends Component
                     if ($datos['destino'] == "Entrantes" || $datos['destino'] == "Primeros" || $datos['destino'] == "Segundos" || $datos['destino'] == "Postres")
                     {
                         $r->plato = $m->plato;
+                        $r->save();
                     }else
                     {
                         //Por si nos ponemos encima de otro registro de menú coger su familia, no el nombre
                         $mInferior = MenuDiarioModel::where('nombre', $datos['destino'])->first();
-                        $familia = $mInferior->plato;
-                        $r->plato = $familia;
+
+                        //si es en el div de comidas y nos ponemos encima de otro producto
+                        if($mInferior==null){
+                            $r->delete();
+                        }else{
+                            $familia = $mInferior->plato;
+                            $r->plato = $familia;
+                            $r->save();
+                        }                        
                     }
 
-                    $r->save();
+                    
                     $entrar=false;
                 }
             }
+
+            //si no tengo ese producto dentro de mi menú
             if($entrar==true){
                 if ($datos['destino'] == "Entrantes" || $datos['destino'] == "Primeros" || $datos['destino'] == "Segundos" || $datos['destino'] == "Postres") {
 
@@ -81,9 +91,12 @@ class MenuDiario extends Component
                 } else {
                     //Por si nos ponemos encima de otro registro de menú coger su familia, no el nombre
                     $mInferior = MenuDiarioModel::where('nombre', $datos['destino'])->first();
-                    $familia = $mInferior->plato;
-                    $m->plato = $familia;
-                    $m->save();
+                                       
+                        $familia = $mInferior->plato;
+                        $m->plato = $familia;
+                        $m->save();
+                    
+                    
                 }
             }
 

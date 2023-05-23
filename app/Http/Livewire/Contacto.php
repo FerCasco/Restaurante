@@ -74,7 +74,9 @@ class Contacto extends Component
 
     public function verContacto($id)
     {
-        return redirect()->to('/ver-contacto?id=' . $id);    }
+        return redirect()->to('/ver-contacto?id=' . $id);   
+    }
+    
     public function mount()
     {
         $this->verTabla("proveedores");

@@ -1,6 +1,8 @@
 <div>
     <div class="">
         @if ($componenteActivo != 'menu-diario' && $componenteActivo != 'reserva')
+        <!--if ($componenteActivo != 'menu-diario' || $componenteActivo != 'reserva')-->
+
             <script src='/fullcalendar/dist/index.global.js'></script>
             <script src='/fullcalendar/dist/index.global.min.js'></script>
             <script src='https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js'></script>

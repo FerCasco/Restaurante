@@ -23,7 +23,7 @@ class Reserva extends Model
         'comensales',
         'hora',
         'fecha',
-        'grupo',
+        'idMesa',
         'anotaciones',
     ];
 

@@ -3,28 +3,20 @@
         <button id="btnBD" type="button" class="bg-gray-900 text-white rounded-md px-4 py-2">Gráficos desde BD</button>
     </div>
     <div class="cajaGrafico">
-        <div id="precioProduct" class="w-3/4 h-full"></div>
+        <div id="precioProduct" class="w-3/4 h-full mx-auto"></div>
     </div>
 
     <div class="mt-16">
-        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2">Drill</button>
+        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaCantidadActual()">Drill</button>
     </div>
-    <div class="cajaGrafico">
-        <div id="container" class="w-3/4 h-full"></div>
-    </div>
-  
+    @if($grafica=="cantidadActual")
+        <div class="cajaGrafico">
+            <div id="container" class="w-3/4 h-full mx-auto"></div>
+        </div>
+    @endif()    
 </div>
 
 
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
-        });
-        calendar.render();
-    });
-</script>
 <script>
     var btngrafica = document.getElementById('btnBD');
     btngrafica.addEventListener('click', function() {
@@ -102,26 +94,12 @@
 
     /***********************/
 
-    var btngrafica2 = document.getElementById('btnDrill');
-    btngrafica2.addEventListener('click', function() {
-        peticionDrill();
-    });
-
-    function peticionDrill() {
-        $.ajax({
-            url: '{{ route("mercancias") }}',
-            type: 'GET',
-            dataType: "json",
-            success: function(response) {
-                console.log(response);
-                drilldown(response)
-            },
-            error: function() {
-                alert('No conseguido');
-            },
-            contentType: 'application/json'
+    document.addEventListener('livewire:load', function () {
+            Livewire.on('ejecutarScript', function ($lista) {
+                //console.log($lista);
+                drilldown($lista);
+            });
         });
-    }
 
     function drilldown(response) {
         Highcharts.chart('container', {
