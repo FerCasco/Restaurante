@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Menu;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LanguageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang');
 
 Route::get('/', function () {
     return view('welcome');
