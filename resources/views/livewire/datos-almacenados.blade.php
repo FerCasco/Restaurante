@@ -1,5 +1,6 @@
 <div>
     <div class="">
+        @dd($componenteActivo)
         @if ($componenteActivo != 'menu-diario' && $componenteActivo != 'reserva')
         <!--if ($componenteActivo != 'menu-diario' || $componenteActivo != 'reserva')-->
 
@@ -85,7 +86,7 @@
                     calendar.render();
                 });
             </script>
-                
+
         @endif
         @if ($componenteActivo === 'menu-diario')
             <!--Menu diario-->
@@ -94,7 +95,7 @@
         @if ($componenteActivo === 'reserva')
             <!--Reserva-->
             @livewire('reserva')
-        @endif               
+        @endif
 
     </div>
 

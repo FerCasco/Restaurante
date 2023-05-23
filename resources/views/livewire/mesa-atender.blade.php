@@ -1,16 +1,16 @@
 <h1 class="mt-40 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesaAtender->id}}</h1>
 
 <div class="grid grid-cols-3 gap-4 ml-72 mt-12 pl-28">
-    
+
         @foreach($miLista as $elemento)
             @if(class_basename($elemento)=="Familia")
-                <button wire:click="$emit('cargarProductos',{{$elemento->id}})"
+                <button wire:click.defer="$emit('cargarProductos',{{$elemento->id}})"
                    class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
                 </button>
             @endif
             @if(class_basename($elemento)=="Producto")
-                <button wire:click="$emit('añadirComanda',{{$elemento->id}})"
+                <button wire:click.defer="$emit('añadirComanda',{{$elemento->id}})"
                    class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
                 </button>

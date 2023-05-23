@@ -24,7 +24,7 @@ class DatosAlmacenados extends Component
     public function cambiar($nombre)
     {
         $this->componenteActivo=$nombre;
-        //$this->render();
+        $this->render();
     }
     public function render()
     {
