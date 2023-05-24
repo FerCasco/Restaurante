@@ -102,7 +102,6 @@
 
 
     /***********************/
-
     document.addEventListener('livewire:load', function () {
         Livewire.on('ejecutarScript', function ($lista) {
             //console.log($lista);
@@ -113,7 +112,7 @@
             rentabilidadPlato($lista);
         });
     });
-
+    
     function drilldown(response) {
         Highcharts.chart('container', {
             chart: {

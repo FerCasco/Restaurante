@@ -18,11 +18,13 @@ class Graficas extends Component
         $this->lista=$listaParam;      
         $this->emit($script, $this->lista);
     }
+
     public function graficaCantidadActual()
     {
         $mercancias = MercanciaModel::all();
         $this->verGrafica("cantidadActual","ejecutarScript",$mercancias);
     }
+
     public function graficaRentabilidadPlato()
     {
         //solo encargar sin calcular la mano de obra
@@ -74,6 +76,7 @@ class Graficas extends Component
         $listaPlatoCoste['listaRestaurante']=$listaRestaurante;
         $listaPlatoCoste['listaCliente']=$listaCliente;
         $listaPlatoCoste['listaResultados']=$listaResultados;
+        
         //dd($listaPlatoCoste);
 
         $this->verGrafica("rentabilidadPlato","ScriptRentabilidadPlato",$listaPlatoCoste);

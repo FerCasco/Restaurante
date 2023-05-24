@@ -51,7 +51,7 @@ class Cocina extends Component
     //clicks
     public function cargarProductos($idMercancia)
     {
-        //todas las mercancias en ingredientesElab con su respectivo idElaboracion
+        //todas las mercancias en mercanciasElab con su respectivo idElaboracion
         $mercanciasElab = ElaboracionesMercanciasModel::where('idMercancia', $idMercancia)->get();
 
         $this->productos=[];
