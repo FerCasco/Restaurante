@@ -134,13 +134,13 @@
                 data: response.map(function(mercancia) {
                     var color;
                     if (mercancia.cantidadActual < mercancia.stockMin) {
-                    color = '#B26EFF'; // Rojo
+                        color = '#B26EFF'; // Rojo
                     } else if (mercancia.cantidadActual > mercancia.stockMin && mercancia.cantidadActual < ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4)) {
-                    color = '#FF9358'; // Naranja
+                        color = '#FF9358'; // Naranja
                     } else if (mercancia.cantidadActual > ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4) && mercancia.cantidadActual < ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)) {
-                    color = '#FFEA58'; // Amarillo
+                        color = '#FFEA58'; // Amarillo
                     } else {
-                    color = '#BAFF58'; // Verde
+                        color = '#BAFF58'; // Verde
                     }
                     return {
                     name: mercancia.nombre,

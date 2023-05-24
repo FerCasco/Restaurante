@@ -1,6 +1,7 @@
 <div>
     <div class="">
         @if ($componenteActivo == null)
+        
         <!--Calendario-->
 
             <script src='/fullcalendar/dist/index.global.js'></script>

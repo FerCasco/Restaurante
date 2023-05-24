@@ -9,6 +9,7 @@ use App\Models\ElaboracionesMercancias as ElaboracionesMercanciasModel;
 
 class Graficas extends Component
 {
+    
     public $grafica;
     public $lista;
 
@@ -76,7 +77,7 @@ class Graficas extends Component
         $listaPlatoCoste['listaRestaurante']=$listaRestaurante;
         $listaPlatoCoste['listaCliente']=$listaCliente;
         $listaPlatoCoste['listaResultados']=$listaResultados;
-        
+
         //dd($listaPlatoCoste);
 
         $this->verGrafica("rentabilidadPlato","ScriptRentabilidadPlato",$listaPlatoCoste);
