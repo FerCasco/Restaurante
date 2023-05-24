@@ -1,8 +1,7 @@
 <div>
     <div class="">
-        @dd($componenteActivo)
-        @if ($componenteActivo != 'menu-diario' && $componenteActivo != 'reserva')
-        <!--if ($componenteActivo != 'menu-diario' || $componenteActivo != 'reserva')-->
+        @if ($componenteActivo == null)
+        <!--Calendario-->
 
             <script src='/fullcalendar/dist/index.global.js'></script>
             <script src='/fullcalendar/dist/index.global.min.js'></script>
@@ -100,13 +99,13 @@
     </div>
 
         <!-- Menú inferior-->
-        <div wire:ignore class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-8 left-1/2 dark:bg-gray-700 dark:border-gray-600">
+        <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-8 left-1/2 dark:bg-gray-700 dark:border-gray-600">
             <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
 
                 <button wire:click="cambiar('menu-diario')" type="button"
                         class="inline-flex flex-col items-center justify-center px-5 hover:rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <div class="text-3xl">
-                        <ion-icon name="reorder-four-outline"></ion-icon>
+                        <ion-icon  wire:ignore name="reorder-four-outline"></ion-icon>
                     </div>
                 </button>
 
@@ -124,7 +123,7 @@
 
                 <button wire:click="cambiar('reserva')" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
                     <div class="text-3xl">
-                        <ion-icon name="calendar-outline"></ion-icon>
+                        <ion-icon  wire:ignore name="calendar-outline"></ion-icon>
                     </div>
                 </button>
             </div>

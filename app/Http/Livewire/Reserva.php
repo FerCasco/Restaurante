@@ -10,35 +10,39 @@ class Reserva extends Component
 {   
 
     public $mesas;
-
     public $miReserva;
 
-    //Propiedades para crear reservas
-    public $nombre;
-    public $apellidos;
-    public $fecha;
-    public $numPersonas;
-    public $horas;
-    public $telefono;
-    public $idMesa;
-    public $anotaciones;
+    protected $rules = [
+        'miReserva.nombre' => 'required|string|min:2',
+        'miReserva.comensales' => 'required',
+        'miReserva.hora' => 'required',
+        'miReserva.fecha' => 'required',
+        'miReserva.idMesa' => 'required',
+    ];
 
     public function mount()
-    {
+    {        
+        $miReserva = new ReservaModel();
         $this->mesas=MesaModel::all();
     }
 
-    public function addProveedor(){
-        $miReserva = new ReservaModel();
-        $miReserva->nombre = $this->nombre;
-        $miReserva->apellidos = $this->apellidos;
-        $miReserva->telefono = $this->telefono;
-        $miReserva->comensales = $this->numPersonas;        
-        $miReserva->hora = $this->horas;
-        $miReserva->fecha = $this->fecha;
-        $miReserva->idMesa = $this->idMesa;
-        $miReserva->anotaciones = $this->anotaciones;
-        $miReserva->save();
+    public function reservar(){
+        $this->validate();
+        //dd($this->miReserva); me llegaba array
+
+        $reserva = new ReservaModel(); 
+        $reserva->nombre = $this->miReserva['nombre'];
+        $reserva->apellidos = $this->miReserva['apellidos'];
+        $reserva->fecha = $this->miReserva['fecha'];
+        $reserva->comensales = $this->miReserva['comensales'];
+        $reserva->hora = $this->miReserva['hora'];
+        $reserva->idMesa = $this->miReserva['idMesa'];
+        $reserva->telefono = $this->miReserva['telefono'];
+        $reserva->anotaciones = $this->miReserva['anotaciones'];
+        
+        $reserva->save();
+
+        //$this->emitUp('cambiar',null);
     }
 
     public function render()
