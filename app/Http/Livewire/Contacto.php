@@ -12,6 +12,7 @@ class Contacto extends Component
 {
 
     use WithPagination;
+    public $miProveedor;
     protected $proveedores;
     protected $trabajadores;
     protected $roles;
@@ -25,7 +26,6 @@ class Contacto extends Component
     public $nombreProveedor;
     public $correoProveedor;
     public $telefonoProveedor;
-
 
     //Propiedades para crear Trabajadores
     public $nombreTrabajador;
@@ -63,8 +63,7 @@ class Contacto extends Component
 
         if ($this->tablaVisible == "trabajadores") {
             if ($this->buscarContacto != null) {
-                $trabajadoresBusqueda = TrabajadorModel::where('name', 'like', '%' . $this->buscarContacto . '%')->
-                            orWhere('apellidos', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'trabajadoresPage');
+                $trabajadoresBusqueda = TrabajadorModel::where('name', 'like', '%' . $this->buscarContacto . '%')->orWhere('apellidos', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'trabajadoresPage');
                 $this->trabajadores = $trabajadoresBusqueda;
             } else {
                 $this->trabajadores = null; // Establece a null para evitar conflictos con la paginación en caso de cambio rápido
@@ -74,9 +73,9 @@ class Contacto extends Component
 
     public function verContacto($id)
     {
-        return redirect()->to('/ver-contacto?id=' . $id);   
+        return redirect()->to('/ver-contacto?id=' . $id);
     }
-    
+
     public function mount()
     {
         $this->verTabla("proveedores");
@@ -113,14 +112,16 @@ class Contacto extends Component
         $this->showTrabajadorDetails='hidden';
     }*/
 
-    public function addProveedor(){
+    public function addProveedor()
+    {
         $proveedor = new ProveedorModel();
         $proveedor->email = $this->correoProveedor;
         $proveedor->nombre = $this->nombreProveedor;
         $proveedor->telefono = $this->telefonoProveedor;
         $proveedor->save();
     }
-    public function addTrabajador(){
+    public function addTrabajador()
+    {
         $trabajador = new TrabajadorModel();
         $trabajador->name = $this->nombreTrabajador;
         $trabajador->email = $this->correoTrabajador;
@@ -132,7 +133,28 @@ class Contacto extends Component
         $trabajador->imagenQr = null;
         $trabajador->save();
     }
+    public function openEditProveedor(ProveedorModel $miProveedor){
+        $this->miProveedor = $miProveedor;
 
+        $this->modalVisible = 'editProveedor';
+     
+    }
+    public function editProveedor($idProveedor)
+    {
+        $this->miProveedor = ProveedorModel::find($idProveedor);
+        $this->miProveedor->name= $this->nombreProveedor;
+        $this->miProveedor->email= $this->correoProveedor;
+        $this->miProveedor->telefono= $this->telefonoProveedor;
+        $this->miProveedor->save();
+        $this->modalVisible='';
+    
+    }
+
+    public function deleteProveedor($idProveedor)
+    {
+        $proveedor = ProveedorModel::where('id', $idProveedor)->get()->first();
+        $proveedor->delete();
+    }
     /*
     public $perPage = 5;
     public function render()
