@@ -11,14 +11,23 @@ class MesaAtender extends Component
 {
     public $mesaAtender;
     public $miLista;
-    //protected $listeners = ['atenderMesa','cargarProductos','añadirComanda'];
-    protected $listeners = ['cargarProductos','añadirComanda'];
-
+    protected $listeners = ['atenderMesa','cargarProductos','añadirComanda'];
+    public $cargar;
 
     public function mount($idMesa)
     {
+       $this->atenderMesa($idMesa);
+    }
+    public function atenderMesa($idMesa)
+    {      
         $this->mesaAtender=MesaModel::where('id', $idMesa)->get()->first();
-        $this->miLista = FamiliaModel::all(); 
+            $this->miLista = FamiliaModel::all();  
+        /*if(!isset($this->cargar)){
+            $this->mesaAtender=MesaModel::where('id', $idMesa)->get()->first();
+            $this->miLista = FamiliaModel::all();  
+        }else{
+            dd($this->miLista);
+        }*/
     }
 
     public function cargarProductos($idFamilia)
@@ -27,7 +36,7 @@ class MesaAtender extends Component
         $this->miLista = $productos;
         //dd(class_basename($this->miLista[0]));
 
-        $this->render($this->miLista);
+        //$this->render();
 
         /*$this->cargar=true;
         $this->mount($idFamilia);*/
@@ -37,8 +46,8 @@ class MesaAtender extends Component
     {
         
     }
-    public function render($miLista)
+    public function render()
     {
-        return view('livewire.mesa-atender', ['miLista' => $miLista]);
+        return view('livewire.mesa-atender');
     }
 }

@@ -5,7 +5,7 @@
             @foreach($salas as $sala)
                 <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button" class=" w-full flex items-center justify-center h-28 border border-gray-2 shadow-lg py-2 hover:color-gray-100 bg-white px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
                     <li>
-                        {{$sala->nombre}}
+                        {{__('welcome.' . $sala->nombre)}}                      
                     </li>
                 </button>
             @endforeach
