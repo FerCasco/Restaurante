@@ -24,7 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger("idTipo");
             $table->foreign("idTipo")->on("tipos_producto")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
-            $table->binary('imagen');
+            $table->binary('imagen')->nullable();
 
             $table->decimal("precio");
             $table->timestamps();
