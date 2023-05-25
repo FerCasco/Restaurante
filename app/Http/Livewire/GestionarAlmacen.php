@@ -13,7 +13,8 @@ class GestionarAlmacen extends Component
     protected $listeners = ['enviarTipoId' => 'gestionarTipo'];
     public $showModalMercancias = false;
     public $selectedMercancia;
-
+    public $confirmingMercanciaName = '';
+    public $confirmingMercanciaDeletion =null;
     //Propiedades para crear y actualizar Mercancias
     public $nombreMercancia;
     public $cantidadMercancia;
@@ -68,10 +69,18 @@ class GestionarAlmacen extends Component
     {
         $this->gestionarTipo($idTipo);
     }
-    public function deleteMercancia(Mercancia $mercancia)
+
+    public function deleteMercancia($mercanciaId)
     {
-        $mercancia->delete();
-        $this->mercancias = Mercancia::where('idTipos', $this->tipo->id)->get();
+        $mercancia = Mercancia::find($mercanciaId);
+        $this->confirmingMercanciaName = $mercancia->nombre;
+        if ($mercancia) {
+            $this->confirmingMercanciaDeletion = $mercanciaId;
+
+            $mercancia->delete();
+            $this->mercancias = Mercancia::where('idTipos', $this->tipo->id)->get();
+        }
+        $this->confirmingMercanciaDeletion = null; // Reset the confirmation modal state
     }
     public function render()
     {

@@ -12,7 +12,7 @@
                 {{$mercancia->cantidadActual}}
             </div>
             <div x-show="flipped" x-transition:enter="transition duration-300 transform ease-in-out" x-transition:enter-start="opacity-0 rotate-y-180" x-transition:enter-end="opacity-100 rotate-y-0" x-transition:leave="transition duration-300 transform ease-in-out" x-transition:leave-start="opacity-100 rotate-y-0" x-transition:leave-end="opacity-0 rotate-y-180" class="absolute text-center bg-gradient-to-br from-white via-yellow-200 to-green-300 bg-blue-300 overflow-hidden inset-0 rounded-lg shadow-lg" @click="flipped = false;">
-                <button wire:click="deleteMercancia({{$mercancia->id}})" class="border-2 border-black rounded-lg">
+                <button wire:click="$set('confirmingMercanciaDeletion', {{ $mercancia->id }})" class="border-2 border-black rounded-lg">
                     Eliminar
                 </button>
                 <br>
@@ -73,7 +73,19 @@
     </div>
     @endif
 
-
+    @if ($confirmingMercanciaDeletion)
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-lg max-w-md mx-4 md:relative p-8">
+                <div class="p-4">
+                    <p class="font-bold text-center">¿Eliminar?</p>
+                </div>
+                <div class="flex justify-center mt-4">
+                    <button wire:click="deleteMercancia({{ $confirmingMercanciaDeletion }})" class="px-4 py-2 bg-red-500 text-white rounded-md">Confirmar</button>
+                    <button wire:click="$set('confirmingMercanciaDeletion', null)" class="ml-8 px-4 py-2 bg-gray-500 text-white rounded-md">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    @endif
 
 
     <!-- Main modal -->
