@@ -18,10 +18,8 @@ use App\Http\Controllers\LanguageController;
 
 Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang');
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::view('/', 'principal');
+Route::view('/inicio', 'welcome');
 Route::view('/cocina', 'cocina-plantilla');
 Route::view('/inventario', 'inventario-plantilla');
 Route::view('/contactos', 'contactos-plantilla');
@@ -30,3 +28,7 @@ Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 
 Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

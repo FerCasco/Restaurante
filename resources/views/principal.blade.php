@@ -1,96 +1,70 @@
-<html>
-
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <?php
-    $nombre = "fernando" ?>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Restaurante</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
     <script src="https://cdn.tailwindcss.com"></script>
+    @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
+    @livewireStyles
 </head>
+    <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">    
 
-<body>
-   
-    <button data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" class="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-        <span class="sr-only">Open sidebar</span>
-        <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-            <path clip-rule="evenodd" fill-rule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"></path>
-        </svg>
-    </button>
-    <div class="w-full text-center border-2 p-2">
-        Última venta: (cod), importe: XX
-    </div>
-    <aside id="default-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 mt-12" aria-label="Sidebar">
-        <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-            <ul>
-                @foreach ($salas as $sala)
+    <header class="bg-white dark:bg-gray-800 shadow">
+        <nav class="flex items-center justify-between py-4 px-8">
+            <a class="text-xl font-semibold text-gray-800 dark:text-white" href="#">Logo</a>
+            
+            <ul class="flex items-center space-x-4">
+            @guest
+                @if (Route::has('login'))
                 <li>
-                    <button>
-                        <a class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700" id="{{ $sala->nombre }}">
-                            <svg aria-hidden="true" class="w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
-                                <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
-                            </svg>
-                            <span class="ml-3">{{ $sala->nombre }}</span>
-                        </a>
-                    </button>
+                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ route('login') }}">{{ __('auth.iniciarSesion') }}</a>
                 </li>
-                @endforeach
+                @endif
+
+                @if (Route::has('register'))
+                <li>
+                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ route('register') }}">{{ __('auth.registrarse') }}</a>
+                </li>
+                @endif
+            @else
+                <li class="relative">
+                <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="#" aria-haspopup="true" aria-expanded="false">
+                    {{ Auth::user()->name }}
+                </a>
+
+                <ul class="absolute right-0 mt-2 space-y-2 bg-white dark:bg-gray-800 rounded-md shadow-lg hidden">
+                    <li>
+                    <a class="block px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        {{ __('auth.cerrarSesion') }}
+                    </a>
+                    </li>
+                </ul>
+                </li>
+            @endguest
             </ul>
+        </nav>
+    </header>
+    <main class="py-10">
+        <div class="flex justify-center items-center h-screen">
+            <div class="right-0 bg-white rounded-lg shadow-lg p-8">
+                @foreach(Config::get('languages') as $lang => $language)
+                    @if ($lang != App::getLocale())
+                        <a class="block bg-pink-400 text-white py-4 px-6 rounded-lg mb-4 hover:bg-pink-500 hover:text-white" href="{{ route('lang', $lang) }}">{{ $language }}</a>
+                    @endif
+                @endforeach
+            </div>
         </div>
-    </aside>
-    <div class="p-4 sm:ml-64">
-        <div class="p-4 border-2 border-gray-200 border-dashed rounded-lg dark:border-gray-700 h-full" id="contenido">
-                <h1>Bienvenido, utilice la barra de navegación lateral para empezar</h1>
-        </div>
-    </div>
-    <script>
-        document.getElementById('Terraza').addEventListener('click', function(event) {
-            fetch('principal/terraza').then(res => res.text()).then(html => {
-                document.getElementById('contenido').innerHTML = html
-            })
-        })
+    <main>
 
-        document.getElementById('Comedor').addEventListener('click', function(event) {
-            fetch('principal/comedor').then(res => res.text()).then(html => {
-                document.getElementById('contenido').innerHTML = html
-            })
-        })
+    @livewireScripts
 
-        document.getElementById('Barra').addEventListener('click', function(event) {
-            fetch('principal/barra').then(res => res.text()).then(html => {
-                document.getElementById('contenido').innerHTML = html
-            })
-        })
-    </script>
-    <!--
-    <script>
-        const terraza = document.getElementById('terraza');
-        const barra = document.getElementById('barra');
-        const comedor1 = document.getElementById('comedor1');
-        const comedor2 = document.getElementById('comedor2');
-        const inventario = document.getElementById('inventario');
-        const graficos = document.getElementById('graficos');
-        const contenido = document.getElementById('contenido');
-
-        terraza.addEventListener('click', function() {
-            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Terraza </h1> <button class="border-4 border-black w-20 h-20 mt-4 ml-2"> T1</button><button class="border-4 border-black w-20 h-20 mt-4">T1</button><button class="border-4 border-black w-20 h-20 mt-4"> T1</button><button class="border-4 border-black w-20 h-20 mt-4">T1</button><button class="border-4 border-black w-20 h-20 mt-4">T1</button><button class="border-4 border-black w-20 h-20 mt-4">T1</button><button class="border-4 border-black w-20 h-20 mt-4"> T1</button><button class="border-4 border-black w-20 h-20 mt-4"> T1</button></div>';
-         });
-
-        barra.addEventListener('click', function() {
-            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Barra</h1> <button class="border-4 border-black w-20 h-20 mt-4 ml-2"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button></div>';
-        });
-        comedor1.addEventListener('click', function() {
-            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Barra</h1> <button class="border-4 border-black w-20 h-20 mt-4 ml-2"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button></div>';
-         });
-        comedor2.addEventListener('click', function() {
-            contenido.innerHTML = '<div class="grid grid-cols-6 gap-4 space-x-2"><h1 class="col-span-6 text-center font-bold text-4xl"> Barra</h1> <button class="border-4 border-black w-20 h-20 mt-4 ml-2"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4">B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button><button class="border-4 border-black w-20 h-20 mt-4"> B1</button></div>';
-        });
-        inventario.addEventListener('click', function() {
-            contenido.innerHTML = 'inventario';
-        });
-        graficos.addEventListener('click', function() {
-            contenido.innerHTML = 'Contenido del botón 2';
-        });
-    </script>
-    -->
-</body>
-
+    </script><script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    </body>
 </html>
