@@ -19,6 +19,7 @@ class GestionarAlmacen extends Component
     public $cantidadMercancia;
     public $stockMinimoMercancia;
     public $stockMaximoMercancia;
+    public $precioUnidadMercancia;
 
     public function mount($idTipo)
     {
@@ -41,8 +42,22 @@ class GestionarAlmacen extends Component
     }
     public function updateMercancia()
     {
-        $this->selectedMercancia->nombre = $this->nombreMercancia;
-        $this->selectedMercancia->cantidadActual = $this->cantidadMercancia;
+        if ($this->nombreMercancia != '') {
+            $this->selectedMercancia->nombre = $this->nombreMercancia;
+        }
+        if ($this->cantidadMercancia != '') {
+            $this->selectedMercancia->cantidadActual = $this->cantidadMercancia;
+        }
+        if ($this->stockMinimoMercancia != '') {
+            $this->selectedMercancia->stockMin = $this->stockMinimoMercancia;
+        }
+        if ($this->stockMaximoMercancia != '') {
+            $this->selectedMercancia->stockMax = $this->stockMaximoMercancia;
+        }
+        if ($this->precioUnidadMercancia != '') {
+            $this->selectedMercancia->precioUnidad = $this->precioUnidadMercancia;
+        }
+
         $this->selectedMercancia->save();
 
         $this->emitSelf('enviarTipoId', $this->tipo->id); // Trigger the 'enviarTipoId' event to update the displayed mercancias

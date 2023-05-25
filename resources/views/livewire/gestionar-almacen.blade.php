@@ -11,12 +11,12 @@
                 <br>
                 {{$mercancia->cantidadActual}}
             </div>
-            <div x-show="flipped" x-transition:enter="transition duration-300 transform ease-in-out" x-transition:enter-start="opacity-0 rotate-y-180" x-transition:enter-end="opacity-100 rotate-y-0" x-transition:leave="transition duration-300 transform ease-in-out" x-transition:leave-start="opacity-100 rotate-y-0" x-transition:leave-end="opacity-0 rotate-y-180" class="absolute text-center py-16 bg-gradient-to-br from-white via-yellow-200 to-green-300 bg-blue-300 overflow-hidden inset-0 rounded-lg shadow-lg" @click="flipped = false;">
+            <div x-show="flipped" x-transition:enter="transition duration-300 transform ease-in-out" x-transition:enter-start="opacity-0 rotate-y-180" x-transition:enter-end="opacity-100 rotate-y-0" x-transition:leave="transition duration-300 transform ease-in-out" x-transition:leave-start="opacity-100 rotate-y-0" x-transition:leave-end="opacity-0 rotate-y-180" class="absolute text-center bg-gradient-to-br from-white via-yellow-200 to-green-300 bg-blue-300 overflow-hidden inset-0 rounded-lg shadow-lg" @click="flipped = false;">
                 <button wire:click="deleteMercancia({{$mercancia->id}})">
                     Eliminar
                 </button>
                 <br>
-                <button wire:click="openModal({{ $mercancia->id }})" data-modal-target="defaultModal" data-modal-toggle="defaultModal">
+                <button wire:click="openModal({{ $mercancia->id }})" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="mt-24">
                     Editar
                 </button>
             </div>
@@ -32,11 +32,28 @@
                 <!-- Form to update Mercancia properties -->
                 <form wire:submit.prevent="updateMercancia">
                     <!-- Input fields for Mercancia properties -->
-                    <label for="nombre">Nombre:</label>
-                    <input wire:model="nombreMercancia" placeholder="{{$selectedMercancia->nombre}}" type="text" id="nombre">
+                    <div>
+                        <label for="nombre">Nombre:</label>
+                        <input wire:model="nombreMercancia" placeholder="{{$selectedMercancia->nombre}}" type="text" id="nombre">
+                    </div>
+                    <div class="mt-8">
+                        <label for="cantidad">Cantidad:</label>
+                        <input wire:model="cantidadMercancia" placeholder="{{$selectedMercancia->cantidadActual}}" type="number" id="cantidad">
+                    </div>
+                    <div class="mt-8">
+                        <label for="cantidad">Stock Min:</label>
+                        <input wire:model="stockMinimoMercancia" placeholder="{{$selectedMercancia->stockMin}}" type="number" id="cantidad">
+                    </div>
+                    <div class="mt-8">
+                        <label for="cantidad">Stock Max:</label>
+                        <input wire:model="stockMaximoMercancia" placeholder="{{$selectedMercancia->stockMax}}" type="number" id="cantidad">
+                    </div>
+                    <div class="mt-8">
+                        <label for="cantidad">Precio Unid:</label>
+                        <input wire:model="precioUnidadMercancia" placeholder="{{$selectedMercancia->precioUnidad}}" type="number" id="cantidad">
+                    </div>
+                    <br>
 
-                    <label for="cantidad">Cantidad:</label>
-                    <input wire:model="cantidadMercancia" placeholder="{{$selectedMercancia->cantidadActual}}" type="number" id="cantidad">
 
                     <!-- Submit button -->
                     <div class="flex justify-end mt-4">
@@ -45,10 +62,12 @@
                 </form>
             </div>
 
-            <button wire:click="closeModalMercancia()" class="absolute top-0 right-0 p-4 text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg" aria-label="Close">
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M14.293 14.293a1 1 0 11-1.414 1.414L10 11.414l-2.879 2.879a1 1 0 11-1.414-1.414L8.586 10 5.707 7.121a1 1 0 111.414-1.414L10 8.586l2.879-2.879a1 1 0 111.414 1.414L11.414 10l2.879 2.879z" clip-rule="evenodd" />
-                </svg>
+            <button wire:click="closeModalMercancia()" class="absolute top-0 h-4 w-4 right-0 p-4 text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg" aria-label="Close">
+                <div class="flex justify-center align-center">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M14.293 14.293a1 1 0 11-1.414 1.414L10 11.414l-2.879 2.879a1 1 0 11-1.414-1.414L8.586 10 5.707 7.121a1 1 0 111.414-1.414L10 8.586l2.879-2.879a1 1 0 111.414 1.414L11.414 10l2.879 2.879z" clip-rule="evenodd" />
+                    </svg>
+                </div>
             </button>
         </div>
     </div>
