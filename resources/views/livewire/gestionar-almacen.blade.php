@@ -5,7 +5,7 @@
 
     <div class="grid grid-cols-3 gap-4 ml-52 mt-12 pl-28" wire:poll.5000ms>
         @foreach($mercancias as $mercancia)
-        <div wire:key="mercancia-{{$mercancia->id}}" wire:ignore x-data="{ flipped: false }" class="border-2 border-black rounded-lg py-32 relative w-52 h-10 mx-auto mt-8 mb-8 cursor-pointer text-center font-bold tracking-light text-lg">
+        <div wire:key="mercancia-{{$mercancia->id}}" wire:ignore x-data="{ flipped: false }" class="border-2 border-black rounded-lg py-20 relative w-52 h-10 mx-auto mt-8 mb-8 cursor-pointer text-center font-bold tracking-light text-lg">
             <div x-show="!flipped" x-transition:enter="transition duration-300 transform ease-in-out" x-transition:enter-start="opacity-0 rotate-y-180" x-transition:enter-end="opacity-100 rotate-y-0" x-transition:leave="transition duration-300 transform ease-in-out" x-transition:leave-start="opacity-100 rotate-y-0" x-transition:leave-end="opacity-0 rotate-y-180" class="absolute text-center py-16 bg-gradient-to-br from-grey-500 via-white-300 to-transparent overflow-hidden inset-0 rounded-lg shadow-lg" @click="flipped = true;">
                 {{$mercancia->nombre}}
                 <br>
@@ -24,7 +24,7 @@
         @endforeach
     </div>
     @if($showModalMercancias)
-    <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center w-full h-full">
+    <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-full">
         <div class="absolute bg-gray-900 opacity-50 inset-0"></div>
 
         <div class="relative bg-white rounded-lg shadow-lg">
