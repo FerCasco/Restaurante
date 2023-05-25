@@ -9,6 +9,7 @@ use App\Models\MesaProducto;
 use App\Models\Producto;
 use App\Models\Sala;
 use App\Models\Trabajadores;
+use App\Models\Version;
 use Illuminate\Http\Request;
 /*
  * Objetos:
@@ -51,7 +52,6 @@ class ApiController extends Controller
     }
 
     /**
-     * Devuelve un array de datos en un orden específico:
      * 1-salas
      * 2-mesas
      * 3-productos
@@ -60,46 +60,103 @@ class ApiController extends Controller
      * 6-mesasProducto
      * 7-lineasComanda
      */
-    public function show(): \Illuminate\Http\JsonResponse
+    public function show(Request $request): \Illuminate\Http\JsonResponse
     {
         /* Variables */
         $usuariosQr = [];
-        $salas = Sala::all();
-        $mesas = Mesa::all();
-        $productos = Producto::all();
-        $mesaProducto = MesaProducto::all();
-        $comandas = Comanda::all();
-        $lineasComanda = LineasComanda::all();
-        $usuarios = Trabajadores::all();
 
-        foreach ($usuarios as $usuario) {
-            $qr_data = $usuario->imagenQr;
-            $usuarioArr = array(
-                'id' => $usuario->id,
-                'name' => $usuario->nombre,
-                'apellidos' => $usuario->apellidos,
-                'telefono' => $usuario->telefono,
-                'dni' => $usuario->dni,
-                'rol' => $usuario->rol,
-                'email' => $usuario->email,
-                'codigoQr' => $usuario->codigoQr,
-                'imagenQr' => utf8_encode($qr_data)
-            );
+        switch ($request->type){
+            case 0:
+                $version = Version::all();
+                return response()->json([
+                    'version'=> $version,
+                ]);
+            case 1:
+                $salas = Sala::all();
+                return response()->json([
+                    'salas'=> $salas,
+                ]);
+            case 2:
+                $mesas = Mesa::all();
+                return response()->json([
+                    'mesas' => $mesas,
+                ]);
+            case 3:
+                $productos = Producto::all();
+                return response()->json([
+                    'productos' => $productos,
+                ]);
+            case 4:
+                $comandas = Comanda::all();
+                return response()->json([
+                    'comandas' => $comandas,
+                ]);
+            case 5:
+                $usuarios = Trabajadores::all();
+                foreach ($usuarios as $usuario) {
+                    $qr_data = $usuario->imagenQr;
+                    $usuarioArr = array(
+                        'id' => $usuario->id,
+                        'name' => $usuario->nombre,
+                        'apellidos' => $usuario->apellidos,
+                        'telefono' => $usuario->telefono,
+                        'dni' => $usuario->dni,
+                        'rol' => $usuario->rol,
+                        'email' => $usuario->email,
+                        'codigoQr' => $usuario->codigoQr,
+                        'imagenQr' => utf8_encode($qr_data)
+                    );
 
-            $usuariosQr[] = $usuarioArr;
+                    $usuariosQr[] = $usuarioArr;
+                }
+                return response()->json([
+                    'usuarios' => $usuariosQr,
+                ]);
+            case 6:
+                $mesaProducto = MesaProducto::all();
+                return response()->json([
+                    'mesasProductos' => $mesaProducto,
+                ]);
+            case 7:
+                $lineasComanda = LineasComanda::all();
+                return response()->json([
+                    'lineaComanda' => $lineasComanda
+                ]);
+            default:
+                $salas = Sala::all();
+                $mesas = Mesa::all();
+                $productos = Producto::all();
+                $comandas = Comanda::all();
+                $usuarios = Trabajadores::all();
+                $mesaProducto = MesaProducto::all();
+                $lineasComanda = LineasComanda::all();
+                foreach ($usuarios as $usuario) {
+                    $qr_data = $usuario->imagenQr;
+                    $usuarioArr = array(
+                        'id' => $usuario->id,
+                        'name' => $usuario->nombre,
+                        'apellidos' => $usuario->apellidos,
+                        'telefono' => $usuario->telefono,
+                        'dni' => $usuario->dni,
+                        'rol' => $usuario->rol,
+                        'email' => $usuario->email,
+                        'codigoQr' => $usuario->codigoQr,
+                        'imagenQr' => utf8_encode($qr_data)
+                    );
+
+                    $usuariosQr[] = $usuarioArr;
+                }
+                return response()->json([
+                    'salas'=> $salas,
+                    'mesas' => $mesas,
+                    'productos' => $productos,
+                    'comandas' => $comandas,
+                    'usuarios' => $usuariosQr,
+                    'mesasProductos' => $mesaProducto,
+                    'lineaComanda' => $lineasComanda
+                ]);
         }
-
-        return response()->json([
-            'salas'=> $salas,
-            'mesas' => $mesas,
-            'productos' => $productos,
-            'comandas' => $comandas,
-            'usuarios' => $usuariosQr,
-            'mesasProductos' => $mesaProducto,
-            'lineaComanda' => $lineasComanda
-        ]);
     }
-
     /**
      * Update the specified resource in storage.
      * @throws \Throwable
@@ -107,22 +164,8 @@ class ApiController extends Controller
     public function update(Request $request): \Illuminate\Http\JsonResponse
     {
         $success = false;
-
-        switch ($request->type){
-            case '1':
-                $type = 'Comanda';
-                if(Comanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
-                break;
-            case '2':
-                $type = 'LineaComanda';
-                if(LineasComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
-                break;
-            default:
-                return response()->json([
-                    'message' => 'No se encuentra un tipo de dato correcto.',
-                    'info' => 'Los tipos de datos aceptados son: 1-Comanda, 2-LineaComanda, por favor introduzca uno de estos datos por parámetro.'
-                ]);
-        }
+        $type = 'LineaComanda';
+        if(LineasComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
 
         if($success){
             return response()->json([
@@ -146,22 +189,8 @@ class ApiController extends Controller
     public function destroy(Request $request): \Illuminate\Http\JsonResponse
     {
         $success = false;
-
-        switch ($request->type){
-            case '1':
-                $tipo = 'Comanda';
-                if(Comanda::destroy($request->id) > 0) $success = true;
-                break;
-            case '2':
-                $tipo = 'LineaComanda';
-                if(LineasComanda::destroy($request->id) > 0) $success = true;
-                break;
-            default:
-                return response()->json([
-                    'message' => 'No se encuentra un tipo de dato correcto.',
-                    'info' => 'Los tipos de datos aceptados son: 1-Comanda, 2-LineaComanda, por favor introduzca uno de estos datos por parámetro.'
-                ]);
-        }
+        $tipo = 'LineaComanda';
+        if(LineasComanda::destroy($request->id) > 0) $success = true;
 
         if($success){
             return response()->json([
