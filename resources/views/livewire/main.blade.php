@@ -2,7 +2,7 @@
     @livewire('menu')
     @livewire('sala')
 
-    <div class="flex justify-center items-center h-screen">
+    <!--<div class="flex justify-center items-center h-screen">
         <div class="right-0 bg-white">
             @foreach(Config::get('languages') as $lang => $language)
                 @if ($lang != App::getLocale())
@@ -10,7 +10,7 @@
                 @endif
             @endforeach
         </div>
-    </div>
+    </div>-->
 
     @if ($componenteActivo === 'mesa')
         <div>

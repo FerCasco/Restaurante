@@ -19,9 +19,12 @@ class Cocina extends Component
     public $productos;
     public $productoSeleccionado;
 
+    public $verEmplatado;
+
     protected $listeners = ['cargarEmplatado','cargarProductos'];
 
     public function mount(){
+        $this->verEmplatado=false;
         $this->mercancias=MercanciaModel::all();
         $this->productos=ProductoModel::all();
     }
@@ -51,7 +54,7 @@ class Cocina extends Component
     //clicks
     public function cargarProductos($idMercancia)
     {
-        //todas las mercancias en ingredientesElab con su respectivo idElaboracion
+        //todas las mercancias en mercanciasElab con su respectivo idElaboracion
         $mercanciasElab = ElaboracionesMercanciasModel::where('idMercancia', $idMercancia)->get();
 
         $this->productos=[];
@@ -72,7 +75,14 @@ class Cocina extends Component
     public function cargarEmplatado($idProducto)
     {
         $this->productoSeleccionado = ProductoModel::where('id', $idProducto)->get()->first();
+        $this->verEmplatado=true;
     }
+
+    public function cerrarEmplatado()
+    {
+        $this->verEmplatado=false;
+    }
+
 
     /*public function productoSeleccionadoNull()
     {

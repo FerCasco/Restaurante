@@ -13,7 +13,16 @@
         <div class="cajaGrafico">
             <div id="container" class="w-3/4 h-full mx-auto"></div>
         </div>
-    @endif()    
+    @endif()  
+    
+    <div class="mt-16">
+        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaRentabilidadPlato()">Rentabilidad plato</button>
+    </div>
+    @if($grafica=="rentabilidadPlato")
+        <div class="cajaGrafico">
+            <div id="container" class="w-3/4 h-full mx-auto"></div>
+        </div>
+    @endif()  
 </div>
 
 
@@ -93,14 +102,17 @@
 
 
     /***********************/
-
     document.addEventListener('livewire:load', function () {
-            Livewire.on('ejecutarScript', function ($lista) {
-                //console.log($lista);
-                drilldown($lista);
-            });
+        Livewire.on('ejecutarScript', function ($lista) {
+            //console.log($lista);
+            drilldown($lista);
         });
-
+        Livewire.on('ScriptRentabilidadPlato', function ($lista) {
+            //console.log($lista);
+            rentabilidadPlato($lista);
+        });
+    });
+    
     function drilldown(response) {
         Highcharts.chart('container', {
             chart: {
@@ -120,10 +132,20 @@
             series: [{
                 name: 'Cantidad actual',
                 data: response.map(function(mercancia) {
+                    var color;
+                    if (parseFloat(mercancia.cantidadActual) <= parseFloat(mercancia.stockMin)) {
+                        color = '#FF3E3E'; // Rojo
+                    } else if (parseFloat(mercancia.cantidadActual) > parseFloat(mercancia.stockMin) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4)) {
+                        color = '#FF9358'; // Naranja
+                    } else if (parseFloat(mercancia.cantidadActual) > ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)) {
+                        color = '#FFEA58'; // Amarillo
+                    } else {
+                        color = '#BAFF58'; // Verde
+                    }
                     return {
                         name: mercancia.nombre,
                         y: parseFloat(mercancia.cantidadActual),
-                        color: '#B26EFF',
+                        color: color,
                         drilldown: mercancia.nombre
                     };
                 })
@@ -165,4 +187,61 @@
             }
         });
     }
+
+    function rentabilidadPlato(response)
+    {        
+        console.log(response);
+        var listaCliente = response['listaCliente'];
+        var listaRestaurante = response['listaRestaurante'];
+        var listaResultado = response['listaResultados'];
+        var categories = [];
+        var costesData  = [];
+        var preciosData  = [];
+        var resultado  = [];
+        
+        for (var i = 0; i < listaRestaurante.length; i++) {
+            categories.push(listaRestaurante[i][0]);
+        }
+
+        for (var i = 0; i < listaRestaurante.length; i++) {
+            costesData.push([i, parseFloat(listaRestaurante[i][1])]);
+            preciosData.push([i, parseFloat(listaCliente[i][1])]);
+            resultado.push([i, parseFloat(listaResultado[i][1])]);
+        }
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Rentabilidad por plato'
+            },
+            xAxis: {
+                categories: categories,
+                crosshair: true
+            },
+            yAxis: {
+                title: {
+                    text: 'Coste (en euros)'
+                }
+            },
+            series: [{
+                name: 'Coste de producción',
+                data: costesData
+            }, {
+                name: 'Precio de venta',
+                data: preciosData
+            }, {
+                name: 'Resultados obtenidos',
+                data: resultado,
+                zones: [{
+                    value: 0, // Valores menores o iguales que cero
+                    color: '#ff0000'
+                }, {
+                    color: '#BAFF58' // Valores mayores que cero
+                }]
+            }]
+        });    
+    }
+
 </script>
