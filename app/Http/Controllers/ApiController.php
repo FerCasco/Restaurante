@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Reserva;
 use App\Models\Comanda;
 use App\Models\LineasComanda;
 use App\Models\Mesa;
 use App\Models\MesaProducto;
 use App\Models\Producto;
+use App\Models\Restaurante;
 use App\Models\Sala;
+use App\Models\Ticket;
+use App\Models\TipoProducto;
 use App\Models\Trabajadores;
 use App\Models\Version;
 use Illuminate\Http\Request;
@@ -59,6 +63,10 @@ class ApiController extends Controller
      * 5-usuarios (con la imagen del qr codificada en UTF-8)
      * 6-mesasProducto
      * 7-lineasComanda
+     * 8-reservas
+     * 9-restaurante
+     * 10-tipo
+     * 11-ticket
      */
     public function show(Request $request): \Illuminate\Http\JsonResponse
     {
@@ -93,22 +101,7 @@ class ApiController extends Controller
                 ]);
             case 5:
                 $usuarios = Trabajadores::all();
-                foreach ($usuarios as $usuario) {
-                    $qr_data = $usuario->imagenQr;
-                    $usuarioArr = array(
-                        'id' => $usuario->id,
-                        'name' => $usuario->nombre,
-                        'apellidos' => $usuario->apellidos,
-                        'telefono' => $usuario->telefono,
-                        'dni' => $usuario->dni,
-                        'rol' => $usuario->rol,
-                        'email' => $usuario->email,
-                        'codigoQr' => $usuario->codigoQr,
-                        'imagenQr' => utf8_encode($qr_data)
-                    );
-
-                    $usuariosQr[] = $usuarioArr;
-                }
+                $usuariosQr = $this->getArr($usuarios, $usuariosQr);
                 return response()->json([
                     'usuarios' => $usuariosQr,
                 ]);
@@ -122,6 +115,26 @@ class ApiController extends Controller
                 return response()->json([
                     'lineaComanda' => $lineasComanda
                 ]);
+            case 8:
+                $reservas = Reserva::all();
+                return response()->json([
+                    'reservas' => $reservas
+                ]);
+            case 9:
+                $restaurante = Restaurante::all();
+                return response()->json([
+                    'restaurante' => $restaurante
+                ]);
+            case 10:
+                $tipo = TipoProducto::all();
+                return response()->json([
+                    'tipoProductos' => $tipo
+                ]);
+            case 11:
+                $ticket = Ticket::all();
+                return response()->json([
+                    'tickets' => $ticket
+                ]);
             default:
                 $salas = Sala::all();
                 $mesas = Mesa::all();
@@ -130,22 +143,12 @@ class ApiController extends Controller
                 $usuarios = Trabajadores::all();
                 $mesaProducto = MesaProducto::all();
                 $lineasComanda = LineasComanda::all();
-                foreach ($usuarios as $usuario) {
-                    $qr_data = $usuario->imagenQr;
-                    $usuarioArr = array(
-                        'id' => $usuario->id,
-                        'name' => $usuario->nombre,
-                        'apellidos' => $usuario->apellidos,
-                        'telefono' => $usuario->telefono,
-                        'dni' => $usuario->dni,
-                        'rol' => $usuario->rol,
-                        'email' => $usuario->email,
-                        'codigoQr' => $usuario->codigoQr,
-                        'imagenQr' => utf8_encode($qr_data)
-                    );
+                $reservas = Reserva::all();
+                $restaurante = Restaurante::all();
+                $tipo = TipoProducto::all();
+                $ticket = Ticket::all();
 
-                    $usuariosQr[] = $usuarioArr;
-                }
+                $usuariosQr = $this->getArr($usuarios, $usuariosQr);
                 return response()->json([
                     'salas'=> $salas,
                     'mesas' => $mesas,
@@ -153,7 +156,11 @@ class ApiController extends Controller
                     'comandas' => $comandas,
                     'usuarios' => $usuariosQr,
                     'mesasProductos' => $mesaProducto,
-                    'lineaComanda' => $lineasComanda
+                    'lineaComandas' => $lineasComanda,
+                    'reservas' => $reservas,
+                    'restaurante' => $restaurante,
+                    'tipoProductos' => $tipo,
+                    'tickets' => $ticket
                 ]);
         }
     }
@@ -164,8 +171,18 @@ class ApiController extends Controller
     public function update(Request $request): \Illuminate\Http\JsonResponse
     {
         $success = false;
-        $type = 'LineaComanda';
-        if(LineasComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
+
+
+        switch ($request->type){
+            case 1:
+                $type = 'LineaComanda';
+                if(LineasComanda::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
+                break;
+            case 2:
+                $type = 'Mesa';
+                if(Mesa::where('id', $request->id)->first()->updateOrFail([$request->param => $request->value]) > 0) $success = true;
+        }
+
 
         if($success){
             return response()->json([
@@ -201,5 +218,31 @@ class ApiController extends Controller
                 'message' => 'No se ha podido borrar el elemento con id ' . $request->id . ' de la tabla ' . $tipo
             ]);
         }
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Collection $usuarios
+     * @param array $usuariosQr
+     * @return array
+     */
+    public function getArr(\Illuminate\Database\Eloquent\Collection $usuarios, array $usuariosQr): array
+    {
+        foreach ($usuarios as $usuario) {
+            $qr_data = $usuario->imagenQr;
+            $usuarioArr = array(
+                'id' => $usuario->id,
+                'name' => $usuario->nombre,
+                'apellidos' => $usuario->apellidos,
+                'telefono' => $usuario->telefono,
+                'dni' => $usuario->dni,
+                'rol' => $usuario->rol,
+                'email' => $usuario->email,
+                'codigoQr' => $usuario->codigoQr,
+                'imagenQr' => utf8_encode($qr_data)
+            );
+
+            $usuariosQr[] = $usuarioArr;
+        }
+        return $usuariosQr;
     }
 }
