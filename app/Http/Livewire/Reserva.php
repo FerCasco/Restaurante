@@ -28,7 +28,7 @@ class Reserva extends Component
 
     public function reservar(){
         $this->validate();
-        //dd($this->miReserva); me llegaba array
+        //dd($this->miReserva);me llegaba array
 
         $reserva = new ReservaModel(); 
         $reserva->nombre = $this->miReserva['nombre'];

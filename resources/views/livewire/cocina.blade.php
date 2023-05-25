@@ -17,7 +17,7 @@
                 <li>
     @foreach($this->mercancias as $mercancia)
         <button wire:click="$emit('cargarProductos',{{$mercancia->id}})" class="relative w-full h-10 border border-gray-200 flex my-4 items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
-            <span class="absolute top-[-6px] right-0 w-6 h-6 bg-red-300 rounded-full"></span>
+        <span class="absolute top-[-6px] right-0 min-w-min px-2 py-1 bg-red-300 text-white rounded-full">{{$mercancia->cantidadActual}}</span>
             <span class="ml-2 flex-grow text-center text-slate-800">{{$mercancia->nombre}}</span>
         </button>
     @endforeach
@@ -59,10 +59,10 @@
             <nav class="p-6 w-full flex flex-col flex-wrap">
                 <ul class="space-y-1.5">
                     <li>
-                            <div id="menuEmplatado"
-                                class="w-full border border-gray-200 flex my-4 items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
-                                <h2>{{$productoSeleccionado->nombre}}</h2>
-                            </div>
+                        <div id="menuEmplatado"
+                            class="w-full border border-gray-200 flex my-4 items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
+                            <h2>{{$productoSeleccionado->nombre}}</h2>
+                        </div>
                     </li>
                 </ul>
             </nav>

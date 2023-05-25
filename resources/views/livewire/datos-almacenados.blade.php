@@ -1,5 +1,5 @@
 <div>
-    <div class="">
+    <div>
         @if ($componenteActivo == null)
         
         <!--Calendario-->
