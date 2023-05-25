@@ -1,7 +1,7 @@
 <center>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
-    <h1 class="mt-28 ml-40 w-full text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white inline-block">Tipo: {{$tipo->nombre}}</h1>
+    <h1 class="mt-28 ml-40 text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white inline-block">Tipo: {{$tipo->nombre}}</h1>
 
     <div class="grid grid-cols-3 gap-4 ml-52 mt-12 pl-28" wire:poll.5000ms>
         @foreach($mercancias as $mercancia)
