@@ -2,19 +2,24 @@
 
 return [
 
-    /*
-    |--------------------------------------------------------------------------
-    | Authentication Language Lines
-    |--------------------------------------------------------------------------
-    |
-    | The following language lines are used during authentication for various
-    | messages that we need to display to the user. You are free to modify
-    | these language lines according to your application's requirements.
-    |
-    */
-
     'failed' => 'Las credenciales no coinciden.',
     'password' => 'La contraseña es incorrecta.',
     'throttle' => 'Demasiados intentos. Prueba otra vez en : seconds segundos.',
 
+    /*Pantalla Principal*/
+    'iniciarSesion' => 'Iniciar sesión',
+    'registrarse' => 'Registrarse',
+    'cerrarSesion' => 'Cerrar sesión',
+
+    /*Formulario de registrar*/
+    'nombre' => 'Nombre',
+    'email' => 'Email',
+    'contraseña' => 'Contraseña',
+    'confirmadoCont' => 'Confirmado de contraseña',
+    'existe' => '¿Está ya registrado?',
+    'registrar' => 'Registrar',
+
+    /*Formulario de iniciar sesión*/
+    'recordarme' => 'Recordarme',
+    'olvidarCont' => '¿Olvidaste la contraseña?',
 ];

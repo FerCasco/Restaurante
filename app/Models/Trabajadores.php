@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+Spatie\Permission\Traits\HasRoles;
 
 class Trabajadores extends Model
 {
     use HasFactory;
+    use HasRoles;
 
     protected $fillable = [
         'id',
