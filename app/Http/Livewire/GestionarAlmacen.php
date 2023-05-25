@@ -10,8 +10,15 @@ class GestionarAlmacen extends Component
 {
     public $mercancias;
     public $tipo;
-    protected $listeners = ['enviarTipoId'=>'gestionarTipo'];
+    protected $listeners = ['enviarTipoId' => 'gestionarTipo'];
     public $showModalMercancias = false;
+    public $selectedMercancia;
+
+    //Propiedades para crear y actualizar Mercancias
+    public $nombreMercancia;
+    public $cantidadMercancia;
+    public $stockMinimoMercancia;
+    public $stockMaximoMercancia;
 
     public function mount($idTipo)
     {
@@ -20,8 +27,36 @@ class GestionarAlmacen extends Component
 
     public function gestionarTipo($idTipo)
     {
-        $this->tipo = Tipo::where('id',$idTipo)->get()->first();
-        $this->mercancias=Mercancia::where('idTipos', $idTipo)->get();
+        $this->tipo = Tipo::where('id', $idTipo)->get()->first();
+        $this->mercancias = Mercancia::where('idTipos', $idTipo)->get();
+    }
+    public function openModal($mercanciaId)
+    {
+        $this->selectedMercancia = Mercancia::find($mercanciaId);
+        $this->showModalMercancias = true;
+    }
+    public function closeModalMercancia()
+    {
+        $this->showModalMercancias = false;
+    }
+    public function updateMercancia()
+    {
+        $this->selectedMercancia->nombre = $this->nombreMercancia;
+        $this->selectedMercancia->cantidadActual = $this->cantidadMercancia;
+        $this->selectedMercancia->save();
+
+        $this->emitSelf('enviarTipoId', $this->tipo->id); // Trigger the 'enviarTipoId' event to update the displayed mercancias
+
+        $this->showModalMercancias = false;
+    }
+    public function enviarTipoId($idTipo)
+    {
+        $this->gestionarTipo($idTipo);
+    }
+    public function deleteMercancia(Mercancia $mercancia)
+    {
+        $mercancia->delete();
+        $this->mercancias = Mercancia::where('idTipos', $this->tipo->id)->get();
     }
     public function render()
     {
