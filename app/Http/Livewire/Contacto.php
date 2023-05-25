@@ -133,21 +133,19 @@ class Contacto extends Component
         $trabajador->imagenQr = null;
         $trabajador->save();
     }
-    public function openEditProveedor(ProveedorModel $miProveedor){
-        $this->miProveedor = $miProveedor;
-
-        $this->modalVisible = 'editProveedor';
-     
-    }
-    public function editProveedor($idProveedor)
+    public function openEditProveedor($proveedorId)
     {
-        $this->miProveedor = ProveedorModel::find($idProveedor);
-        $this->miProveedor->name= $this->nombreProveedor;
-        $this->miProveedor->email= $this->correoProveedor;
-        $this->miProveedor->telefono= $this->telefonoProveedor;
+        $this->miProveedor = ProveedorModel::find($proveedorId);
+        $this->verModal('editProveedor');
+    }
+    public function editProveedor()
+    {
+        $this->miProveedor->name = $this->nombreProveedor;
+        $this->miProveedor->email = $this->correoProveedor;
+        $this->miProveedor->telefono = $this->telefonoProveedor;
+        dd("holaaaaaaaa");
         $this->miProveedor->save();
-        $this->modalVisible='';
-    
+        $this->modalVisible = '';
     }
 
     public function deleteProveedor($idProveedor)
