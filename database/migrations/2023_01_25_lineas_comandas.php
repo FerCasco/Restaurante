@@ -24,10 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger("idProducto");
             $table->foreign("idProducto")->on("productos")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
-            $table->unsignedBigInteger("idComanda");
-            $table->foreign("idComanda")->on("comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
-            $table->unsignedBigInteger("idTickets");
+            $table->unsignedBigInteger("idTickets")->nullable();
             $table->foreign("idTickets")->on("tickets")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->double('precio');
