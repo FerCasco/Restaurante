@@ -133,20 +133,20 @@
                 name: 'Cantidad actual',
                 data: response.map(function(mercancia) {
                     var color;
-                    if (mercancia.cantidadActual < mercancia.stockMin) {
-                        color = '#B26EFF'; // Rojo
-                    } else if (mercancia.cantidadActual > mercancia.stockMin && mercancia.cantidadActual < ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4)) {
+                    if (parseFloat(mercancia.cantidadActual) <= parseFloat(mercancia.stockMin)) {
+                        color = '#FF3E3E'; // Rojo
+                    } else if (parseFloat(mercancia.cantidadActual) > parseFloat(mercancia.stockMin) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4)) {
                         color = '#FF9358'; // Naranja
-                    } else if (mercancia.cantidadActual > ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4) && mercancia.cantidadActual < ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)) {
+                    } else if (parseFloat(mercancia.cantidadActual) > ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)) {
                         color = '#FFEA58'; // Amarillo
                     } else {
                         color = '#BAFF58'; // Verde
                     }
                     return {
-                    name: mercancia.nombre,
-                    y: parseFloat(mercancia.cantidadActual),
-                    color: color,
-                    drilldown: mercancia.nombre
+                        name: mercancia.nombre,
+                        y: parseFloat(mercancia.cantidadActual),
+                        color: color,
+                        drilldown: mercancia.nombre
                     };
                 })
             }],
