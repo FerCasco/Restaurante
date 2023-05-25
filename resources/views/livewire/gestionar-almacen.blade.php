@@ -12,11 +12,11 @@
                 {{$mercancia->cantidadActual}}
             </div>
             <div x-show="flipped" x-transition:enter="transition duration-300 transform ease-in-out" x-transition:enter-start="opacity-0 rotate-y-180" x-transition:enter-end="opacity-100 rotate-y-0" x-transition:leave="transition duration-300 transform ease-in-out" x-transition:leave-start="opacity-100 rotate-y-0" x-transition:leave-end="opacity-0 rotate-y-180" class="absolute text-center bg-gradient-to-br from-white via-yellow-200 to-green-300 bg-blue-300 overflow-hidden inset-0 rounded-lg shadow-lg" @click="flipped = false;">
-                <button wire:click="deleteMercancia({{$mercancia->id}})">
+                <button wire:click="deleteMercancia({{$mercancia->id}})" class="border-2 border-black rounded-lg">
                     Eliminar
                 </button>
                 <br>
-                <button wire:click="openModal({{ $mercancia->id }})" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="mt-24">
+                <button wire:click="openModal({{ $mercancia->id }})" data-modal-target="defaultModal" data-modal-toggle="defaultModal" class="mt-24 border-2 border-black rounded-lg  ">
                     Editar
                 </button>
             </div>
@@ -79,19 +79,4 @@
     <!-- Main modal -->
 
 </center>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const modalHideTriggers = document.querySelectorAll('[data-modal-hide]');
 
-        modalHideTriggers.forEach(function(trigger) {
-            const modalId = trigger.getAttribute('data-modal-hide');
-            const modalElement = document.getElementById(modalId);
-
-            if (modalElement) {
-                trigger.addEventListener('click', function() {
-                    modalElement.classList.add('hidden');
-                });
-            }
-        });
-    });
-</script>

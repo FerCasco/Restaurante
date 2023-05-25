@@ -9,12 +9,16 @@ class Inventario extends Component
     public $componenteActivo;
     public $idTipo;
     public $idMercancia;
-    protected $listeners = ['enviarTipoId','gestionarMercancia'];
+    protected $listeners = ['enviarTipoId','gestionarMercancia','addMercancia'];
 
     public function enviarTipoId($idTipo)
     {
         $this->idTipo=$idTipo;
         $this->componenteActivar('gestionar-almacen');
+    }
+
+    public function addMercancia(){
+        $this->componenteActivar('pedido-mercancias');
     }
     public function componenteActivar($nombre)
     {
