@@ -1,4 +1,4 @@
-<div class="absolute bg-cover h-full w-full" style="background-image: url('/img/comida-ingredientes.jpg');">
+<div class="absolute bg-cover h-full w-full" style="background-image: url('/img/fondoReserva.jpg');">
     <!--<div class="absolute h-full w-full bg-white opacity-25">
     </div>-->
         <form wire:submit.prevent="reservar" class="rounded-full bg-white mt-36 mx-auto w-3/5 rounded-lg shadow-lg flex flex-col flex-wrap  p-8 ">
@@ -16,6 +16,7 @@
             <label for="fecha">Fecha:</label>
             <input  class="w-80 mb-8 rounded-lg border border-gray-200 bg-gray-200" wire:model="miReserva.fecha" type="date" id="fecha" name="fecha">
             </div>
+
 
             <div class=" flex flex-col flex-wrap justify-center items-center">
                 <div class="flex justify-between mb-8">       

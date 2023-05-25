@@ -12,6 +12,7 @@ class Reserva extends Component
     public $mesas;
     public $miReserva;
 
+    
     protected $rules = [
         'miReserva.nombre' => 'required|string|min:2',
         'miReserva.comensales' => 'required',

@@ -27,6 +27,7 @@
 
     </div>
     <div class="w-10 h-10 m-6">
+        
     </div>
     <!--Productos-->
     <main class="flex-1 justify-center w-full">

@@ -22,6 +22,7 @@
             @endforeach
         @endif
     </div>
+    
 
     <!--Menú del día-->
     <div class="bg-blue-50 col-span-9 flex shadow-2xl rounded-xl h-5/6 w-5/6 mt-20 ml-8 justify-center flex-col px-4 py-8 shadow-lg mb-8">

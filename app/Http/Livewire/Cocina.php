@@ -11,6 +11,7 @@ class Cocina extends Component
 {
     /*ingredientes*/
     public $miIngrediente;
+    
     public $mercancias;
     public $productoReceta;
 

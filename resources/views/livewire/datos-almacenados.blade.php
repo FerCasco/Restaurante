@@ -1,5 +1,6 @@
 <div>
     <div>
+        
         @if ($componenteActivo == null)
         
         <!--Calendario-->

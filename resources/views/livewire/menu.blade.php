@@ -1,4 +1,5 @@
 <div class="flex m-auto justify-center">
+    
     <div class="z-10 fixed my-4 flex bg-gray-100 hover:bg-gray-200 rounded-lg transition-all duration-1000 p-1 dark:bg-gray-700 dark:hover:bg-gray-600">
         <nav class="flex space-x-2">
             <a class="group py-3 px-4 inline-flex flex-col items-center gap-2 hover:bg-white hover:scale-105 transition-all text-sm text-gray-700 font-medium rounded-md shadow-lg dark:bg-gray-800 dark:text-gray-400 w-32 justify-center" href="/">
