@@ -24,6 +24,13 @@ return new class extends Migration
             $table->unsignedBigInteger("idProducto");
             $table->foreign("idProducto")->on("productos")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
+            $table->unsignedBigInteger("idComanda");
+            $table->foreign("idComanda")->on("comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            $table->unsignedBigInteger("idTickets");
+            $table->foreign("idTickets")->on("tickets")->references("id")->onDelete("cascade")->onUpdate("cascade");
+
+            $table->double('precio');
             $table->integer("cantidad");
             $table->boolean("enviado"); //Esto se hace cuando creas una comanda pero no es necesario mandarla a cocina en ese momento.
 

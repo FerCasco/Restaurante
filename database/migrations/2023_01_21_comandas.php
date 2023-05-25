@@ -13,10 +13,6 @@ return new class extends Migration
     {
         Schema::create('comandas', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger("idLineasComanda");
-            $table->foreign("idLineasComanda")->on("lineas_comandas")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
             $table->double('precioTotal');
 
             $table->timestamps();
