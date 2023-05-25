@@ -7,12 +7,12 @@ use App\Models\Reserva as ReservaModel;
 use App\Models\Mesa as MesaModel;
 
 class Reserva extends Component
-{   
+{
 
     public $mesas;
     public $miReserva;
 
-    
+
     protected $rules = [
         'miReserva.nombre' => 'required|string|min:2',
         'miReserva.comensales' => 'required',
@@ -22,7 +22,7 @@ class Reserva extends Component
     ];
 
     public function mount()
-    {        
+    {
         $miReserva = new ReservaModel();
         $this->mesas=MesaModel::all();
     }
@@ -31,7 +31,7 @@ class Reserva extends Component
         $this->validate();
         //dd($this->miReserva);me llegaba array
 
-        $reserva = new ReservaModel(); 
+        $reserva = new ReservaModel();
         $reserva->nombre = $this->miReserva['nombre'];
         $reserva->apellidos = $this->miReserva['apellidos'];
         $reserva->fecha = $this->miReserva['fecha'];
@@ -40,7 +40,7 @@ class Reserva extends Component
         $reserva->idMesa = $this->miReserva['idMesa'];
         $reserva->telefono = $this->miReserva['telefono'];
         $reserva->anotaciones = $this->miReserva['anotaciones'];
-        
+
         $reserva->save();
 
         //$this->emitUp('cambiar',null);
@@ -49,5 +49,9 @@ class Reserva extends Component
     public function render()
     {
         return view('livewire.reserva');
+    }
+
+    public function mount(){
+
     }
 }
