@@ -19,3 +19,4 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::apiResource('getResources', \App\Http\Controllers\ApiController::class);
+Route::post('getAll', [\App\Http\Controllers\ApiController::class, 'getAll']);
