@@ -15,8 +15,7 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->id();
 
-            //Campos solo para la comanda.
-            $table->time("hora")->nullable(); //Para generar la comanda. Para saber cuanto tiempo hace que se pidió la comanda.
+            //Campos solo para la comanda.//Para generar la comanda. Para saber cuanto tiempo hace que se pidió la comanda.
 
             //Campos solo para el ticket.
             $table->string("fechaTicket");

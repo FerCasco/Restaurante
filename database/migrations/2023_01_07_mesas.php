@@ -20,7 +20,8 @@ return new class extends Migration
             //No aparecían en el esquema de bd y creo q no deben desaparecer
 
             /*$table->unsignedBigInteger("idCamarero");
-            $table->foreign("idCamarero")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $t
+            able->foreign("idCamarero")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
             */
             $table->unsignedBigInteger("idSala");
             $table->foreign("idSala")->on("salas")->references("id")->onDelete("cascade")->onUpdate("cascade");
