@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
 
             //Campos solo para la comanda.
-            $table->time("hora"); //Para generar la comanda. Para saber cuanto tiempo hace que se pidió la comanda.
+            $table->time("hora")->nullable(); //Para generar la comanda. Para saber cuanto tiempo hace que se pidió la comanda.
 
             //Campos solo para el ticket.
             $table->string("fechaTicket");
