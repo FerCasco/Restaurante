@@ -25,6 +25,7 @@
         "@fullcalendar/core": "^6.1.7",
         "@fullcalendar/daygrid": "^6.1.7",
         "@preline/overlay": "^1.4.0",
+        "flowbite": "^1.6.5",
         "fullcalendar": "^6.1.7",
         "moment": "^2.29.4",
         "preline": "^1.8.0"
