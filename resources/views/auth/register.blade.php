@@ -39,6 +39,47 @@
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
 
+
+
+        <div class="mb-4">
+            <label for="idRol" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Rol:</label>
+            <select name="idRol" id="idRol" class="form-select block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+                <option value="2">Cocinero</option>
+                <option value="1">Camarero</option>
+            </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="apellidos" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Apellidos:</label>
+            <input type="text" name="apellidos" id="apellidos" class="form-input block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="telefono" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Teléfono:</label>
+            <input type="text" name="telefono" id="telefono" class="form-input block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="dni" class="block font-medium text-sm text-gray-700 dark:text-gray-300">DNI:</label>
+            <input type="text" name="dni" id="dni" class="form-input block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="codigoQr" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Código QR:</label>
+            <input type="text" name="codigoQr" id="codigoQr" class="form-input block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+
+        <div class="mb-4">
+            <label for="qrImagen" class="block font-medium text-sm text-gray-700 dark:text-gray-300">Imagen del QR:</label>
+            <input type="file" name="qrImagen" id="qrImagen" class="form-input block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500">
+        </div>
+
+
+
+
+
+
+
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                 {{ __('auth.existe') }}

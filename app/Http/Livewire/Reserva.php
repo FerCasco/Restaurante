@@ -51,7 +51,4 @@ class Reserva extends Component
         return view('livewire.reserva');
     }
 
-    public function mount(){
-
-    }
 }
