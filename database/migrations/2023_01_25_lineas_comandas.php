@@ -18,8 +18,8 @@ return new class extends Migration
             $table->foreign("idMesa")->on("mesas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             //El trabajador que se manda en el ticket de cocina o barra será mirando el id de la comanda, la que tenga el id más alto será de la que se cogerá el trabajador.
-            $table->unsignedBigInteger("idTrabajador");
-            $table->foreign("idTrabajador")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("trabajador");
+            $table->foreign("trabajador")->on("users")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->unsignedBigInteger("idProducto");
             $table->foreign("idProducto")->on("productos")->references("id")->onDelete("cascade")->onUpdate("cascade");

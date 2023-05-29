@@ -20,8 +20,8 @@ return new class extends Migration
             //Campos solo para el ticket.
             $table->string("fechaTicket");
             $table->integer("precioTotal");
-            $table->unsignedBigInteger("idTrabajador");//Este trabajador va a ser la persona que cree una comanda primero.
-            $table->foreign("idTrabajador")->on("trabajadores")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("usuario");//Este trabajador va a ser la persona que cree una comanda primero.
+            $table->foreign("usuario")->on("users")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             //En los tickets hay que poner la información del restaurante, que también podríamos ponerla en una tabla nueva por si cambia algo tipo la localización o así.
 
