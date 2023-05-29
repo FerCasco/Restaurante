@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Inventario</title>
+    <script src="{{ asset('node_modules/toastr/toastr.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('node_modules/toastr/toastr.css') }}">
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
     <script src="https://cdn.tailwindcss.com"></script>

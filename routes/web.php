@@ -29,6 +29,6 @@ Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
 
 Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

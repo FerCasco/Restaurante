@@ -12,9 +12,12 @@ class GestionarAlmacen extends Component
     public $tipo;
     protected $listeners = ['enviarTipoId' => 'gestionarTipo'];
     public $showModalMercancias = false;
+    public $showModalGraph = false;
     public $selectedMercancia;
+    public $grafica;
+    public $lista;
     public $confirmingMercanciaName = '';
-    public $confirmingMercanciaDeletion =null;
+    public $confirmingMercanciaDeletion = null;
     //Propiedades para crear y actualizar Mercancias
     public $nombreMercancia;
     public $cantidadMercancia;
@@ -82,6 +85,31 @@ class GestionarAlmacen extends Component
         }
         $this->confirmingMercanciaDeletion = null; // Reset the confirmation modal state
     }
+    public function openModalGraph()
+    {
+        $this->showModalGraph = true;
+    }
+
+    public function closeModalGraph()
+    {
+        $this->showModalGraph = false;
+    }
+
+    public function verGrafica($script, $listaParam)
+    {
+        $this->showModalGraph = true;
+        $this->lista = $listaParam;
+        $this->emit($script, $this->lista);
+    }
+
+    public function graficaCantidadActual()
+    {
+        $mercancias = Mercancia::where('idTipos', $this->tipo->id)->get();
+        $this->verGrafica("ejecutarScript", $mercancias);
+    }
+
+
+
     public function render()
     {
         return view('livewire.gestionar-almacen');
