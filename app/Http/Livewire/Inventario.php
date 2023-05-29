@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Tipo;
 use Livewire\Component;
 
 class Inventario extends Component
@@ -9,7 +10,8 @@ class Inventario extends Component
     public $componenteActivo;
     public $idTipo;
     public $idMercancia;
-    protected $listeners = ['enviarTipoId','gestionarMercancia','addMercancia'];
+    public $tipos;
+    protected $listeners = ['enviarTipoId','gestionarMercancia','addMercancia', 'newMercancia'];
 
     public function enviarTipoId($idTipo)
     {
@@ -20,12 +22,17 @@ class Inventario extends Component
     public function addMercancia(){
         $this->componenteActivar('pedido-mercancias');
     }
+
+    public function newMercancia(){
+        $this->componenteActivar('new-mercancia');
+    }
     public function componenteActivar($nombre)
     {
         $this->componenteActivo = $nombre;
     }
     public function render()
     {
+        $this->tipos = Tipo::all();
         return view('livewire.inventario');
     }
 }

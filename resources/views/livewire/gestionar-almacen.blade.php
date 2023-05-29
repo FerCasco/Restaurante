@@ -1,13 +1,13 @@
 <center>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
     <div class="mt-28 flex justify-center items-center mb-4">
         <h1 class="ml-96 text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">Tipo: {{$tipo->nombre}}</h1>
 
         <div class="ml-auto">
-            <button wire:click="graficaCantidadActual()" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Open Graph</button>
+            <button wire:click="openModalGraph" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Open Graph</button>
         </div>
 
     </div>
@@ -94,84 +94,53 @@
         </div>
     </div>
     @endif
-    @if($showModalGraph)
-    <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-full">
-        <div class="absolute bg-gray-900 opacity-50 inset-0"></div>
-        <div class="cajaGrafico">
-            <div id="container" class="w-3/4 h-full mx-auto"></div>
-        </div>
-        <button wire:click="closeModalGraph" class="absolute top-0 h-4 w-4 right-0 p-4 text-gray-400 hover:bg-gray-200 hover:text-gray-900 rounded-lg" aria-label="Close">
-            <div class="flex justify-center align-center">
-                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M14.293 14.293a1 1 0 11-1.414 1.414L10 11.414l-2.879 2.879a1 1 0 11-1.414-1.414L8.586 10 5.707 7.121a1 1 0 111.414-1.414L10 8.586l2.879-2.879a1 1 0 111.414 1.414L11.414 10l2.879 2.879z" clip-rule="evenodd" />
-                </svg>
+    @if ($showModalGraph)
+    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+        <div class="modal" tabindex="-1" style="display: block;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Example Graph</h5>
+                        <button type="button" class="close" wire:click="closeModalGraph">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="graphContainer"></div>
+                    </div>
+                </div>
             </div>
-        </button>
+        </div>
     </div>
     @endif
     <!-- Main modal -->
+
+    <script src="https://code.highcharts.com/highcharts.js" defer></script>
     <script>
-        document.addEventListener('livewire:load', function() {
-            Livewire.on('ejecutarScript', function($lista) {
-                //console.log($lista);
-                drilldown($lista);
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('graphDataReceived', function (data) {
+                Highcharts.chart('graphContainer', {
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: data.labels
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Values'
+                        }
+                    },
+                    series: [{
+                        name: 'Categories',
+                        data: data.values
+                    }]
+                });
             });
         });
+    </script> 
 
-        function drilldown(response) {
-            Highcharts.chart('container', {
-                chart: {
-                    type: 'column'
-                },
-                title: {
-                    text: 'Stock de mercancías'
-                },
-                xAxis: {
-                    type: 'category'
-                },
-                yAxis: {
-                    title: {
-                        text: 'Cantidad de actual mercancías'
-                    },
-                },
-                series: [{
-                    name: 'Cantidad actual',
-                    data: response.map(function(mercancia) {
-                        var color;
-                        if (parseFloat(mercancia.cantidadActual) <= parseFloat(mercancia.stockMin)) {
-                            color = '#FF3E3E'; // Rojo
-                        } else if (parseFloat(mercancia.cantidadActual) > parseFloat(mercancia.stockMin) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4)) {
-                            color = '#FF9358'; // Naranja
-                        } else if (parseFloat(mercancia.cantidadActual) > ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4) && parseFloat(mercancia.cantidadActual) <= ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)) {
-                            color = '#FFEA58'; // Amarillo
-                        } else {
-                            color = '#BAFF58'; // Verde
-                        }
-                        return {
-                            name: mercancia.nombre,
-                            y: parseFloat(mercancia.cantidadActual),
-                            drilldown: mercancia.tipo_id,
-                            color: color
-                        }
-                    })
-                }],
-                drilldown: {
-                    series: response.map(function(mercancia) {
-                        return {
-                            id: mercancia.tipo_id,
-                            data: [{
-                                name: 'Stock Mínimo',
-                                y: parseFloat(mercancia.stockMin),
-                                color: '#FF3E3E'
-                            }, {
-                                name: 'Stock Máximo',
-                                y: parseFloat(mercancia.stockMax),
-                                color: '#00c853'
-                            }]
-                        }
-                    })
-                }
-            });
-        }
-    </script>
 </center>

@@ -88,27 +88,16 @@ class GestionarAlmacen extends Component
     public function openModalGraph()
     {
         $this->showModalGraph = true;
+        $this->dispatchBrowserEvent('loadGraphData', [
+            'labels' => ['Category 1', 'Category 2', 'Category 3'],
+            'values' => [50, 30, 20],
+        ]); // Dispatch the event with the graph data
     }
 
     public function closeModalGraph()
     {
         $this->showModalGraph = false;
     }
-
-    public function verGrafica($script, $listaParam)
-    {
-        $this->showModalGraph = true;
-        $this->lista = $listaParam;
-        $this->emit($script, $this->lista);
-    }
-
-    public function graficaCantidadActual()
-    {
-        $mercancias = Mercancia::where('idTipos', $this->tipo->id)->get();
-        $this->verGrafica("ejecutarScript", $mercancias);
-    }
-
-
 
     public function render()
     {
