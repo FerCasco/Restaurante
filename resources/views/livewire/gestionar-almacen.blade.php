@@ -1,8 +1,16 @@
 <center>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
 
-    <h1 class="mt-28 ml-40 text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white inline-block">Tipo: {{$tipo->nombre}}</h1>
+    <div class="mt-28 flex justify-center items-center mb-4">
+        <h1 class="ml-96 text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">Tipo: {{$tipo->nombre}}</h1>
 
+        <div class="ml-auto">
+            <button wire:click="openModalGraph" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Open Graph</button>
+        </div>
+
+    </div>
     <div class="grid grid-cols-3 gap-4 ml-52 mt-12 pl-28" wire:poll.5000ms>
         @foreach($mercancias as $mercancia)
         <div wire:key="mercancia-{{$mercancia->id}}" wire:ignore x-data="{ flipped: false }" class="border-2 border-black rounded-lg py-20 relative w-52 h-10 mx-auto mt-8 mb-8 cursor-pointer text-center font-bold tracking-light text-lg">
@@ -74,21 +82,65 @@
     @endif
 
     @if ($confirmingMercanciaDeletion)
-        <div class="fixed inset-0 flex items-center justify-center z-50">
-            <div class="bg-white rounded-lg shadow-lg max-w-md mx-4 md:relative p-8">
-                <div class="p-4">
-                    <p class="font-bold text-center">¿Eliminar?</p>
-                </div>
-                <div class="flex justify-center mt-4">
-                    <button wire:click="deleteMercancia({{ $confirmingMercanciaDeletion }})" class="px-4 py-2 bg-red-500 text-white rounded-md">Confirmar</button>
-                    <button wire:click="$set('confirmingMercanciaDeletion', null)" class="ml-8 px-4 py-2 bg-gray-500 text-white rounded-md">Cancelar</button>
+    <div class="fixed inset-0 flex items-center justify-center z-50">
+        <div class="bg-white rounded-lg shadow-lg max-w-md mx-4 md:relative p-8">
+            <div class="p-4">
+                <p class="font-bold text-center">¿Eliminar?</p>
+            </div>
+            <div class="flex justify-center mt-4">
+                <button wire:click="deleteMercancia({{ $confirmingMercanciaDeletion }})" class="px-4 py-2 bg-red-500 text-white rounded-md">Confirmar</button>
+                <button wire:click="$set('confirmingMercanciaDeletion', null)" class="ml-8 px-4 py-2 bg-gray-500 text-white rounded-md">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    @endif
+    @if ($showModalGraph)
+    <div class="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center">
+        <div class="modal" tabindex="-1" style="display: block;">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Example Graph</h5>
+                        <button type="button" class="close" wire:click="closeModalGraph">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="graphContainer"></div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
     @endif
-
-
     <!-- Main modal -->
 
-</center>
+    <script src="https://code.highcharts.com/highcharts.js" defer></script>
+    <script>
+        document.addEventListener('livewire:load', function () {
+            Livewire.on('graphDataReceived', function (data) {
+                Highcharts.chart('graphContainer', {
+                    chart: {
+                        type: 'bar'
+                    },
+                    title: {
+                        text: ''
+                    },
+                    xAxis: {
+                        categories: data.labels
+                    },
+                    yAxis: {
+                        title: {
+                            text: 'Values'
+                        }
+                    },
+                    series: [{
+                        name: 'Categories',
+                        data: data.values
+                    }]
+                });
+            });
+        });
+    </script> 
 
+</center>

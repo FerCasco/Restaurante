@@ -11,4 +11,9 @@
         @livewire('pedido-mercancias')
     </div>
     @endif
+    @if($componenteActivo === 'new-mercancia')
+    <div>
+        @livewire('new-mercancia')
+    </div>
+    @endif
 </div>
