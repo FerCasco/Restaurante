@@ -5,22 +5,21 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\Proveedores as ProveedorModel;
 use App\Models\Roles;
-use App\Models\Trabajadores as TrabajadorModel;
+use App\Models\User as UserModel;
 use Livewire\WithPagination;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class Contacto extends Component
 {
 
     use WithPagination;
+
     public $miProveedor;
     protected $proveedores;
     protected $trabajadores;
     protected $roles;
-    /*public $trabajadorModal;
-    public $showTrabajadorDetails = 'hidden';
-
-
-    protected $listeners = ['showTrabajadorDetails'=> 'mostrarModal'];*/
 
     //Propiedades para crear Proveedores
     public $nombreProveedor;
@@ -41,10 +40,12 @@ class Contacto extends Component
     public $modalVisible;
     //Buscar contacto
     public $buscarContacto;
+
     public function verTabla($ver)
     {
         $this->tablaVisible = $ver;
     }
+
     public function verModal($ver)
     {
         $this->modalVisible = $ver;
@@ -63,7 +64,7 @@ class Contacto extends Component
 
         if ($this->tablaVisible == "trabajadores") {
             if ($this->buscarContacto != null) {
-                $trabajadoresBusqueda = TrabajadorModel::where('name', 'like', '%' . $this->buscarContacto . '%')->orWhere('apellidos', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'trabajadoresPage');
+                $trabajadoresBusqueda = UserModel::where('name', 'like', '%' . $this->buscarContacto . '%')->orWhere('apellidos', 'like', '%' . $this->buscarContacto . '%')->paginate(7, ['*'], 'trabajadoresPage');
                 $this->trabajadores = $trabajadoresBusqueda;
             } else {
                 $this->trabajadores = null; // Establece a null para evitar conflictos con la paginación en caso de cambio rápido
@@ -83,10 +84,11 @@ class Contacto extends Component
         $this->roles = Roles::all();
         $this->trabajadores = TrabajadorModel::all();*/
     }
+
     public function render()
     {
         $proveedores = $this->proveedores ?: ProveedorModel::paginate(7, ['*'], 'proveedoresPage');
-        $trabajadores = $this->trabajadores ?: TrabajadorModel::paginate(7, ['*'], 'trabajadoresPage');
+        $trabajadores = $this->trabajadores ?: UserModel::paginate(7, ['*'], 'trabajadoresPage');
         $roles = Roles::all();
 
         return view('livewire.contacto', [
@@ -95,22 +97,6 @@ class Contacto extends Component
             'trabajadores' => $trabajadores
         ]);
     }
-    /*public function showTrabajadorDetails(TrabajadorModel $trabajadorModal)
-    {
-        $this->trabajadorModal = $trabajadorModal;
-        json_decode($this->trabajadorModal);
-        $this->emit('showTrabajadorDetails',$this->trabajadorModal);
-
-
-        // Puedes ajustar la lógica para obtener los detalles del trabajador según tu estructura de base de datos y modelos
-    }
-
-    public function mostrarModal($trabajadorModal){
-        $this->showTrabajadorDetails='';
-    }
-    public function cerrarModal(){
-        $this->showTrabajadorDetails='hidden';
-    }*/
 
     public function addProveedor()
     {
@@ -120,30 +106,38 @@ class Contacto extends Component
         $proveedor->telefono = $this->telefonoProveedor;
         $proveedor->save();
     }
+
     public function addTrabajador()
     {
-        $trabajador = new TrabajadorModel();
+        $trabajador = new UserModel();
         $trabajador->name = $this->nombreTrabajador;
         $trabajador->email = $this->correoTrabajador;
+        $trabajador->password = 1234;
         $trabajador->telefono = $this->telefonoTrabajador;
         $trabajador->idRol = $this->rolTrabajador;
         $trabajador->dni = $this->dniTrabajador;
         $trabajador->apellidos = $this->apellidosTrabajador;
-        $trabajador->codigoQr = null;
-        $trabajador->imagenQr = null;
-        $trabajador->save();
+
+        $idPer = UserModel::latest()->value('id') + 1;
+        $qrCodeString = "res_qr_" . $idPer . "_" . $this->rolTrabajador;
+
+        $qrCode = QrCode::size(300)->generate($qrCodeString);
+
+        $trabajador->imagenQr= file_get_contents($qrCode);
+
     }
+
     public function openEditProveedor($proveedorId)
     {
         $this->miProveedor = ProveedorModel::find($proveedorId);
         $this->verModal('editProveedor');
     }
+
     public function editProveedor()
     {
         $this->miProveedor->name = $this->nombreProveedor;
         $this->miProveedor->email = $this->correoProveedor;
         $this->miProveedor->telefono = $this->telefonoProveedor;
-        dd("holaaaaaaaa");
         $this->miProveedor->save();
         $this->modalVisible = '';
     }
@@ -153,16 +147,4 @@ class Contacto extends Component
         $proveedor = ProveedorModel::where('id', $idProveedor)->get()->first();
         $proveedor->delete();
     }
-    /*
-    public $perPage = 5;
-    public function render()
-    {
-        $proveedores = ProveedorModel::paginate($this->perPage);
-        $trabajadores = TrabajadorModel::paginate($this->perPage);
-
-        return view('livewire.contacto', [
-            'proveedores' => $proveedores,
-            'trabajadores' => $trabajadores,
-        ]);
-    }*/
 }

@@ -23,4 +23,6 @@ return [
     'recordarme' => 'Remember me',
     'olvidarCont' => 'Forgot password?',
 
+    /**/
+    'lenguaje' => 'Language',
 ];

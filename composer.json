@@ -12,8 +12,13 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
+<<<<<<< HEAD
         "spatie/laravel-permission": "^5.10",
         "usernotnull/tall-toasts": "*"
+=======
+        "simplesoftwareio/simple-qrcode": "4.2",
+        "spatie/laravel-permission": "^5.10"
+>>>>>>> 72e646d6b83ac111309034f8d281cc8747b06703
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",

@@ -22,4 +22,7 @@ return [
     /*Formulario de iniciar sesión*/
     'recordarme' => 'Recordarme',
     'olvidarCont' => '¿Olvidaste la contraseña?',
+
+    /**/
+    'lenguaje' => 'Lenguaje',
 ];
