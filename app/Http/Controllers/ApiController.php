@@ -231,7 +231,7 @@ class ApiController extends Controller
             $qr_data = $usuario->imagenQr;
             $usuarioArr = array(
                 'id' => $usuario->id,
-                'name' => $usuario->nombre,
+                'name' => $usuario->name,
                 'apellidos' => $usuario->apellidos,
                 'telefono' => $usuario->telefono,
                 'dni' => $usuario->dni,
