@@ -26,7 +26,8 @@ Route::view('/contactos', 'contactos-plantilla');
 Route::view('/contacto/{email}', 'ver-contacto')->name('verContacto');
 Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
-
+Route::view('iniciarSesion/{idTrabajador}','login')->name('iniciarSesionTrabajador');
+//Route::view('iniciarSesion/{idTrabajador}', [App\Http\Controllers\Auth\LoginController::class, 'showQr'])->name('iniciarSesionTrabajador');
 Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
 
 //Auth::routes();

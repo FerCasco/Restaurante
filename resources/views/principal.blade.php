@@ -71,7 +71,15 @@
     </header>
 
     <main class="py-10">
-        <!--Imagen del bar-->
+        @foreach(\App\Models\User::all() as $trabajador)
+            <div class="flex flex-col items-center justify-center bg-gray-100">
+                <div class="w-64 h-64 bg-pink-300 rounded-full flex items-center justify-center">
+                    <a href="{{ route('iniciarSesionTrabajador',['idTrabajador'=>$trabajador->id] )}}" class="text-white font-bold text-lg">
+                        {{$trabajador->name}}
+                    </a>
+                </div>
+            </div>
+        @endforeach
     </main>
 
     @livewireScripts

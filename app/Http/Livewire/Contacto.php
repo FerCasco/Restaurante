@@ -121,10 +121,16 @@ class Contacto extends Component
         $idPer = UserModel::latest()->value('id') + 1;
         $qrCodeString = "res_qr_" . $idPer . "_" . $this->rolTrabajador;
 
-        $qrCode = QrCode::size(300)->generate($qrCodeString);
+        $qrCodePath = public_path('img/qrcode.png');
+        QrCode::size(300)->format('png')->generate($qrCodeString, $qrCodePath);
+        $trabajador->codigoQr = $qrCodeString;
+        $trabajador->imagenQr = file_get_contents($qrCodePath);
 
-        $trabajador->imagenQr= file_get_contents($qrCode);
-
+        $trabajador->save();
+        if (file_exists($qrCodePath)) {
+            // Eliminar la imagen QR
+            unlink($qrCodePath);
+        }
     }
 
     public function openEditProveedor($proveedorId)

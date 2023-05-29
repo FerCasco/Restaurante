@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -19,6 +20,7 @@ class LoginController extends Controller
     |
     */
 
+    //public $contacto;
     use AuthenticatesUsers;
 
     /**
@@ -33,6 +35,13 @@ class LoginController extends Controller
      *
      * @return void
      */
+    /*public function showQr($idTrabajador)
+    {
+        if(User::where('id', $idTrabajador)->get()->first()!=null)
+        {
+            $this->contacto=User::where('id', $idTrabajador)->get()->first();
+        }
+    }*/
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
