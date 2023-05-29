@@ -12,7 +12,7 @@ use App\Models\Restaurante;
 use App\Models\Sala;
 use App\Models\Ticket;
 use App\Models\TipoProducto;
-use App\Models\Trabajadores;
+use App\Models\User;
 use App\Models\Version;
 use Illuminate\Http\Request;
 /*
@@ -50,7 +50,7 @@ class ApiController extends Controller
 
         return response()->json([
             'message' => 'Linea creada correctamente.',
-            'info' => 'Datos enviados: id = ' . $request->id . ', idMesa = ' . $request->idMesa . ', idTrabajador = ' . $request->idTrabajador
+            'info' => 'Datos enviados: id = ' . $request->id . ', idMesa = ' . $request->idMesa . ', trabajador = ' . $request->idTrabajador
             . ', cantidad = ' . $request->cantidad . ', idProducto = ' . $request->idProducto
         ]);
     }
@@ -100,7 +100,7 @@ class ApiController extends Controller
                     'comandas' => $comandas,
                 ]);
             case 5:
-                $usuarios = Trabajadores::all();
+                $usuarios = User::all();
                 $usuariosQr = $this->getArr($usuarios, $usuariosQr);
                 return response()->json([
                     'usuarios' => $usuariosQr,
@@ -140,7 +140,7 @@ class ApiController extends Controller
                 $mesas = Mesa::all();
                 $productos = Producto::all();
                 $comandas = Comanda::all();
-                $usuarios = Trabajadores::all();
+                $usuarios = User::all();
                 $mesaProducto = MesaProducto::all();
                 $lineasComanda = LineasComanda::all();
                 $reservas = Reserva::all();
