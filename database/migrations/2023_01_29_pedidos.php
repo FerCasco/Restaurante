@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
 
             $table->string("fechaPedido");
-            $table->integer("total");
+            $table->double("total");
 
             $table->rememberToken();
             $table->timestamps();

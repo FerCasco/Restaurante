@@ -5,15 +5,13 @@
         @foreach($mercanciasBajoStockMinimo as $mercancia)
         <li class="inline-flex items-center justify-between w-96 h-16 bg-white rounded-lg p-4 shadow-md">
             <span class="mr-4">{{$mercancia->nombre}} -- ({{round($mercancia->cantidadActual)}}/{{round($mercancia->stockMin)}})</span>
-            <form wire:submit.prevent>
-                <div class="flex items-center">
-                    <input type="number" wire:model="inputValues.{{$mercancia->id}}" id="{{$mercancia->id}}" name="{{$mercancia->id}}" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-2 w-20">
-                    <button type="submit" wire:click="updateQuantity({{$mercancia->id}}, $event.target.previousElementSibling.value); resetInput({{$mercancia->id}})" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Enviar</button>
-                </div>
-            </form>
+            <div class="flex items-center">
+                <input type="number" wire:model="inputValues.{{$mercancia->id}}" id="{{$mercancia->id}}" name="{{$mercancia->id}}" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-2 w-20">
+            </div>
         </li>
         <br>
         @endforeach
+        <button wire:click="createPedido" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Crear pedido</button>
     </ul>
 
     @if (session()->has('message'))
@@ -41,4 +39,3 @@
     </script>
     @endif
 </div>
- 

@@ -24,8 +24,8 @@ return new class extends Migration
             $table->foreign("idPedido")->on("pedido")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->integer("cantidad");
-            $table->integer("precioUnidad");
-            $table->integer("precioTotal");
+            $table->double("precioUnidad");
+            $table->double("precioTotal");
 
             $table->rememberToken();
             $table->timestamps();
