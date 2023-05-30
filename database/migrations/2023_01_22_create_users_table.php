@@ -29,7 +29,8 @@ return new class extends Migration
             $table->string("telefono");
             $table->string("dni");
             $table->string("codigoQr");//res_qr_(idPersona)_(codigoContrato)
-            $table->binary("imagenQr");//blob
+            $table->binary("imagenQr");
+            $table->binary("foto");//blob
             $table->rememberToken();
             $table->timestamps();
 

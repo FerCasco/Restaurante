@@ -29,7 +29,8 @@ class User extends Authenticatable
         'apellidos',
         'dni',
         'codigoQr',
-        'imagenQr'
+        'imagenQr',
+        'foto'
     ];
 
     /**
@@ -50,4 +51,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getImagenQrDataUrlAttribute()
+    {
+        $imageData = base64_encode($this->imagenQr);
+
+        $imageFormat = 'jpeg'; // Change this to the appropriate image format if necessary
+
+        return "data:image/{$imageFormat};base64,{$imageData}";
+    }
 }
