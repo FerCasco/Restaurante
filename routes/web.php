@@ -19,14 +19,14 @@ use App\Http\Controllers\LanguageController;
 Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang');
 
 Route::view('/', 'principal');
-Route::view('/inicio', 'welcome');
+Route::view('/inicio', 'welcome')->name('welcome');
 Route::view('/cocina', 'cocina-plantilla');
 Route::view('/inventario', 'inventario-plantilla');
 Route::view('/contactos', 'contactos-plantilla');
 Route::view('/contacto/{email}', 'ver-contacto')->name('verContacto');
 Route::view('/graficas', 'graficas-plantilla');
 Route::view('/datosAlmacenados', 'datosAlmacenados-plantilla');
-Route::view('iniciarSesion/{idTrabajador}','login')->name('iniciarSesionTrabajador');
+Route::view('login','login-plantilla');
 //Route::view('iniciarSesion/{idTrabajador}', [App\Http\Controllers\Auth\LoginController::class, 'showQr'])->name('iniciarSesionTrabajador');
 Route::get('/db', [App\Http\Controllers\ProductoController::class, 'show'])->name('preciosProductos');
 

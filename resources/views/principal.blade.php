@@ -23,7 +23,7 @@
             @guest
                 @if (Route::has('login'))
                 <li>
-                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ route('login') }}">{{ __('auth.iniciarSesion') }}</a>
+                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ url('login') }}">{{ __('auth.iniciarSesion') }}</a>
                 </li>
                 @endif
 
@@ -74,7 +74,7 @@
         @foreach(\App\Models\User::all() as $trabajador)
             <div class="flex flex-col items-center justify-center bg-gray-100">
                 <div class="w-64 h-64 bg-pink-300 rounded-full flex items-center justify-center">
-                    <a href="{{ route('iniciarSesionTrabajador',['idTrabajador'=>$trabajador->id] )}}" class="text-white font-bold text-lg">
+                    <a href="{{url('login')}}" wire:click="$emit('userLogged', $trabajador->id)" class="text-white font-bold text-lg">
                         {{$trabajador->name}}
                     </a>
                 </div>
