@@ -21,7 +21,7 @@ return new class extends Migration
             $table->foreign("idMercancia")->on("mercancias")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->unsignedBigInteger("idPedido");
-            $table->foreign("idPedido")->on("pedido")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign("idPedido")->on("pedidos")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             $table->integer("cantidad");
             $table->double("precioUnidad");
