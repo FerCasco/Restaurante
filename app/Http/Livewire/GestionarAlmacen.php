@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Mercancia;
+use App\Models\Mercancia as MercanciaModel;
 use App\Models\Tipo;
 use Livewire\Component;
 
@@ -88,10 +89,7 @@ class GestionarAlmacen extends Component
     public function openModalGraph()
     {
         $this->showModalGraph = true;
-        $this->dispatchBrowserEvent('loadGraphData', [
-            'labels' => ['Category 1', 'Category 2', 'Category 3'],
-            'values' => [50, 30, 20],
-        ]); // Dispatch the event with the graph data
+        $this->emit("ejecutarScript", $this->mercancias);
     }
 
     public function closeModalGraph()
