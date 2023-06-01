@@ -235,7 +235,7 @@ class ApiController extends Controller
                 'apellidos' => $usuario->apellidos,
                 'telefono' => $usuario->telefono,
                 'dni' => $usuario->dni,
-                'rol' => $usuario->rol,
+                'rol' => $usuario->idRol,
                 'email' => $usuario->email,
                 'codigoQr' => $usuario->codigoQr,
                 'imagenQr' => utf8_encode($qr_data)
