@@ -14,11 +14,8 @@ return new class extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger("idLineasFactura");
-            $table->foreign("idLineasFactura")->on("lineas_factura")->references("id")->onDelete("cascade")->onUpdate("cascade");
-
-            $table->unsignedBigInteger("idEmpresas");
-            $table->foreign("idEmpresas")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");
+            $table->unsignedBigInteger("idEmpresa");
+            $table->foreign("idEmpresa")->on("empresas")->references("id")->onDelete("cascade")->onUpdate("cascade");
 
             //Aquí también tendríamos que poner la información del restaurante.
             $table->string("fechaFactura");

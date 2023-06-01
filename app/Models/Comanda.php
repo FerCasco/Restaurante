@@ -17,10 +17,11 @@ class Comanda extends Model
      */
     protected $fillable = [
         'id',
-        'idLineasComanda',
-        'precioTotal',
+        'precioTotal'
     ];
 
-
-
+    public function lineasComanda()
+    {
+        return $this->hasMany(LineasComanda::class, 'idMesa', 'id');
+    }
 }

@@ -23,6 +23,7 @@ class Main extends Component
         $this->idMesa=$idMesa;
         $this->componenteActivar('mesaAtender');
     }
+ 
     public function componenteActivar($nombre)
     {
         $this->componenteActivo = $nombre;

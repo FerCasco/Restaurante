@@ -12,7 +12,8 @@ class LineasComanda extends Model
     protected $fillable = [
         'id',
         'idMesa',
-        'idTrabajador',
+        'precio',
+        'trabajador',
         'idProducto',
         'cantidad',
         'enviado',

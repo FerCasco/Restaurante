@@ -1,21 +1,41 @@
-<h1 class="mt-40 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesaAtender->id}}</h1>
+<div>
+    @if($showFamilies)
+    <h1 class="mt-40 w-full text-center mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white inline-block">Mesa: {{$mesaAtender->id}}</h1>
 
-<div class="grid grid-cols-3 gap-4 ml-72 mt-12 pl-28">
-
-        @foreach($miLista as $elemento)
-            @if(class_basename($elemento)=="Familia")
-                <button wire:click.defer="$emit('cargarProductos',{{$elemento->id}})"
-                   class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
-                </button>
-            @endif
-            @if(class_basename($elemento)=="Producto")
-                <button wire:click.defer="$emit('añadirComanda',{{$elemento->id}})"
-                   class="hover:shadow-inner cursor-pointer shadow-xlblock max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
-                    <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$elemento->nombre}}</h5>
-                </button>
-            @endif
+    <div class="grid grid-cols-3 gap-4 ml-72 mt-12 pl-28">
+        @foreach($familias as $familia)
+        <button wire:click.defer="cargarProductos({{$familia->id}})" class="hover:shadow-inner cursor-pointer shadow-xl block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$familia->nombre}}</h5>
+        </button>
         @endforeach
+    </div>
+    @else
+    <button wire:click="resetProductos" class="ml-80 mt-32 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Back to Family List
+    </button>
+
+    <h2 class="mt-12 ml-72 text-3xl font-semibold">Product List</h2>
+    <div class="ml-72 mt-6">
+        @foreach($productos as $producto)
+        <button wire:click="addComanda({{ $producto->id }})" class="hover:shadow-inner cursor-pointer shadow-xl block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{$producto->nombre}}</h5>
+        </button>
+        @endforeach
+    </div>
+    @endif
+
+    @if($showModal && !is_null($selectedProducto))
+    <div class="h-full w-full fixed z-50 inset-0 flex items-center justify-center overflow-auto">
+        <div class="bg-white p-8 rounded shadow-lg">
+            <h2 class="text-2xl font-bold mb-4">Enter Quantity</h2>
+            <input type="number" wire:model="cantidad" class="w-24 px-4 py-2 border rounded">
+            <div class="mt-4">
+                <button wire:click="submitCantidad" class="px-4 py-2 bg-blue-500 text-white font-bold rounded">Submit</button>
+                <button wire:click="closeModal" class="px-4 py-2 bg-gray-500 text-white font-bold rounded">Cancel</button>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-4 left-1/2 dark:bg-gray-700 dark:border-gray-600">
         <div class="grid h-full max-w-lg grid-cols-5 mx-auto">
@@ -41,11 +61,11 @@
                 <div class="tooltip-arrow" data-popper-arrow></div>
             </div>
             <div class="flex items-center justify-center">
-                <button data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
+                <button wire:click="enviarComanda" data-tooltip-target="tooltip-new" type="button" class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
                     <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                         <path clip-rule="evenodd" fill-rule="evenodd" d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
                     </svg>
-                    <span class="sr-only">New item</span>
+                    <span class="sr-only">Enviar Comanda</span>
                 </button>
             </div>
             <div id="tooltip-new" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
@@ -74,5 +94,4 @@
             </div>
         </div>
     </div>
-
 </div>
