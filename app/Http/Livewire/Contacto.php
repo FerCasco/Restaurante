@@ -10,10 +10,11 @@ use Livewire\WithPagination;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Livewire\WithFileUploads;
 
 class Contacto extends Component
 {
-
+    use WithFileUploads;
     use WithPagination;
 
     public $miProveedor;
@@ -33,6 +34,7 @@ class Contacto extends Component
     public $rolTrabajador;
     public $apellidosTrabajador;
     public $dniTrabajador;
+    public $fotoTrabajador;
 
     //Propiedad para ver tablas
     public $tablaVisible;
@@ -118,21 +120,26 @@ class Contacto extends Component
         $trabajador->dni = $this->dniTrabajador;
         $trabajador->apellidos = $this->apellidosTrabajador;
 
-        $idPer = UserModel::latest()->value('id') + 1;
-        $qrCodeString = "res_qr_" . $idPer . "_" . $this->rolTrabajador;
-
-        $qrCodePath = public_path('img/qrcode.png');
-        QrCode::size(300)->format('png')->generate($qrCodeString, $qrCodePath);
+        // Generate and store the QR code image
+        $qrCodeString = "res_qr_" . $trabajador->id . "_" . $this->rolTrabajador;
+        $qrCodePath = 'img/qrcode.png';
+        \SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate($qrCodeString, public_path($qrCodePath));
         $trabajador->codigoQr = $qrCodeString;
-        $trabajador->imagenQr = file_get_contents($qrCodePath);
+        $trabajador->imagenQr = file_get_contents(public_path($qrCodePath));
+
+        // Handle the file upload
+        if ($this->fotoTrabajador) {
+            $fotoPath = $this->fotoTrabajador->store('photos', 'public');
+            $trabajador->foto = $fotoPath;
+        }
 
         $trabajador->save();
-        if (file_exists($qrCodePath)) {
-            // Eliminar la imagen QR
-            unlink($qrCodePath);
+
+        // Delete the QR code image after it's been stored
+        if (file_exists(public_path($qrCodePath))) {
+            unlink(public_path($qrCodePath));
         }
     }
-
     public function openEditProveedor($proveedorId)
     {
         $this->miProveedor = ProveedorModel::find($proveedorId);

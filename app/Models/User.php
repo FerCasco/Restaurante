@@ -27,6 +27,7 @@ class User extends Authenticatable
         /**/
         'idRol',
         'apellidos',
+        'telefono',
         'dni',
         'codigoQr',
         'imagenQr',
