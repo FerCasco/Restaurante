@@ -18,7 +18,7 @@ use App\Http\Controllers\LanguageController;
 
 Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang');
 
-Route::view('/', 'principal');
+Route::view('/', 'principal')->name('home');
 Route::view('/inicio', 'welcome')->name('welcome');
 Route::view('/cocina', 'cocina-plantilla');
 Route::view('/inventario', 'inventario-plantilla');

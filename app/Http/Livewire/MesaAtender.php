@@ -8,6 +8,7 @@ use App\Models\Familia as FamiliaModel;
 use App\Models\Producto as ProductoModel;
 use App\Models\Comanda;
 use App\Models\LineasComanda;
+use Illuminate\Support\Facades\Auth;
 
 class MesaAtender extends Component
 {
@@ -19,6 +20,7 @@ class MesaAtender extends Component
     public $selectedProducto;
     public $cantidad;
     public $comanda;
+    public $trabajador;
 
     protected $listeners = ['atenderMesa', 'cargarProductos'];
 
@@ -30,6 +32,7 @@ class MesaAtender extends Component
 
     public function atenderMesa($idMesa)
     {
+        $this->trabajador = session('user');
         if (!Comanda::find($idMesa)) {
             $this->comanda = new Comanda();
             $this->comanda->id = $idMesa;
@@ -59,7 +62,7 @@ class MesaAtender extends Component
         // Create a new LineasComanda
         $lineaComanda = LineasComanda::create([
             'idMesa' => $this->mesaAtender->id,
-            'trabajador' => 1,
+            'trabajador' => $this->trabajador->id,
             'idProducto' => $this->selectedProducto->id,
             'cantidad' => $this->cantidad,
             'enviado' => false,
@@ -70,7 +73,7 @@ class MesaAtender extends Component
         $this->comanda->lineasComanda()->save($lineaComanda);
 
         // Actualizar el precio total de la comanda
-    
+
         $this->comanda->save();
 
         $this->closeModal();
@@ -82,7 +85,6 @@ class MesaAtender extends Component
     }
     public function enviarComanda()
     {
-
     }
 
     public function resetProductos()

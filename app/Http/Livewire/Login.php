@@ -40,6 +40,7 @@ class Login extends Component
         $user = ModelsUser::where('email', $this->email)->first();
         if ($user && $this->password === $user->password) {
             // Passwords match
+            session(['user' => $user]);
             session()->flash('message', 'You are logged in successfully.');
             return redirect()->route('welcome');
         } else {
