@@ -145,7 +145,7 @@ class ApiController extends Controller
                 $lineasComanda = LineasComanda::all();
                 $reservas = Reserva::all();
                 $restaurante = Restaurante::all();
-                $tipo = TipoProducto::all();
+                $tipo = TipoProductos::all();
                 $ticket = Ticket::all();
 
                 $usuariosQr = $this->getArr($usuarios, $usuariosQr);
