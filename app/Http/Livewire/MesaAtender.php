@@ -20,6 +20,8 @@ class MesaAtender extends Component
     public $selectedProducto;
     public $cantidad;
     public $comanda;
+    public $showComanda = false;
+    public $lineasComanda;
     public $trabajador;
 
     protected $listeners = ['atenderMesa', 'cargarProductos'];
@@ -92,9 +94,15 @@ class MesaAtender extends Component
         $this->productos = null;
         $this->showFamilies = true; // Show the families again
     }
-
-
-
+    public function verComanda()
+    {
+        $this->lineasComanda = LineasComanda::where('idMesa', $this->mesaAtender->id)->get();
+        $this->showComanda = true;
+    }
+    public function closeComanda()
+    {
+        $this->showComanda = false;
+    }
     public function render()
     {
         return view('livewire.mesa-atender');

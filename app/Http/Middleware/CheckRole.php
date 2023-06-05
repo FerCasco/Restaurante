@@ -11,13 +11,11 @@ class CheckRole
     public function handle($request, Closure $next, ...$roles)
     {
         $user = DB::table('users')->where('id', session('user')->id)->first();
-
         foreach ($roles as $role) {
             if ($this->hasRole($user, $role)) {
                 return $next($request);
             }
         }
-
         abort(403, 'Acceso no autorizado.');
     }
 
