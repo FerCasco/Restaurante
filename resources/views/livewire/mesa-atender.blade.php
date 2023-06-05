@@ -28,7 +28,7 @@
     <div class="h-full w-full fixed z-50 inset-0 flex items-center justify-center overflow-auto">
         <div class="bg-white p-8 rounded shadow-lg">
             <h2 class="text-2xl font-bold mb-4">Enter Quantity</h2>
-            <input type="number" wire:model="cantidad" class="w-24 px-4 py-2 border rounded">
+            <input type="number" wire:model="cantidad" min="0" class="w-24 px-4 py-2 border rounded">
             <div class="mt-4">
                 <button wire:click="submitCantidad" class="px-4 py-2 bg-blue-500 text-white font-bold rounded">Submit</button>
                 <button wire:click="closeModal" class="px-4 py-2 bg-gray-500 text-white font-bold rounded">Cancel</button>

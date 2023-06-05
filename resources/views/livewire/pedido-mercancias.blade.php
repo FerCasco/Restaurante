@@ -6,7 +6,7 @@
         <li class="inline-flex items-center justify-between w-96 h-16 bg-white rounded-lg p-4 shadow-md">
             <span class="mr-4">{{$mercancia->nombre}} -- ({{round($mercancia->cantidadActual)}}/{{round($mercancia->stockMin)}})</span>
             <div class="flex items-center">
-                <input type="number" wire:model="inputValues.{{$mercancia->id}}" id="{{$mercancia->id}}" name="{{$mercancia->id}}" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-2 w-20">
+                <input type="number" min="0" wire:model="inputValues.{{$mercancia->id}}" id="{{$mercancia->id}}" name="{{$mercancia->id}}" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-2 w-20">
             </div>
         </li>
         <br>
