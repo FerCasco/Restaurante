@@ -20,7 +20,7 @@ Route::get('lang/{lang}',[LanguageController::class, 'switchLang'])->name('lang'
 
 Route::view('/', 'principal')->name('home');
 Route::view('/inicio', 'welcome')->name('welcome');
-Route::view('/cocina', 'cocina-plantilla');
+Route::view('/cocina', 'cocina-plantilla')->middleware(CheckRole::class . ':cocinero,admin');
 Route::view('/inventario', 'inventario-plantilla')->middleware(CheckRole::class . ':admin');
 Route::view('/contactos', 'contactos-plantilla')->middleware(CheckRole::class . ':admin');
 Route::view('/contacto/{email}', 'ver-contacto')->name('verContacto');
