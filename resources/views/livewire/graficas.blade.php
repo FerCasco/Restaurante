@@ -1,33 +1,41 @@
 <div>
-    <div class="mt-16">
-        <button id="btnBD" type="button" class="bg-gray-900 text-white rounded-md px-4 py-2">Gráficos desde BD</button>
-    </div>
-    <div class="cajaGrafico">
+    <!--<div class="cajaGrafico">
         <div id="precioProduct" class="w-3/4 h-full mx-auto"></div>
     </div>
 
     <div class="mt-16">
         <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaCantidadActual()">Drill</button>
     </div>
-    @if($grafica=="cantidadActual")
-        <div class="cajaGrafico">
-            <div id="container" class="w-3/4 h-full mx-auto"></div>
-        </div>
-    @endif()  
-    
+
     <div class="mt-16">
         <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaRentabilidadPlato()">Rentabilidad plato</button>
-    </div>
-    @if($grafica=="rentabilidadPlato")
-        <div class="cajaGrafico">
-            <div id="container" class="w-3/4 h-full mx-auto"></div>
+    </div>-->
+<div class="flex justify-center">
+    <nav class="mt-32 p-4 inline-flex justify-center bg-orange-200 rounded-md">
+        <div class="space-x-4">
+            <button wire:click="graficaCantidadActual()" class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">Cantidad actual Mercancías</button>
+            <button wire:click="graficaRentabilidadPlato()" class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">Rentabilidad plato</button>
         </div>
-    @endif()  
+    </nav>
+</div>
+
+    @if($grafica=="cantidadActual")
+        <div>
+            <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
+        </div>
+    @endif()
+
+
+    @if($grafica=="rentabilidadPlato")
+        <div>
+            <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
+        </div>
+    @endif()
 </div>
 
 
 <script>
-    var btngrafica = document.getElementById('btnBD');
+   /* var btngrafica = document.getElementById('btnBD');
     btngrafica.addEventListener('click', function() {
         miBD();
     });
@@ -37,7 +45,7 @@
     function miBD() {
 
         $.ajax({
-            url: '{{ route("preciosProductos") }}',
+            url: '{ route("preciosProductos") }}',
             type: 'GET',
             dataType: "json",
             success: function(response) {
@@ -98,7 +106,7 @@
                 data: [],
             }]
         }
-    }
+    }*/
 
 
     /***********************/
@@ -112,7 +120,7 @@
             rentabilidadPlato($lista);
         });
     });
-    
+
     function drilldown(response) {
         Highcharts.chart('container', {
             chart: {
@@ -189,7 +197,7 @@
     }
 
     function rentabilidadPlato(response)
-    {        
+    {
         console.log(response);
         var listaCliente = response['listaCliente'];
         var listaRestaurante = response['listaRestaurante'];
@@ -198,7 +206,7 @@
         var costesData  = [];
         var preciosData  = [];
         var resultado  = [];
-        
+
         for (var i = 0; i < listaRestaurante.length; i++) {
             categories.push(listaRestaurante[i][0]);
         }
@@ -241,7 +249,7 @@
                     color: '#BAFF58' // Valores mayores que cero
                 }]
             }]
-        });    
+        });
     }
 
 </script>

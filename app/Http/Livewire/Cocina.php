@@ -6,12 +6,13 @@ use Livewire\Component;
 use App\Models\Mercancia as MercanciaModel;
 use App\Models\Producto as ProductoModel;
 use App\Models\ElaboracionesMercancias as ElaboracionesMercanciasModel;
+use App\Models\Elaboraciones as ElaboracionesModel;
 
 class Cocina extends Component
 {
     /*ingredientes*/
     public $miIngrediente;
-    
+
     public $mercancias;
     public $productoReceta;
 
@@ -19,6 +20,7 @@ class Cocina extends Component
     public $miProducto;
     public $productos;
     public $productoSeleccionado;
+    public $recetaProductoSeleccionado;
 
     public $verEmplatado;
 
@@ -67,15 +69,20 @@ class Cocina extends Component
             foreach ($recetasElaMer as $receta){
                 //coger mis productos que tengan ese id de elaboración
                 $this->productoReceta = ProductoModel::where('idElaboraciones', $receta[0]->idElaboracion)->get();
+
                 $this->productos[] = $this->productoReceta[0];
             }
         }
-
     }
 
     public function cargarEmplatado($idProducto)
     {
         $this->productoSeleccionado = ProductoModel::where('id', $idProducto)->get()->first();
+        $receta= ElaboracionesModel::where('id', $this->productoSeleccionado->id)->get()->first();
+
+        // Dividir la variable por cada coma y obtener un array
+        $this->recetaProductoSeleccionado = explode(",", $receta->receta);
+
         $this->verEmplatado=true;
     }
 

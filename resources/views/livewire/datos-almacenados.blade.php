@@ -1,8 +1,8 @@
 <div>
     <div>
-        
+
         @if ($componenteActivo == null)
-        
+
         <!--Calendario-->
 
             <script src='/fullcalendar/dist/index.global.js'></script>
@@ -20,7 +20,7 @@
 
 
 
-            <div id='calendario' class="mt-36 mx-auto w-3/5 rounded-lg shadow-lg p-4 cursor-pointer"></div>
+            <div id='calendario' class="mt-32 mx-auto w-2/4 rounded-lg shadow-lg p-4 cursor-pointer"></div>
             <script src='https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.6/locale-all.js'></script>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {

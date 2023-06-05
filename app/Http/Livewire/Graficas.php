@@ -12,6 +12,10 @@ class Graficas extends Component
     public $grafica;
     public $lista;
 
+    public function mount()
+    {
+        //$this->graficaCantidadActual();
+    }
     public function verGrafica($nombre, $script, $listaParam)
     {
         $this->grafica = $nombre;
@@ -85,4 +89,5 @@ class Graficas extends Component
     {
         return view('livewire.graficas');
     }
+
 }

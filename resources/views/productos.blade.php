@@ -53,7 +53,7 @@
         })
         document.getElementById('Postres').addEventListener('click', function(event){
              fetch('productos/postres').then(res=>res.text()).then(html=>{
-                document.getElementById('contenido').innerHTML = html 
+                document.getElementById('contenido').innerHTML = html
              })
         })
     </script>
@@ -62,6 +62,5 @@
 
 
 </body>
-
 
 </html>

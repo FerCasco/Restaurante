@@ -18,6 +18,7 @@ class Contacto extends Component
     use WithPagination;
 
     public $miProveedor;
+    public $miTrabajador;
     protected $proveedores;
     protected $trabajadores;
     protected $roles;
@@ -35,6 +36,7 @@ class Contacto extends Component
     public $apellidosTrabajador;
     public $dniTrabajador;
     public $fotoTrabajador;
+    public $password;
 
     //Propiedad para ver tablas
     public $tablaVisible;
@@ -74,10 +76,10 @@ class Contacto extends Component
         }
     }
 
-    public function verContacto($id)
+    /*public function verContacto($id)
     {
         return redirect()->to('/ver-contacto?id=' . $id);
-    }
+    }*/
 
     public function mount()
     {
@@ -145,6 +147,11 @@ class Contacto extends Component
         $this->miProveedor = ProveedorModel::find($proveedorId);
         $this->verModal('editProveedor');
     }
+    public function openEditTrabajador($trabajadorId)
+    {
+        $this->miTrabajador = TrabajadorModal::find($trabajadorId);
+        $this->verModal('editTrabajador');
+    }
 
     public function editProveedor()
     {
@@ -155,9 +162,34 @@ class Contacto extends Component
         $this->modalVisible = '';
     }
 
+    public function editTrabajador()
+    {
+        $this->miTrabajador->name = $this->nombreTrabajador;
+        $this->miTrabajador->apellidos =$this->apellidosTrabajador;
+        $this->miTrabajador->email = $this->correoTrabajador;
+        $this->miTrabajador->telefono = $this->telefonoTrabajador;
+        $this->miTrabajador->idRol = $this->rolTrabajador;
+        $this->miTrabajador->dni =$this->dniTrabajador;
+
+        if ($this->fotoTrabajador) {
+            $fotoPath = $this->fotoTrabajador->store('photos', 'public');
+            $this->miTrabajador->foto = $fotoPath;
+        }
+
+        $this->miTrabajador->save();
+        $this->modalVisible = '';
+    }
+
     public function deleteProveedor($idProveedor)
     {
         $proveedor = ProveedorModel::where('id', $idProveedor)->get()->first();
         $proveedor->delete();
+    }
+
+    public function deleteTrabajador($trabajadorId)
+    {
+        $trabajador = TrabajadorModal::where('id', $trabajadorId)->get()->first();
+        $trabajador->delete();
+        $this->verTabla("trabajadores");
     }
 }
