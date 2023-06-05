@@ -17,7 +17,8 @@ class Comanda extends Model
      */
     protected $fillable = [
         'id',
-        'precioTotal'
+        'precioTotal',
+        'usuario'
     ];
 
     public function lineasComanda()

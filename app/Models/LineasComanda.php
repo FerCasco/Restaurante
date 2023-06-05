@@ -15,6 +15,8 @@ class LineasComanda extends Model
         'precio',
         'trabajador',
         'idProducto',
+        'ticket',
+        'fechaTicket',
         'cantidad',
         'enviado',
     ];

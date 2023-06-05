@@ -7,6 +7,7 @@ use App\Models\Mesa as MesaModel;
 use App\Models\Familia as FamiliaModel;
 use App\Models\Producto as ProductoModel;
 use App\Models\Comanda;
+use App\Models\Ticket;
 use App\Models\LineasComanda;
 use Illuminate\Support\Facades\Auth;
 
@@ -61,24 +62,33 @@ class MesaAtender extends Component
 
     public function submitCantidad()
     {
-        // Create a new LineasComanda
-        $lineaComanda = LineasComanda::create([
-            'idMesa' => $this->mesaAtender->id,
-            'trabajador' => $this->trabajador->id,
-            'idProducto' => $this->selectedProducto->id,
-            'cantidad' => $this->cantidad,
-            'enviado' => false,
-            'precio' => $this->cantidad * $this->selectedProducto->precio,
-        ]);
+        $lineaComanda = LineasComanda::where('idMesa', $this->mesaAtender->id)
+            ->where('idProducto', $this->selectedProducto->id)
+            ->where('ticket', 0)
+            ->first();
 
-        // Asociar la línea de comanda con la comanda actual
-        $this->comanda->lineasComanda()->save($lineaComanda);
+        if ($lineaComanda) {
+            $lineaComanda->cantidad = $lineaComanda->cantidad + $this->cantidad;
+            $lineaComanda->precio = $lineaComanda->cantidad * $this->selectedProducto->precio;
+            $lineaComanda->save();
+            $this->closeModal();
+        } else {
+            $lineaComanda = LineasComanda::create([
+                'idMesa' => $this->mesaAtender->id,
+                'trabajador' => $this->trabajador->id,
+                'idProducto' => $this->selectedProducto->id,
+                'cantidad' => $this->cantidad,
+                'enviado' => false,
+                'ticket' => 0,
+                'fechaTicket' => "",
+                'precio' => $this->cantidad * $this->selectedProducto->precio,
+            ]);
+            
 
-        // Actualizar el precio total de la comanda
+            $this->comanda->save();
 
-        $this->comanda->save();
-
-        $this->closeModal();
+            $this->closeModal();
+        }
     }
 
     public function closeModal()
@@ -87,8 +97,29 @@ class MesaAtender extends Component
     }
     public function enviarComanda()
     {
-    }
+        date_default_timezone_set('Europe/Madrid');
+        $ticket = Ticket::where('id', $this->mesaAtender->id)->get()->first();
 
+        $ticket->fechaTicket =  date('d-m-y h:i:s');
+  
+        $ticket->save();
+        $lineas = LineasComanda::where('idMesa', $this->mesaAtender->id)->where('ticket', 0)->get();
+        foreach ($lineas as $linea) {
+            $linea->ticket = 1;
+            $linea->fechaTicket = $ticket->fechaTicket;
+            $linea->save();
+        }
+        //Imprimir ticket o gestionarlo de alguna forma
+
+
+
+
+        $this->comanda->precioTotal = 0;
+        $this->comanda->save();
+    }
+    public function deleteComanda()
+    {
+    }
     public function resetProductos()
     {
         $this->productos = null;
@@ -96,7 +127,7 @@ class MesaAtender extends Component
     }
     public function verComanda()
     {
-        $this->lineasComanda = LineasComanda::where('idMesa', $this->mesaAtender->id)->get();
+        $this->lineasComanda = LineasComanda::where('idMesa', $this->mesaAtender->id)->where('ticket',0)->get();
         $this->showComanda = true;
     }
     public function closeComanda()

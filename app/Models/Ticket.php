@@ -19,7 +19,7 @@ class Ticket extends Model
         'id',
         'fechaTicket',
         'precioTotal',
-        'idTrabajador',
+        'usuario'
     ];
 
 
