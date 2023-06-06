@@ -114,6 +114,7 @@ class Contacto extends Component
     public function addTrabajador()
     {
         $trabajador = new UserModel();
+    
         $trabajador->name = $this->nombreTrabajador;
         $trabajador->email = $this->correoTrabajador;
         $trabajador->password = 1234;
@@ -121,20 +122,17 @@ class Contacto extends Component
         $trabajador->idRol = $this->rolTrabajador;
         $trabajador->dni = $this->dniTrabajador;
         $trabajador->apellidos = $this->apellidosTrabajador;
-
+  
+        
         // Generate and store the QR code image
         $qrCodeString = "res_qr_" . $trabajador->id . "_" . $this->rolTrabajador;
         $qrCodePath = 'img/qrcode.png';
         \SimpleSoftwareIO\QrCode\Facades\QrCode::size(300)->format('png')->generate($qrCodeString, public_path($qrCodePath));
         $trabajador->codigoQr = $qrCodeString;
         $trabajador->imagenQr = file_get_contents(public_path($qrCodePath));
-
+        dd($trabajador, $this->fotoTrabajador);
         // Handle the file upload
-        if ($this->fotoTrabajador) {
-            $fotoPath = $this->fotoTrabajador->store('photos', 'public');
-            $trabajador->foto = $fotoPath;
-        }
-
+   
         $trabajador->save();
 
         // Delete the QR code image after it's been stored
@@ -149,7 +147,7 @@ class Contacto extends Component
     }
     public function openEditTrabajador($trabajadorId)
     {
-        $this->miTrabajador = TrabajadorModal::find($trabajadorId);
+        $this->miTrabajador = UserModel::find($trabajadorId);
         $this->verModal('editTrabajador');
     }
 
@@ -188,8 +186,7 @@ class Contacto extends Component
 
     public function deleteTrabajador($trabajadorId)
     {
-        $trabajador = TrabajadorModal::where('id', $trabajadorId)->get()->first();
+        $trabajador = UserModel::where('id', $trabajadorId)->get()->first();
         $trabajador->delete();
-        $this->verTabla("trabajadores");
     }
 }

@@ -24,9 +24,7 @@ class PedidoMercancias extends Component
         $pedido->fechaPedido = date('H:i');
         $pedido->total = 0;
         $pedido->save();
-
         $total = 0;
-
         foreach ($this->inputValues as $mercanciaId => $newQuantity) {
             $mercancia = Mercancia::find($mercanciaId);
             $lineaPedido = new LineasPedido([

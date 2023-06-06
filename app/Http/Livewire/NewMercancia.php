@@ -50,7 +50,6 @@ class NewMercancia extends Component
         $this->newMercancia->idTipos = $this->tipoMercancia;
         $this->newMercancia->idProveedor = $this->proveedorMercancia;
 
-
         $this->newMercancia->save();
         session()->flash('message', 'Mercancía creada correctamente');
     }
