@@ -13,6 +13,7 @@ class ElaboracionesMercancias extends Model
     protected $fillable = [
         'id',
         'idMercancia',
+        'cantidadMercancia',
         'idElaboracion',
     ];
 }

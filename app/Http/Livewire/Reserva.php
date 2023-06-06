@@ -14,7 +14,7 @@ class Reserva extends Component
 
 
     protected $rules = [
-        'miReserva.nombre' => 'required|string|min:2',
+        'miReserva.nombre' => 'required|string|min:1',
         'miReserva.comensales' => 'required',
         'miReserva.hora' => 'required',
         'miReserva.fecha' => 'required',
@@ -29,7 +29,7 @@ class Reserva extends Component
 
     public function reservar(){
         $this->validate();
-        dd($this->miReserva);//me llegaba array
+        //dd($this->miReserva);//me llegaba array
 
         $reserva = new ReservaModel();
         $reserva->nombre = $this->miReserva['nombre'];

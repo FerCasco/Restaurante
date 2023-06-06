@@ -57,12 +57,22 @@ class Cocina extends Component
     //clicks
     public function cargarProductos($idMercancia)
     {
+        $this->productos = [];
         //todas las mercancias en mercanciasElab con su respectivo idElaboracion
         $mercanciasElab = ElaboracionesMercanciasModel::where('idMercancia', $idMercancia)->get();
 
-        $this->productos=[];
+        if($mercanciasElab!=null)
+        {
+            foreach ($mercanciasElab as $receta)
+            {
+                //dd($receta["idElaboracion"]);
+                $array = ProductoModel::where('idElaboraciones', $receta["idElaboracion"])->get();
+                $this->productos[] = $array[0];
+            }
+        }
 
-        if($mercanciasElab!=null){
+
+        /*if($mercanciasElab!=null){
             //coger las elaboraciones distintas que puede tener mi producto seleccionado
             $recetasElaMer=$mercanciasElab->groupBy('idElaboracion');
 
@@ -71,8 +81,9 @@ class Cocina extends Component
                 $this->productoReceta = ProductoModel::where('idElaboraciones', $receta[0]->idElaboracion)->get();
 
                 $this->productos[] = $this->productoReceta[0];
+
             }
-        }
+        }*/
     }
 
     public function cargarEmplatado($idProducto)

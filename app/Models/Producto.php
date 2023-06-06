@@ -17,10 +17,12 @@ class Producto extends Model
      */
     protected $fillable = [
         'id',
-        'id_proveedor',
         'nombre',
-        'precio_cliente',
-        'precio_proveedor',
+        'idFamilia',
+        'idElaboraciones',
+        'idTipo',
+        'imagen',
+        'precio',
         'descripcion',
     ];
 
