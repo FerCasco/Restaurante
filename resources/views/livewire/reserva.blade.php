@@ -3,7 +3,7 @@
     <div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
         <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/mesa-reservada-restaurante_53876-41412.jpg?w=1380&t=st=1686140756~exp=1686141356~hmac=863065cd50da8e732ccecc958e5e0611dde21510014d652cc7ee3e303fee0666" alt="Imagen">
     </div>
-    <div>
+    <div class="bg-black bg-opacity-25">
 
         <form wire:submit.prevent="reservar" class="rounded-full mt-32 mx-auto w-3/5  flex flex-col flex-wrap py-8">
             <div class="flex justify-center mb-8">
@@ -85,7 +85,15 @@
             <textarea class="mb-8 h-40 rounded-lg border border-gray-200 bg-gray-200 w-9/12 mx-auto text-black" wire:model="miReserva.anotaciones" id="anotaciones" name="anotaciones"></textarea>
 
             <div class="text-center">
-                <button class="rounded-lg p-4 bg-red-100 w-1/4 mx-auto block text-gray-600" type="submit">Reservar</button>
+                <button class="flex justify-center rounded-lg p-4 bg-red-100 w-1/4 mx-auto block text-gray-600" type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" class=" mr-2 icon icon-tabler icon-tabler-pencil-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M8 20l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4h4z"></path>
+                        <path d="M13.5 6.5l4 4"></path>
+                        <path d="M16 18h4m-2 -2v4"></path>
+                    </svg>
+                    Reservar
+                </button>
             </div>
         </form>
 </div>

@@ -45,12 +45,12 @@
     @if($grafica=="platoPreferido")
         <div>
             <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
-        </div>        
+        </div>
     @endif()
 
-    <div id="imgGrafica" class="hidden p-8 absolute flex justify-center w-full">
-        <img class="absolute -z-10 w-4/12" src="/img/graficasFondo.png"/>
-    </div>
+{{--    <div id="imgGrafica" class="hidden p-8 absolute flex justify-center w-full">--}}
+{{--        <img class="absolute -z-10 w-4/12" src="/img/graficasFondo.png"/>--}}
+{{--    </div>--}}
 </div>
 
 <script>

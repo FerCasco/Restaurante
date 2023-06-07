@@ -17,7 +17,9 @@
 <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
 
 @livewire('menu')
-
+<div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
+    <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/lider-equipo-enfocado-que-presenta-plan-marketing-companeros-trabajo-multirraciales-interesados-ejecutivo-jefe-orador-serio-capacitador-negocios-que-explica-estrategia-desarrollo-empleados-motivados-raza-mixta_482257-13781.jpg?w=1380&t=st=1686141411~exp=1686142011~hmac=c810bd7e5219de924a456321f97ff41c0610f8c6befe71727ab1e8c01809087e" alt="Imagen">
+</div>
 @livewire('graficas')
 
 @livewireScripts

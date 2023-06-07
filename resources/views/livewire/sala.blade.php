@@ -13,7 +13,7 @@
         </ul>
     </div>
     <div class="absolute bottom-0 left-0 w-full p-8 ">
-        <button wire:click="verModal('agregar')" type="button" class="w-full flex items-center justify-center border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+        <button wire:click="verModal('agregar')" type="button" class="w-full flex transition-all items-center justify-center border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M9 12h6"></path>
@@ -22,7 +22,7 @@
             </svg>
             Nueva sala
         </button>
-        <button wire:click="verModal('editar')" type="button" class="w-full flex items-center justify-center mt-3 border border-orange-500 shadow-lg hover:bg-orange-400 bg-orange-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-orange-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+        <button wire:click="verModal('editar')" type="button" class="w-full flex transition-all items-center justify-center mt-3 border border-orange-500 shadow-lg hover:bg-orange-400 bg-orange-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-orange-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
@@ -30,7 +30,7 @@
             </svg>
             Editar sala
         </button>
-        <button wire:click="verModal('eliminar')" type="button" class="w-full flex items-center justify-center mt-3 border border-red-500 shadow-lg hover:bg-red-400 bg-red-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-red-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+        <button wire:click="verModal('eliminar')" type="button" class="w-full transition-all flex items-center justify-center mt-3 border border-red-500 shadow-lg hover:bg-red-400 bg-red-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-red-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                 <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                 <path d="M4 7h16"></path>
