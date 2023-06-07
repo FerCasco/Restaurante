@@ -14,7 +14,7 @@ class Sala extends Component
     //variables de editar
     public $idSala;
     public $nombreSala;
-    
+
     protected $rules = [
         'miSala.nombre' => 'required|string|min:1',
     ];
@@ -31,8 +31,8 @@ class Sala extends Component
     }
 
     public function agregarSala()
-    {      
-        $this->validate();  
+    {
+        $this->validate();
         $sala = new SalaModel();
         $sala->nombre = $this->miSala['nombre'];
         //dd($sala->nombreSala);
@@ -48,7 +48,7 @@ class Sala extends Component
     }
 
     public function eliminarSala()
-    {      
+    {
         $nomBorrar = $this->miSala['nombre'];
         $sala = SalaModel::where('nombre', $nomBorrar)->get()->first();
         $sala->delete();
@@ -72,11 +72,11 @@ class Sala extends Component
         $sala->nombre = $this->miSala['nombre'];
         $sala->save();*/
 
-        
+
         $sala = SalaModel::where('id', $this->idSala)->get()->first();
         $sala->nombre = $this->nombreSala;
         $sala->save();
-    } 
+    }
 
     public function render()
     {

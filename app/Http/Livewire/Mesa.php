@@ -15,26 +15,28 @@ class Mesa extends Component
     protected $listeners = ['enviarSalaId' => 'actualizarSalaSeleccionada'];
     public $modalVisibleMesa;
 
-    //
+    //agregarMesa
     public $selectSala;
+    public $capacidadMesa;
 
-    protected $rules = [
-        'miMesa.capacidad' => 'required',
-        'miMesa.comensales' => 'required',
-        'miMesa.idSala' => 'required',
-    ];
+    //Editar
+    public $allMesas;
+    public $selectMesa;
+    public $capacidadMesaE;
 
-    //Como un contructor inicializador
+    //Eliminar
+    public $mesaEliminar;
     public function mount($idSala)
     {
         $this->actualizarSalaSeleccionada($idSala);
-    }    
+    }
 
     public function actualizarSalaSeleccionada($idSala)
     {
         $this->mesas=MesaModel::where('idSala', $idSala)->get();
-        $this->salasMesa=SalaModel::all();
+        $this->salasMesa = SalaModel::all();
         $this->miMesa = new MesaModel();
+        $this->allMesas = MesaModel::all();
     }
 
     public function verModalMesa($ver)
@@ -43,26 +45,32 @@ class Mesa extends Component
     }
 
     public function agregarMesa()
-    {      
-        $this->validate(); 
-
+    {
         $mesa = new MesaModel();
-        $mesa->capacidad = $this->miMesa['capacidad'];
-        $mesa->comensales = $this->miMesa['comensales'];
-        dd($this->selectSala);
+        $mesa->capacidad = $this->capacidadMesa;
+        $mesa->comensales = 0;
         $mesa->idSala = $this->selectSala;
-        
-        $caracterNomMesa = substr($this->selectSala, 0, 1);
 
-        //busco el nombre de la última mesa de esa sala
-        $mesas=MesaModel::where('idSala', $this->selectSala)->get();
-        $listNumNombreMesa = [];
-        foreach($mesa as $m)
-        {
-            $listNumNombreMesa = substr($m->nombre, 0, 1);
-        }
-        dd($listNumNombreMesa );
-        $sala->save();
+        $sala = SalaModel::where('id', $this->selectSala)->get()->first();
+        $caracterNomMesa = substr($sala->nombre, 0, 1);
+        $mesas = MesaModel::where('idSala', $this->selectSala)->get();
+        $nombreMesa = $caracterNomMesa . (sizeof($mesas) +1);
+        $mesa->nombre = $nombreMesa;
+
+        $mesa->save();
+    }
+
+    public function editarMesa(){
+
+        $mesa = MesaModel::where('id', $this->selectMesa)->get()->first();
+        $mesa->capacidad = $this->capacidadMesaE;
+        $mesa->save();
+    }
+
+    public function eliminarMesa()
+    {
+        $mesa = MesaModel::where('id', $this->mesaEliminar)->get()->first();
+        $mesa->delete();
     }
 
     public function render()
