@@ -10,7 +10,8 @@ class Main extends Component
     public $idSala;
     public $idMesa;
 
-    protected $listeners = ['enviarSalaId','atenderMesa',];
+    //protected $listeners = ['enviarSalaId','atenderMesa','actualizar'];
+    protected $listeners = ['enviarSalaId','atenderMesa'];
 
     public function enviarSalaId($idSala)
     {
@@ -28,6 +29,11 @@ class Main extends Component
     {
         $this->componenteActivo = $nombre;
     }
+
+    /*public function actualizar(){
+        $this->render();
+    }*/
+    
     public function render()
     {
         return view('livewire.main');

@@ -23,6 +23,10 @@
                         class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
                     Rentabilidad plato
                 </button>
+                <button onclick="ocultar()" wire:click="graficaPlatosPreferidos()"
+                        class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
+                    Platos preferidos
+                </button>
             </div>
         </nav>
     </div>
@@ -38,6 +42,12 @@
         </div>
     @endif()
 
+    @if($grafica=="platoPreferido")
+        <div>
+            <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
+        </div>        
+    @endif()
+
     <div id="imgGrafica" class="hidden p-8 absolute flex justify-center w-full">
         <img class="absolute -z-10 w-4/12" src="/img/graficasFondo.png"/>
     </div>
@@ -47,6 +57,8 @@
 
     let img = document.getElementById("imgGrafica");
     img.classList.remove("hidden");
+
+
 
     /***********************/
     document.addEventListener('livewire:load', function () {
@@ -58,7 +70,13 @@
             //console.log($lista);
             rentabilidadPlato($lista);
         });
+        Livewire.on('ScriptPlatoPreferido', function ($lista) {
+            //console.log($lista);
+            platosPreferidos($lista);
+        });
     });
+
+
 
     function drilldown(response) {
         Highcharts.chart('container', {
@@ -115,7 +133,8 @@
                             },
                             {
                                 name: 'Hacer encargo',
-                                y: ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4),
+                                //y: ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4), Daba fallo de que podia ser mayor el stockMin que el HacerEncargo
+                                y: ((parseFloat(mercancia.stockMin) + (parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)/2),
                                 color: '#FF9358 '
                             },
                             {
@@ -190,4 +209,7 @@
         });
     }
 
+function platosPreferidos(response){
+
+}
 </script>

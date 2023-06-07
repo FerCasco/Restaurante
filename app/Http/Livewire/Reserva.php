@@ -33,7 +33,6 @@ class Reserva extends Component
 
         $reserva = new ReservaModel();
         $reserva->nombre = $this->miReserva['nombre'];
-        //dd( $this->miReserva['nombre']);
         $reserva->apellidos = $this->miReserva['apellidos'];
         $reserva->fecha = $this->miReserva['fecha'];
         $reserva->comensales = $this->miReserva['comensales'];

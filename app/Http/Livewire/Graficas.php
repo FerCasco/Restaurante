@@ -85,6 +85,12 @@ class Graficas extends Component
 
         $this->verGrafica("rentabilidadPlato","ScriptRentabilidadPlato",$listaPlatoCoste);
     }
+
+    public function graficaPlatosPreferidos()
+    {
+        //$mercancias = MercanciaModel::all();
+        //$this->verGrafica("cantidadActual","ejecutarScript",$mercancias);
+    }
     public function render()
     {
         return view('livewire.graficas');
