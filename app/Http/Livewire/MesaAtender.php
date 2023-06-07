@@ -15,7 +15,6 @@ use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
 use Mike42\Escpos\EscposImage;
 use TheSeer\Tokenizer\Exception;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 
 class MesaAtender extends Component
 {
@@ -30,6 +29,8 @@ class MesaAtender extends Component
     public $showComanda = false;
     public $lineasComanda;
     public $trabajador;
+    public $modalEditar;
+    public $comensales;
 
     protected $listeners = ['atenderMesa', 'cargarProductos'];
 
@@ -39,6 +40,17 @@ class MesaAtender extends Component
         $this->atenderMesa($idMesa);
     }
 
+    public function modalComensales($ver)
+    {
+        $this->modalEditar=$ver;
+    }
+
+    public function editarComensales()
+    {
+        $mesa=$this->mesaAtender;
+        $mesa->comensales = $this->comensales;
+        $mesa->save();
+    }
     public function atenderMesa($idMesa)
     {
         $this->trabajador = session('user');
@@ -168,7 +180,7 @@ class MesaAtender extends Component
         $fontSize = $_POST["fontSize"];
 
         //Creamos productos de prueba y se almacenan en array
- 
+
 
         $productos = array();
 
@@ -452,5 +464,5 @@ class MesaAtender extends Component
             ['RazonSocial' => $RazonSocial, 'Direccion' => $Direccion, 'TextoLegal' => $TextoLegal, 'MensajeFinal' => $MensajeFinal, 'Tlf' => $fullPhone, 'TextoSMS' => $TextoSMS]
         );
     }
-    
+
 }

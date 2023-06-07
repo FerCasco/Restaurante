@@ -1,17 +1,6 @@
 <div>
-    <!--<div class="cajaGrafico">
-        <div id="precioProduct" class="w-3/4 h-full mx-auto"></div>
-    </div>
 
-    <div class="mt-16">
-        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaCantidadActual()">Drill</button>
-    </div>
-
-    <div class="mt-16">
-        <button id="btnDrill" type="button" class="bg-red-900 text-white rounded-md px-4 py-2" wire:click="graficaRentabilidadPlato()">Rentabilidad plato</button>
-    </div>-->
-
-
+    <!--Menú graáficas-->
     <div class="flex justify-center">
         <nav class="mt-32 p-4 inline-flex justify-center bg-orange-200 rounded-md">
             <div class="space-x-4">
@@ -30,6 +19,8 @@
             </div>
         </nav>
     </div>
+
+    <!--Gráficas-->
     @if($grafica=="cantidadActual")
         <div>
             <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
@@ -48,16 +39,12 @@
         </div>
     @endif()
 
-{{--    <div id="imgGrafica" class="hidden p-8 absolute flex justify-center w-full">--}}
-{{--        <img class="absolute -z-10 w-4/12" src="/img/graficasFondo.png"/>--}}
-{{--    </div>--}}
 </div>
 
 <script>
 
     let img = document.getElementById("imgGrafica");
     img.classList.remove("hidden");
-
 
 
     /***********************/
@@ -75,7 +62,6 @@
             platosPreferidos($lista);
         });
     });
-
 
 
     function drilldown(response) {
@@ -134,7 +120,7 @@
                             {
                                 name: 'Hacer encargo',
                                 //y: ((parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 4), Daba fallo de que podia ser mayor el stockMin que el HacerEncargo
-                                y: ((parseFloat(mercancia.stockMin) + (parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2)/2),
+                                y: ((parseFloat(mercancia.stockMin) + (parseFloat(mercancia.stockMin) + parseFloat(mercancia.stockMax)) / 2) / 2),
                                 color: '#FF9358 '
                             },
                             {
@@ -209,7 +195,7 @@
         });
     }
 
-function platosPreferidos(response){
+    function platosPreferidos(response) {
 
-}
+    }
 </script>

@@ -88,8 +88,7 @@ class Graficas extends Component
 
     public function graficaPlatosPreferidos()
     {
-        //$mercancias = MercanciaModel::all();
-        //$this->verGrafica("cantidadActual","ejecutarScript",$mercancias);
+        dd();
     }
     public function render()
     {
