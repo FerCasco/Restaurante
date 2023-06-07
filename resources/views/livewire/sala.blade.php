@@ -2,16 +2,19 @@
     <aside class="absolute shadow-2xl left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 "
        aria-label="Sidebar">
     <div class="h-full pt-8 px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        <ul class="space-y-2 font-medium">
-            @foreach($salas as $sala)
-                <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button" class=" w-full flex items-center justify-center h-28 border border-gray-2 shadow-lg py-2 hover:color-gray-100 bg-white px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
-                    <li>
-                        <!--{{__('welcome.' . $sala->nombre)}}-->
-                        {{$sala->nombre}}
-                    </li>
-                </button>
-            @endforeach
-        </ul>
+        <div class="h-1/2 overflow-y-auto">
+            <ul class="space-y-2 font-medium">
+                @foreach($salas as $sala)
+                    <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button" class=" w-full flex items-center justify-center h-28 border border-gray-2 shadow-lg py-2 hover:color-gray-100 bg-white px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
+                        <li>
+                            <!--{{__('welcome.' . $sala->nombre)}}-->
+                            {{$sala->nombre}}
+                        </li>
+                    </button>
+                @endforeach
+            </ul>
+
+        </div>
     </div>
     <div class="absolute bottom-0 left-0 w-full p-8 ">
         <button wire:click="verModal('agregar')" type="button" class="w-full flex transition-all items-center justify-center border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
@@ -146,7 +149,7 @@
                                                     <option value="{{$sala->id}}">{{$sala->nombre}}</option>
                                                 @endforeach
                                         </select>
-                                    </div>  
+                                    </div>
                                         <div>
                                             <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nuevo nombre:</label>
                                             <input type="text" wire:model="nombreSala" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
