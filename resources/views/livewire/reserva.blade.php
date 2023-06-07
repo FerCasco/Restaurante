@@ -1,9 +1,12 @@
-<div class="absolute bg-cover h-full w-full text-white">
-    <img class="absolute w-full h-full  brightness-50 -z-10" src="/img/plato.jpg"/>
-    <!--<div class="absolute h-full w-full bg-white opacity-25">
-    </div>-->
-        <form wire:submit.prevent="reservar" class="rounded-full mt-36 mx-auto w-3/5  flex flex-col flex-wrap  p-8 ">
-            <div class="flex justify-center mb-8 mt-6">
+<div class="absolute bg-cover h-full w-full text-white bg-opacity-50" >
+{{--    <img class="absolute bg-cover bg-blend-screen w-full h-full  brightness-75 -z-10" src="https://img.freepik.com/vector-gratis/fondo-plano-dia-mundial-vegetariano_23-2149639655.jpg?w=1380&t=st=1686138666~exp=1686139266~hmac=ce7b55ad198a479268660b00b3f1904d006446c5b38f0b8a388c7b6a2eb98f2c"/>--}}
+    <div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/mesa-reservada-restaurante_53876-41412.jpg?w=1380&t=st=1686140756~exp=1686141356~hmac=863065cd50da8e732ccecc958e5e0611dde21510014d652cc7ee3e303fee0666" alt="Imagen">
+    </div>
+    <div>
+
+        <form wire:submit.prevent="reservar" class="rounded-full mt-32 mx-auto w-3/5  flex flex-col flex-wrap py-8">
+            <div class="flex justify-center mb-8">
                 <div>
                     <label for="nombre">Nombre:</label>
                     <input class="rounded-lg border border-gray-200 bg-gray-200 text-black" type="text" wire:model="miReserva.nombre" id="nombre" name="nombre">
@@ -82,9 +85,8 @@
             <textarea class="mb-8 h-40 rounded-lg border border-gray-200 bg-gray-200 w-9/12 mx-auto text-black" wire:model="miReserva.anotaciones" id="anotaciones" name="anotaciones"></textarea>
 
             <div class="text-center">
-                <button class="mb-8 rounded-lg p-4 bg-red-100 w-1/4 mx-auto block text-gray-600" type="submit">Reservar</button>
+                <button class="rounded-lg p-4 bg-red-100 w-1/4 mx-auto block text-gray-600" type="submit">Reservar</button>
             </div>
         </form>
-
 </div>
 

@@ -13,9 +13,10 @@
     @vite('resources/js/app.js')
     @livewireStyles
 </head>
-    <body class="bg-gray-300 dark:bg-gray-700 h-screen w-full">
-    
-
+    <body class="bg-gray-800 dark:bg-gray-700 h-screen w-full">
+    <div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/mesas-sillas-dispuestas-cafeteria-vacia_107420-96463.jpg?w=1380&t=st=1686140699~exp=1686141299~hmac=722039cb2f99ee647357e9663fba760943dae72e4fd81bbbec77ac8fd9585669" alt="Imagen">
+    </div>
     @livewire('main')
 
     @livewireScripts

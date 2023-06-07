@@ -1,4 +1,4 @@
-<div>
+<div class="h-full">
     @livewire('menu')
     @livewire('tipos')
     @if ($componenteActivo === 'gestionar-almacen')
