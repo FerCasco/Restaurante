@@ -1,4 +1,7 @@
 <div>
+    <div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/concepto-escritorio-vista-superior-notebook_23-2148604912.jpg?w=1380&t=st=1686151777~exp=1686152377~hmac=4213371ad50feb1d38640bda2b4518dc50a2b6bc9db0b81bc698a3e3daf428fa" alt="Imagen">
+    </div>
     <div>
         <div class="flex justify-between mb-1.5 bg-gray-100 mt-36 p-8 mx-8">
             <div>

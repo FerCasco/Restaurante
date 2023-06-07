@@ -6,7 +6,8 @@
             @foreach($salas as $sala)
                 <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button" class=" w-full flex items-center justify-center h-28 border border-gray-2 shadow-lg py-2 hover:color-gray-100 bg-white px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
                     <li>
-                        {{__('welcome.' . $sala->nombre)}}
+                        <!--{{__('welcome.' . $sala->nombre)}}-->
+                        {{$sala->nombre}}
                     </li>
                 </button>
             @endforeach
@@ -43,7 +44,7 @@
     </div>
 
 
-</aside>
+    </aside>
     @if($modalVisible=="agregar")
             <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
                 <!-- Modal -->
@@ -63,7 +64,7 @@
                                         <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre:</label>
                                         <input type="text" wire:model="miSala.nombre" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                     </div>
-                                    <button type="submit" wire:click="agregarSala" class="w-full flex justify-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <button type="submit" wire:click="agregarSala" class="w-full flex justify-center text-white bg-lime-700 hover:bg-lime-800 focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-lime-600 dark:hover:bg-lime-700 dark:focus:ring-lime-800">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 icon icon-tabler icon-tabler-square-rounded-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                                             <path d="M9 12h6"></path>
@@ -139,19 +140,19 @@
                                     <form class="space-y-6" wire:ignore>
                                     <div>
                                         <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Sala a editar:</label>
-                                        <select id="salas" wire:model="miSala.editar"
+                                        <select id="salasEditar" wire:model="idSala"
                                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 @foreach($salas as $sala)
-                                                    <option value="{{$sala->nombre}}">{{$sala->nombre}}</option>
+                                                    <option value="{{$sala->id}}">{{$sala->nombre}}</option>
                                                 @endforeach
                                         </select>
-                                    </div>
+                                    </div>  
                                         <div>
-                                            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre nuevo:</label>
-                                            <input type="text" wire:model="miSala.nombre2" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
+                                            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nuevo nombre:</label>
+                                            <input type="text" wire:model="nombreSala" name="nombre" id="nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" required>
                                         </div>
-                                        <button type="submit" wire:click="editarSala" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                            Añadir
+                                        <button type="submit" wire:click="editarSala" class="w-full text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                                            Editar
                                         </button>
                                     </form>
                             </div>

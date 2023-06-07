@@ -11,6 +11,9 @@ class Sala extends Component
     public $miSala;
     public $modalVisible;
 
+    //variables de editar
+    public $idSala;
+    public $nombreSala;
     
     protected $rules = [
         'miSala.nombre' => 'required|string|min:1',
@@ -63,10 +66,15 @@ class Sala extends Component
 
     public function editarSala(){
 
-        $nombre = $this->miSala['editar'];
-        dd($nombre);
-        $sala = SalaModel::where('nombre', $nombre)->get()->first();
-        $sala->nombre = $this->miSala['nombre2'];
+        /*$idSala = $this->miSala['id'];
+        dd($idSala);
+        $sala = SalaModel::where('id', $idSala)->get()->first();
+        $sala->nombre = $this->miSala['nombre'];
+        $sala->save();*/
+
+        
+        $sala = SalaModel::where('id', $this->idSala)->get()->first();
+        $sala->nombre = $this->nombreSala;
         $sala->save();
     } 
 

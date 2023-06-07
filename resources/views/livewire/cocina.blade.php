@@ -1,4 +1,7 @@
 <div>
+    <div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/chef-masculino-cocina-cortando-verduras-plato_23-2149646191.jpg?w=1380&t=st=1686150776~exp=1686151376~hmac=236a1469cde084f95fbc3d6fa39230820d7d488413c2199a7d3c14c747fbe2e2" alt="Imagen">
+    </div>
     <!--Ingredientes-->
     <div id="left-side-bar"
          class=" transition-transform translate-x-0 fixed top-0 left-0 bottom-0 w-64 bg-white border-r border-gray-200 pt-7 pb-10 lg:block lg:bottom-0 dark:bg-gray-800 dark:border-gray-700">
