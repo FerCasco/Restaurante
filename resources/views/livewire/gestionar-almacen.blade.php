@@ -3,19 +3,23 @@
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
 
-    <div class="mt-28 flex justify-center items-center mb-4">
-        <h1 class="ml-96 text-center mb-4 text-l font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-4xl dark:text-white">
+    <div class="mt-28 flex justify-center items-center">
+        <h1 class="ml-96 text-center mb-4 text-l font-extrabold leading-none tracking-tight md:text-5xl lg:text-4xl dark:text-white">
             Tipo: {{$tipo->nombre}}</h1>
 
         <div class="ml-auto">
             <button wire:click="openModalGraph"
-                    class="px-4 py-2 font-semibold -translate-x-20 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">
-                Open Graph
+                    class="px-4 py-2 font-semibold -translate-x-20 transition-all border border-indigo-500 flex justify-center text-white bg-indigo-400 rounded-md hover:bg-indigo-500 hover:shadow-inner shadow-2xl focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="mr-2 w-6 h-6">
+                    <path d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75zM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 01-1.875-1.875V8.625zM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 013 19.875v-6.75z" />
+                </svg>
+
+                Abrir Gráfica
             </button>
         </div>
 
     </div>
-    <div class="grid grid-cols-3 gap-4 ml-52 mt-12 pl-28" wire:poll.5000ms>
+    <div class="grid grid-cols-3 gap-4 ml-52 pl-28 text-gray-800" wire:poll.5000ms>
         @foreach($mercancias as $mercancia)
             <div wire:key="mercancia-{{$mercancia->id}}" wire:ignore x-data="{ flipped: false }"
                  class="border border-gray-300 rounded-lg py-20 relative w-52 h-10 mx-auto mt-8 mb-8 cursor-pointer text-center font-bold tracking-light text-lg shadow-lg">
@@ -171,12 +175,13 @@
         </div>
     @endif
     @if ($showModalGraph)
-        <div class="flex items-center justify-center">
-            <div class="fixed mt-28 inset-0 w-1/2 h-1/2 flex items-center justify-center mx-auto" wire:ignore>
-                <div id="container" class="mt-8"></div>
-                <button class="absolute top-0 right-0 m-2 text-gray-500 hover:text-black-700"
+        <div class="rounded-xl bg-gray-500 flex items-center">
+            <div class="absolute bg-gray-900 opacity-50 inset-0" wire:click="closeModalGraph"></div>
+            <div class="absolute m-auto inset-0 w-1/2 h-1/2 flex justify-center rounded-xl bg-gray-300" wire:ignore>
+                <div id="container" class="mt-8 mb-8"></div>
+                <button class="absolute top-0 right-0 m-2 text-white p-3 rounded-xl bg-red-500 hover:bg-red-700 transition-all hover:shadow-inner shadow-2xl     hover:text-black-700"
                         wire:click="closeModalGraph">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24"
                          stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
                     </svg>

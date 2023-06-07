@@ -1,6 +1,26 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+<body class="bg-gray-300 dark:bg-gray-700 text-white">
+
+<div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
+    <img class="object-cover object-center w-full h-full blur-sm"
+         src="https://img.freepik.com/foto-gratis/donaciones-alimentos-recolectadas-caridad_23-2149230572.jpg?w=1060&t=st=1686165366~exp=1686165966~hmac=f2b49d1f4cfceaafd3e2b01b4b94816a742406e75212c354b82447efae1397a6"
+         alt="Imagen">
+</div>
+<div class="h-screen overflow-y-auto">
+
+    @livewire('inventario')
+</div>
+
+@livewireScripts
+<script src="/highcharts/codigoJS.js">
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,17 +36,5 @@
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
-
-<body class="bg-gray-300 dark:bg-gray-700">
-
-    @livewire('inventario')
-
-    @livewireScripts
-    <script src="/highcharts/codigoJS.js">
-
-    </script>
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-</body>
 
 </html>

@@ -1,9 +1,9 @@
 <div class="text-center">
-    <h1 class="mt-28 text-4xl font-bold text-gray-900">Nuevo pedido</h1>
+    <h1 class="mt-28 text-4xl font-bold">Nuevo pedido</h1>
 
     <ul class="mt-6 space-y-4">
         @foreach($mercanciasBajoStockMinimo as $mercancia)
-        <li class="inline-flex items-center justify-between w-96 h-16 bg-white rounded-lg p-4 shadow-md">
+        <li class="inline-flex items-center justify-between w-96 h-16 text-gray-700 bg-white rounded-lg p-4 shadow-md">
             <span class="mr-4">{{$mercancia->nombre}} -- ({{round($mercancia->cantidadActual)}}/{{round($mercancia->stockMin)}})</span>
             <div class="flex items-center">
                 <input type="number" min="0" wire:model="inputValues.{{$mercancia->id}}" id="{{$mercancia->id}}" name="{{$mercancia->id}}" class="rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 mr-2 w-20">
@@ -11,7 +11,7 @@
         </li>
         <br>
         @endforeach
-        <button wire:click="createPedido" class="px-4 py-2 font-semibold text-white bg-indigo-500 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Crear pedido</button>
+        <button wire:click="createPedido" class="px-4 py-2 font-semibold text-white bg-indigo- border border-indigo-700 bg-indigo-500 shadow-lg hover:shadow-inner transition-all rounded-md hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-opacity-50">Crear pedido</button>
     </ul>
 
     @if (session()->has('message'))
