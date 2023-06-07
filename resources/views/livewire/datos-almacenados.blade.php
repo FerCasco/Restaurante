@@ -35,7 +35,7 @@
                 </svg>
             </div>
 
-            <div id="toast-simple." class="absolute -translate-x-full transition-all top-5 left-full mr-8 flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800">
+            <div id="toast-simple." class="absolute -translate-x-96 transition-all top-5 left-full mr-8 flex items-center w-full max-w-xs p-4 space-x-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:divide-gray-700 space-x dark:bg-gray-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon text-[#9EFF37] icon-tabler icon-tabler-alert-square-filled" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                     <path d="M19 2a3 3 0 0 1 2.995 2.824l.005 .176v14a3 3 0 0 1 -2.824 2.995l-.176 .005h-14a3 3 0 0 1 -2.995 -2.824l-.005 -.176v-14a3 3 0 0 1 2.824 -2.995l.176 -.005h14zm-6.99 13l-.127 .007a1 1 0 0 0 0 1.986l.117 .007l.127 -.007a1 1 0 0 0 0 -1.986l-.117 -.007zm-.01 -8a1 1 0 0 0 -.993 .883l-.007 .117v4l.007 .117a1 1 0 0 0 1.986 0l.007 -.117v-4l-.007 -.117a1 1 0 0 0 -.993 -.883z" stroke-width="0" fill="currentColor"></path>
@@ -167,32 +167,46 @@
     </div>
 
         <!-- Menú inferior-->
-        <div class="fixed z-50 w-full h-16 max-w-lg -translate-x-1/2 bg-white border border-gray-200 rounded-full bottom-8 left-1/2 dark:bg-gray-700 dark:border-gray-600">
-            <div class="grid h-full max-w-lg grid-cols-3 mx-auto">
+        <div class="fixed z-50 w-16 h-1/2 max-w-lg left-full bg-white border border-gray-200 rounded-full bottom-8 -translate-x-20  dark:bg-gray-700 dark:border-gray-600">
+            <div class="grid h-full max-w-lg grid-rows-3 justify-center">
 
-                <button wire:click="cambiar('menu-diario')" type="button"
-                        class="inline-flex flex-col items-center justify-center px-5 hover:rounded-l-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                    <div class="text-3xl">
-                        <ion-icon  wire:ignore name="reorder-four-outline"></ion-icon>
-                    </div>
+                <button wire:click="cambiar('menu-diario')" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:scale-125 rounded-lg group transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-tools-kitchen" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M4 3h8l-1 9h-6z"></path>
+                        <path d="M7 18h2v3h-2z"></path>
+                        <path d="M20 3v12h-5c-.023 -3.681 .184 -7.406 5 -12z"></path>
+                        <path d="M20 15v6h-1v-3"></path>
+                        <path d="M8 12l0 6"></path>
+                    </svg>
                 </button>
 
                 <div class="flex items-center justify-center">
                     <a href="/datosAlmacenados"
                             class="inline-flex items-center justify-center w-10 h-10 font-medium bg-blue-600 rounded-full hover:bg-blue-700 group focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20"
-                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                            <path clip-rule="evenodd" fill-rule="evenodd"
-                                  d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"></path>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="text-white icon icon-tabler icon-tabler-calendar" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12z"></path>
+                            <path d="M16 3v4"></path>
+                            <path d="M8 3v4"></path>
+                            <path d="M4 11h16"></path>
+                            <path d="M11 15h1"></path>
+                            <path d="M12 15v3"></path>
                         </svg>
                         <span class="sr-only">New item</span>
                     </a>
                 </div>
 
-                <button wire:click="cambiar('reserva')" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:rounded-r-full hover:bg-gray-50 dark:hover:bg-gray-800 group">
-                    <div class="text-3xl">
-                        <ion-icon  wire:ignore name="calendar-outline"></ion-icon>
-                    </div>
+                <button wire:click="cambiar('reserva')" type="button" class="inline-flex flex-col items-center justify-center px-5 hover:scale-125 rounded-lg group transition-all">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-address-book" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M20 6v12a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2z"></path>
+                        <path d="M10 16h6"></path>
+                        <path d="M13 11m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0"></path>
+                        <path d="M4 8h3"></path>
+                        <path d="M4 12h3"></path>
+                        <path d="M4 16h3"></path>
+                    </svg>
                 </button>
             </div>
         </div>
