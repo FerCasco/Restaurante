@@ -1,4 +1,7 @@
 <div>
+    <div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/mujer-revisando-calendario_53876-13451.jpg?w=1060&t=st=1686164936~exp=1686165536~hmac=1574e5814aa0f660c1ad2847bb992038f1679f8a5d5b5a49c2ad43659e117156" alt="Imagen">
+    </div>
     <div>
 
         @if ($componenteActivo == null)
