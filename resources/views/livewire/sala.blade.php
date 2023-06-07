@@ -1,8 +1,8 @@
 <div>
     <aside class="absolute shadow-2xl left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0 "
        aria-label="Sidebar">
-    <div class="h-full pt-8 px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-        <div class="h-1/2 overflow-y-auto">
+    <div class="h-full pt-8 px-3 py-4 flex flex-col justify-between overflow-y-auto bg-gray-50 dark:bg-gray-800">
+        <div class="overflow-y-auto">
             <ul class="space-y-2 font-medium">
                 @foreach($salas as $sala)
                     <button wire:click="$emit('enviarSalaId',{{$sala->id}})" type="button" class=" w-full flex items-center justify-center h-28 border border-gray-2 shadow-lg py-2 hover:color-gray-100 bg-white px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300">
@@ -15,37 +15,36 @@
             </ul>
 
         </div>
+        <div class="mt-8">
+            <button wire:click="verModal('agregar')" type="button" class="w-full flex transition-all items-center justify-center border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M9 12h6"></path>
+                    <path d="M12 9v6"></path>
+                    <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path>
+                </svg>
+                Nueva sala
+            </button>
+            <button wire:click="verModal('editar')" type="button" class="w-full flex transition-all items-center justify-center mt-3 border border-orange-500 shadow-lg hover:bg-orange-400 bg-orange-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-orange-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                    <path d="M13.5 6.5l4 4"></path>
+                </svg>
+                Editar sala
+            </button>
+            <button wire:click="verModal('eliminar')" type="button" class="w-full transition-all flex items-center justify-center mt-3 border border-red-500 shadow-lg hover:bg-red-400 bg-red-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-red-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <path d="M4 7h16"></path>
+                    <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
+                    <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
+                    <path d="M10 12l4 4m0 -4l-4 4"></path>
+                </svg>
+                Eliminar sala
+            </button>
+        </div>
     </div>
-    <div class="absolute bottom-0 left-0 w-full p-8 ">
-        <button wire:click="verModal('agregar')" type="button" class="w-full flex transition-all items-center justify-center border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M9 12h6"></path>
-                <path d="M12 9v6"></path>
-                <path d="M12 3c7.2 0 9 1.8 9 9s-1.8 9 -9 9s-9 -1.8 -9 -9s1.8 -9 9 -9z"></path>
-            </svg>
-            Nueva sala
-        </button>
-        <button wire:click="verModal('editar')" type="button" class="w-full flex transition-all items-center justify-center mt-3 border border-orange-500 shadow-lg hover:bg-orange-400 bg-orange-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-orange-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
-                <path d="M13.5 6.5l4 4"></path>
-            </svg>
-            Editar sala
-        </button>
-        <button wire:click="verModal('eliminar')" type="button" class="w-full transition-all flex items-center justify-center mt-3 border border-red-500 shadow-lg hover:bg-red-400 bg-red-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-red-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-trash-x" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                <path d="M4 7h16"></path>
-                <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12"></path>
-                <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3"></path>
-                <path d="M10 12l4 4m0 -4l-4 4"></path>
-            </svg>
-            Eliminar sala
-        </button>
-    </div>
-
 
     </aside>
     @if($modalVisible=="agregar")
