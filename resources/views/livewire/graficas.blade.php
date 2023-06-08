@@ -4,15 +4,15 @@
     <div class="flex justify-center">
         <nav class="mt-32 p-4 inline-flex justify-center bg-orange-200 rounded-md">
             <div class="space-x-4">
-                <button onclick="ocultar()" wire:click="graficaCantidadActual()"
+                <button wire:click="graficaCantidadActual()"
                         class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
                     Cantidad actual Mercancías
                 </button>
-                <button onclick="ocultar()" wire:click="graficaRentabilidadPlato()"
+                <button wire:click="graficaRentabilidadPlato()"
                         class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
                     Rentabilidad plato
                 </button>
-                <button onclick="ocultar()" wire:click="graficaPlatosPreferidos()"
+                <button wire:click="graficaPlatosPreferidos()"
                         class="px-4 py-2 rounded-md bg-orange-500 text-white hover:bg-orange-600 focus:outline-none focus:bg-orange-600">
                     Platos preferidos
                 </button>
@@ -43,8 +43,6 @@
 
 <script>
 
-    let img = document.getElementById("imgGrafica");
-    img.classList.remove("hidden");
 
 
     /***********************/
