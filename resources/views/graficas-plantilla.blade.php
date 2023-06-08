@@ -28,9 +28,11 @@
 <script src="/highcharts/popper/popper.min.js"></script>
 
 <script src="/highcharts/pluggins/Highcharts-10.3.3/code/highcharts.js"></script>
+<script src="/highcharts/pluggins/Highcharts-10.3.3/code/highcharts-more.js"></script>
 <script src="/highcharts/pluggins/Highcharts-10.3.3/code/modules/exporting.js"></script>
 <script src="/highcharts/pluggins/Highcharts-10.3.3/code/modules/export-data.js"></script>
 <script src="/highcharts/pluggins/Highcharts-10.3.3/code/modules/drilldown.js"></script>
+<script src="/highcharts/pluggins/Highcharts-10.3.3/code/modules/solid-gauge.js"></script>
 
 <script src="/highcharts/codigoJS.js"></script>
 

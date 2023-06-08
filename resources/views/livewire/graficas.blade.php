@@ -1,6 +1,6 @@
 <div>
 
-    <!--Menú graáficas-->
+    <!--Menú gráficas-->
     <div class="flex justify-center">
         <nav class="mt-32 p-4 inline-flex justify-center bg-orange-200 rounded-md">
             <div class="space-x-4">
@@ -37,17 +37,23 @@
         <div>
             <div id="container" class="mt-12 w-10/12 h-full mx-auto"></div>
         </div>
+        <div class="w-1/2 mx-auto bg-orange-200 rounded-xl p-8">
+            <label for="nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Seleccione el tipo de producto:</label>
+            <select id="tipos" wire:model="tipo"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                @foreach($tiposProducto as $t)
+                    <option value="{{$t->id}}">{{$t->nombre}}</option>
+                @endforeach
+            </select>
+        </div>
     @endif()
 
 </div>
 
 <script>
 
-
-
-    /***********************/
     document.addEventListener('livewire:load', function () {
-        Livewire.on('ejecutarScript', function ($lista) {
+        Livewire.on('ScriptCantidadActual', function ($lista) {
             //console.log($lista);
             drilldown($lista);
         });
@@ -62,6 +68,8 @@
     });
 
 
+
+    /***********************/
     function drilldown(response) {
         Highcharts.chart('container', {
             chart: {
@@ -195,5 +203,158 @@
 
     function platosPreferidos(response) {
 
+        var datosFormateados = [];
+
+        response.forEach(function (elemento) {
+            var punto = {
+                name: elemento[0], // Nombre del punto
+                y: elemento[1] // Valor del punto
+            };
+            datosFormateados.push(punto);
+        });
+
+        //console.log(datosFormateados);
+
+        Highcharts.chart('container', {
+            chart: {
+                polar:true,
+                type: 'pie'
+            },
+            title: {
+                text: 'Productos preferidos por clientes'
+            },
+            pane: {
+                startAngle: 0,
+                endAngle: 360
+            },
+            plotOptions: {
+                pie: {
+                borderWidth: 0,
+                innerSize: '0%', // Tamaño del círculo interno
+                dataLabels: {
+                    enabled: false
+                }
+                }
+            },
+            series: [{
+                name: 'Pedido',
+                data: datosFormateados,
+            }]
+            
+        });
+
+        /*var gaugeData = response.map(function (elemento) {
+            return {
+                name: elemento[0],
+                y: elemento[1]
+            };
+        });
+        //console.log(datosFormateados);
+
+        Highcharts.chart('container', {
+            chart: {
+                type: 'solidgauge'
+            },
+            title: {
+                text: 'Ejemplo de Gráfico Solid Gauge'
+            },
+            pane: {
+                startAngle: -90,
+                endAngle: 90,
+                background: [{
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                    [0, '#FFF'],
+                    [1, '#333']
+                    ]
+                },
+                borderWidth: 0,
+                outerRadius: '109%'
+                }, {
+                backgroundColor: {
+                    linearGradient: { x1: 0, y1: 0, x2: 0, y2: 1 },
+                    stops: [
+                    [0, '#333'],
+                    [1, '#FFF']
+                    ]
+                },
+                borderWidth: 1,
+                outerRadius: '107%'
+                }, {
+                // Marcadores
+                backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0])
+                    .setOpacity(0.3)
+                    .get(),
+                borderWidth: 0,
+                outerRadius: '105%',
+                innerRadius: '103%'
+                }]
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: []
+            },
+            plotOptions: {
+                solidgauge: {
+                dataLabels: {
+                    enabled: false
+                },
+                linecap: 'round',
+                stickyTracking: false,
+                rounded: true
+                }
+            },
+            series: [{
+                name: 'Porcentaje',
+                data: gaugeData,
+                dataLabels: {
+                format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                    ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}%</span></div>'
+                },
+                tooltip: {
+                valueSuffix: ' %'
+                }
+            }]
+        });*/
+
+        // Configurar el gráfico
+      /*Highcharts.chart("container", {
+        chart: {
+          type: "solidgauge",
+          height: 360,
+          width: 360,
+        },
+        title: {
+          text: "Platos preferidos por clientes",
+        },
+        pane: {
+          startAngle: 0,
+          endAngle: 360,
+        },
+        yAxis: {
+          min: 0,
+          max: 100,
+          lineWidth: 0,
+          tickPositions: [],
+        },
+        plotOptions: {
+          pie: {
+            borderWidth: 0,
+            innerSize: "50%", // Tamaño del círculo interno
+            dataLabels: {
+              enabled: false,
+            },
+          },
+        },
+        series: [
+          {
+            name: "Valores",
+            data: datosFormateados,
+          },
+        ],
+      });*/
     }
 </script>

@@ -7,11 +7,16 @@ use App\Models\Mercancia as MercanciaModel;
 use App\Models\Producto as ProductoModel;
 use App\Models\ElaboracionesMercancias as ElaboracionesMercanciasModel;
 use App\Models\LineasComanda as LineasComandaModel;
+use App\Models\Familia as FamiliaModel;
 
 class Graficas extends Component
 {
     public $grafica;
     public $lista;
+
+    //Gráfica platosPreferidos
+    public $tiposProducto;
+    public $tipo;
 
     public function verGrafica($nombre, $script, $listaParam)
     {
@@ -83,17 +88,20 @@ class Graficas extends Component
         $this->verGrafica("rentabilidadPlato","ScriptRentabilidadPlato",$listaPlatoCoste);
     }
 
-    public function graficaPlatosPreferidos()
-    {
+    public function updatedTipo(){
+
+        $this->tiposProducto = FamiliaModel::all();
+
         $lineasCom = LineasComandaModel::where('ticket', 1)
         ->groupBy('idProducto')
         ->selectRaw('idProducto, sum(cantidad) as cantidad_total')
-        ->get();       
+        ->get();              
 
         //dd($lineasCom);
 
         //Para pasar las cantidades a porcentajes
-        $totalCantidades = LineasComandaModel::where('ticket', 1)->sum('cantidad');
+        //$totalCantidades = LineasComandaModel::where('ticket', 1)->sum('cantidad');
+
         //dd($totalCantidades);
 
         $PlatosPreferidos=[];
@@ -101,15 +109,28 @@ class Graficas extends Component
 
             //Busco el nombre del producto
             $producto = ProductoModel::find($lineasCom[$i]['idProducto']);
-            $objeto=[2];
-            $objeto[0]=$producto->nombre;
-            //Paso las cantidades a porcentajes
-            $objeto[1] = ($lineasCom[$i]['cantidad_total']/$totalCantidades)*100;
-            $PlatosPreferidos[] = $objeto;
+            
+            //dd($this->tipo);
+            if($producto->idFamilia==$this->tipo)
+            {
+                
+                $objeto=[2];
+                $objeto[0]=$producto->nombre;
+                //Paso las cantidades a porcentajes
+                //$objeto[1] = ($lineasCom[$i]['cantidad_total']/$totalCantidades)*100;
+
+                $objeto[1] = ($lineasCom[$i]['cantidad_total']/1);
+                $PlatosPreferidos[] = $objeto;
+            }            
         }
         //dd($PlatosPreferidos);
         
         $this->verGrafica("platoPreferido","ScriptPlatoPreferido",$PlatosPreferidos);
+    }
+    public function graficaPlatosPreferidos()
+    {
+        $this->tiposProducto = FamiliaModel::all();
+        $this->grafica = "platoPreferido";        
     }
 
     public function render()
