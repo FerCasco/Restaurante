@@ -113,6 +113,13 @@ class MesaAtender extends Component
     {
         $this->showModal = false;
     }
+    public function enviarCocina(){
+        $lineas = LineasComanda::where('idMesa', $this->mesaAtender->id)->where('ticket', 0)->get();
+        foreach ($lineas as $linea) {
+            $linea->enviado = 1;
+            $linea->save();
+        }
+    }
     public function enviarComanda()
     {
         date_default_timezone_set('Europe/Madrid');

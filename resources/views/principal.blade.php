@@ -23,18 +23,6 @@
             <a class="text-xl font-semibold text-gray-800 dark:text-white" href="#">Logo</a>
 
             <ul class="flex items-center space-x-4">
-                @guest
-                @if (Route::has('login'))
-                <li>
-                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ url('login') }}">{{ __('auth.iniciarSesion') }}</a>
-                </li>
-                @endif
-
-                @if (Route::has('register'))
-                <li>
-                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="{{ route('register') }}">{{ __('auth.registrarse') }}</a>
-                </li>
-                @endif
                 <li>
                     <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="flex items-center justify-between w-full py-2 pl-3 pr-4  text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto dark:text-gray-400 dark:hover:text-white dark:focus:text-white dark:border-gray-700 dark:hover:bg-gray-700 md:dark:hover:bg-transparent">{{ __('auth.lenguaje') }}
                         <svg class="w-5 h-5 ml-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -54,21 +42,6 @@
                         </ul>
                     </div>
                 </li>
-                @else
-                <li class="relative">
-                    <a class="px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100 rounded" href="#" aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }}
-                    </a>
-
-                    <ul class="absolute right-0 mt-2 space-y-2 bg-white dark:bg-gray-800 rounded-md shadow-lg hidden">
-                        <li>
-                            <a class="block px-4 py-2 text-gray-800 dark:text-white hover:text-blue-500 hover:bg-blue-100" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                {{ __('auth.cerrarSesion') }}
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                @endguest
             </ul>
         </nav>
     </header>
