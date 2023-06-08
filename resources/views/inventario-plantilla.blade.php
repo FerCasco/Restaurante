@@ -5,7 +5,7 @@
 
 <div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
     <img class="object-cover object-center w-full h-full blur-sm"
-         src="https://img.freepik.com/foto-gratis/donaciones-alimentos-recolectadas-caridad_23-2149230572.jpg?w=1060&t=st=1686165366~exp=1686165966~hmac=f2b49d1f4cfceaafd3e2b01b4b94816a742406e75212c354b82447efae1397a6"
+         src="https://www.busquetsgalvez.com/web/wp-content/uploads/2018/09/Veride-tienda-Madrid-1.jpg"
          alt="Imagen">
 </div>
 <div class="h-screen overflow-y-auto">

@@ -85,7 +85,31 @@ class Graficas extends Component
 
     public function graficaPlatosPreferidos()
     {
-        dd();
+        $lineasCom = LineasComandaModel::where('ticket', 1)
+        ->groupBy('idProducto')
+        ->selectRaw('idProducto, sum(cantidad) as cantidad_total')
+        ->get();       
+
+        //dd($lineasCom);
+
+        //Para pasar las cantidades a porcentajes
+        $totalCantidades = LineasComandaModel::where('ticket', 1)->sum('cantidad');
+        //dd($totalCantidades);
+
+        $PlatosPreferidos=[];
+        for ($i = 0; $i < count($lineasCom); $i++) {
+
+            //Busco el nombre del producto
+            $producto = ProductoModel::find($lineasCom[$i]['idProducto']);
+            $objeto=[2];
+            $objeto[0]=$producto->nombre;
+            //Paso las cantidades a porcentajes
+            $objeto[1] = ($lineasCom[$i]['cantidad_total']/$totalCantidades)*100;
+            $PlatosPreferidos[] = $objeto;
+        }
+        //dd($PlatosPreferidos);
+        
+        $this->verGrafica("platoPreferido","ScriptPlatoPreferido",$PlatosPreferidos);
     }
 
     public function render()

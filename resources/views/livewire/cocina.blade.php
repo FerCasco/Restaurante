@@ -1,6 +1,6 @@
 <div>
     <div class="fixed inset-0 overflow-hidden brightness-75 -z-10">
-        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/chef-masculino-cocina-cortando-verduras-plato_23-2149646191.jpg?w=1380&t=st=1686150776~exp=1686151376~hmac=236a1469cde084f95fbc3d6fa39230820d7d488413c2199a7d3c14c747fbe2e2" alt="Imagen">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://287524.fs1.hubspotusercontent-na1.net/hubfs/287524/Imported_Blog_Media/estaciones-de-trabajo-cocina-profesional-2-Dec-17-2022-07-23-41-8269-PM.jpg" alt="Imagen">
     </div>
     <!--Ingredientes-->
     <div id="left-side-bar"

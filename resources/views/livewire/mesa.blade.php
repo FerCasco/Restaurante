@@ -20,9 +20,9 @@
 
         <!--btn crud Mesas-->
         <div
-            class="grid grid-cols-3 gap-3 rounded absolute top-0 z-10 right-0 w-96 px-3 shadow-2xl overflow-y-auto bg-gray-50 dark:bg-gray-800">
+            class="grid grid-cols-3 gap-3 rounded-xl fixed top-0 z-10 right-0 -translate-x-9 translate-y-4 w-1/4 px-3 shadow-2xl overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <button wire:click="verModalMesa('agregar')" type="button"
-                    class="w-full flex transition-all items-center justify-center mt-3 mb-3 border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-6">
+                    class="w-full flex transition-all items-center justify-center mt-3 mb-3 border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus"
                      width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                      stroke-linecap="round" stroke-linejoin="round">
@@ -158,7 +158,14 @@
                                                required>
                                     </div>
                                     <button type="submit" wire:click="editarMesa"
-                                            class="w-full text-white bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                                            class="w-full text-white flex justify-center bg-orange-700 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-orange-600 dark:hover:bg-orange-700 dark:focus:ring-orange-800">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3 icon icon-tabler icon-tabler-pencil" width="24"
+                                             height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
+                                             stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                            <path d="M4 20h4l10.5 -10.5a1.5 1.5 0 0 0 -4 -4l-10.5 10.5v4"></path>
+                                            <path d="M13.5 6.5l4 4"></path>
+                                        </svg>
                                         Editar
                                     </button>
                                 </form>

@@ -1,7 +1,9 @@
 <div class="grid grid-cols-12 h-screen justify-center items-center gap-16 gap-y-16">
-
+    <div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://www.mahen.es/biblioteca/habitos-de-alimentacion-saludable-foto-blog-151.jpg" alt="Imagen">
+    </div>
     <!--Comidas-->
-    <div id="Comidas" class="col-span-3 bg-gray-200 shadow-2xl mt-20 ml-8 h-5/6 bg-cover text-white rounded-xl box-border w-full p-4 mb-8" ondrop="drop(event)" style="background-image: url('https://img.freepik.com/foto-gratis/tabla-cortar-madera-rodeada-platos-pasta-e-ingredientes-mesa_23-2148246798.jpg');"
+    <div id="Comidas" class="col-span-3 bg-gray-200 shadow-2xl mt-20 ml-8 h-5/6 bg-cover text-white rounded-xl box-border w-full p-4 mb-8 backdrop-blur-sm bg-opacity-75 " ondrop="drop(event)"
          ondragover="allowDrop(event)">
 
         <div class="bg-gray-100 bg-opacity-75 rounded-lg">
