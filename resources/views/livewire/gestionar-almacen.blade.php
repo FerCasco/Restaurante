@@ -177,7 +177,7 @@
     @if ($showModalGraph)
         <div class="rounded-xl bg-gray-500 flex items-center">
             <div class="absolute bg-gray-900 opacity-50 inset-0" wire:click="closeModalGraph"></div>
-            <div class="absolute m-auto inset-0 w-1/2 h-1/2 flex justify-center rounded-xl bg-gray-300" wire:ignore>
+            <div class="absolute m-auto inset-0 w-1/2 h-1/2 flex justify-center rounded-xl bg-gray-300 backdrop-blur-sm" wire:ignore>
                 <div id="container" class="mt-8 mb-8"></div>
                 <button class="absolute top-0 right-0 m-2 text-white p-3 rounded-xl bg-red-500 hover:bg-red-700 transition-all hover:shadow-inner shadow-2xl     hover:text-black-700"
                         wire:click="closeModalGraph">

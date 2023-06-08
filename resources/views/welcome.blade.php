@@ -15,7 +15,7 @@
 </head>
     <body class="bg-gray-800 dark:bg-gray-700 h-screen w-full">
     <div class="fixed inset-0 overflow-hidden brightness-50 -z-10">
-        <img class="object-cover object-center w-full h-full blur-sm" src="https://img.freepik.com/foto-gratis/salon-restaurante-mucha-mesa_140725-6309.jpg?w=1060&t=st=1686163476~exp=1686164076~hmac=f9bb832be47bb1c73da398f753b5e27261d34498d2a04c1e20a028b18c9e4564" alt="Imagen">
+        <img class="object-cover object-center w-full h-full blur-sm" src="https://www.momobel.com/sites/default/files/mesas_para_restaurante_de_forma_cuadrada.jpg" alt="Imagen">
     </div>
     @livewire('main')
 
