@@ -24,12 +24,53 @@ class Cocina extends Component
 
     public $verEmplatado;
 
+    /*Crear platos*/
+    public $modalVisibleP; 
+
+    public $nombreP;
+    //poner la variable nombreP como nombre 
+    public $recetaE;
+
+    public $idFamiliaP;
+    //buscar idElaboración //crear previamente la elaboración
+    public $descripcionP;
+    public $idTipoP;
+    public $imgP;
+    public $precioP;
+
+    //idmercancia seleccionada
+    //todas las mercancias
+    public $idMercanciaEm;
+    public $cantidadMercanciaEm;
+    public $listElabMerc;    
+
     protected $listeners = ['cargarEmplatado','cargarProductos'];
 
     public function mount(){
         $this->verEmplatado=false;
         $this->mercancias=MercanciaModel::all();
         $this->productos=ProductoModel::all();
+    }
+
+    public function verModalPlato($ver)
+    {
+        $this->modalVisibleP=$ver;
+    }
+
+    public function updatedIdMercanciaEm()
+    {
+        if(strpos($this->idMercanciaEm,','))
+        {
+            $parteCantMerc = explode(" ", $this->idMercanciaEm);
+            $object=[3];
+            $object['id'] = (sizeof($this->listElabMerc));
+            $object['cantidad'] = $parteCantMerc[0];
+            $object['mercancia'] = str_replace(',', "", $parteCantMerc[1]);
+            //dd( $object);
+            $this->listElabMerc=$object;
+            //dd($this->listElabMerc);
+            $this->idMercanciaEm="";            
+        }
     }
 
     //searchs
@@ -101,12 +142,6 @@ class Cocina extends Component
     {
         $this->verEmplatado=false;
     }
-
-
-    /*public function productoSeleccionadoNull()
-    {
-        $this->productoSeleccionado = null;
-    }*/
 
     public function render()
     {
