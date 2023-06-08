@@ -37,7 +37,7 @@ class Sala extends Component
         $sala->nombre = $this->miSala['nombre'];
         //dd($sala->nombreSala);
         $sala->save();
-
+        session()->flash('message', 'Sala creada correctamente');
         //$this->mount();
         //$this->render();
         //$this->salas=SalaModel::all();
@@ -52,7 +52,7 @@ class Sala extends Component
         $nomBorrar = $this->miSala['nombre'];
         $sala = SalaModel::where('nombre', $nomBorrar)->get()->first();
         $sala->delete();
-
+        session()->flash('message', 'Sala eliminada correctamente');
         //$this->render();
     }
 
@@ -76,6 +76,7 @@ class Sala extends Component
         $sala = SalaModel::where('id', $this->idSala)->get()->first();
         $sala->nombre = $this->nombreSala;
         $sala->save();
+        session()->flash('message', 'Sala editada correctmente');
     }
 
     public function render()

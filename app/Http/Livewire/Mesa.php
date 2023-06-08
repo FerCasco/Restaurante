@@ -58,6 +58,7 @@ class Mesa extends Component
         $mesa->nombre = $nombreMesa;
 
         $mesa->save();
+        session()->flash('message', 'Mesa creada correctamente');
     }
 
     public function editarMesa(){
@@ -65,12 +66,14 @@ class Mesa extends Component
         $mesa = MesaModel::where('id', $this->selectMesa)->get()->first();
         $mesa->capacidad = $this->capacidadMesaE;
         $mesa->save();
+        session()->flash('message', 'Mesa editada correctamente');
     }
 
     public function eliminarMesa()
     {
         $mesa = MesaModel::where('id', $this->mesaEliminar)->get()->first();
         $mesa->delete();
+        session()->flash('message', 'Mesa eliminada correctamente');
     }
 
     public function render()

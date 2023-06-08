@@ -79,7 +79,7 @@
         <div class="fixed top-0 left-0 right-0 z-50 flex items-center justify-center h-full">
             <div class="absolute bg-gray-900 opacity-50 inset-0"></div>
 
-            <div class="relative bg-white rounded-lg shadow-lg">
+            <div class="relative bg-white rounded-lg shadow-lg text-black">
                 <div class="p-6">
                     <!-- Form to update Mercancia properties -->
                     <form wire:submit.prevent="updateMercancia">

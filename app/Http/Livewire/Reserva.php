@@ -42,13 +42,17 @@ class Reserva extends Component
         $reserva->anotaciones = $this->miReserva['anotaciones'];
 
         $reserva->save();
-
+        session()->flash('message', 'Reserva creada correctamente');
         //$this->emitUp('cambiar',null);
     }
 
     public function render()
     {
         return view('livewire.reserva');
+    }
+    public function dismissToast()
+    {
+        session()->forget('message');
     }
 
 }

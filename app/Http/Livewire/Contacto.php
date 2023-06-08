@@ -109,6 +109,7 @@ class Contacto extends Component
         $proveedor->nombre = $this->nombreProveedor;
         $proveedor->telefono = $this->telefonoProveedor;
         $proveedor->save();
+        session()->flash('message', 'Proveedor creado correctamente');
     }
 
     public function addTrabajador()
@@ -153,11 +154,13 @@ class Contacto extends Component
 
     public function editProveedor()
     {
-        $this->miProveedor->name = $this->nombreProveedor;
+        $this->miProveedor->nombre = $this->nombreProveedor;
         $this->miProveedor->email = $this->correoProveedor;
         $this->miProveedor->telefono = $this->telefonoProveedor;
         $this->miProveedor->save();
+        dd($this->miProveedor);
         $this->modalVisible = '';
+        session()->flash('message', 'Proveedor editado correctamente');
     }
 
     public function editTrabajador()
@@ -176,17 +179,24 @@ class Contacto extends Component
 
         $this->miTrabajador->save();
         $this->modalVisible = '';
+        session()->flash('message', 'Trabajador editado correctamente');
     }
 
     public function deleteProveedor($idProveedor)
     {
         $proveedor = ProveedorModel::where('id', $idProveedor)->get()->first();
         $proveedor->delete();
+        session()->flash('message', 'Proveedor eliminado correctamente');
     }
 
     public function deleteTrabajador($trabajadorId)
     {
         $trabajador = UserModel::where('id', $trabajadorId)->get()->first();
         $trabajador->delete();
+        session()->flash('message', 'Trabajador eliminado correctamente');
+    }
+    public function dismissToast()
+    {
+        session()->forget('message');
     }
 }

@@ -50,6 +50,7 @@ class MesaAtender extends Component
         $mesa=$this->mesaAtender;
         $mesa->comensales = $this->comensales;
         $mesa->save();
+        session()->flash('message', 'Comensales editados');
     }
     public function atenderMesa($idMesa)
     {
@@ -76,6 +77,7 @@ class MesaAtender extends Component
         $this->selectedProducto = ProductoModel::where('id', $idProducto)->get()->first();
         $this->showModal = true;
         $this->cantidad = null;
+        session()->flash('message', 'El producto: '. $this->selectedProducto->nombre.' fue añadido a la comanda');
     }
 
     public function submitCantidad()
@@ -101,8 +103,6 @@ class MesaAtender extends Component
                 'fechaTicket' => "",
                 'precio' => $this->cantidad * $this->selectedProducto->precio,
             ]);
-
-
             $this->comanda->save();
 
             $this->closeModal();
@@ -119,6 +119,7 @@ class MesaAtender extends Component
             $linea->enviado = 1;
             $linea->save();
         }
+        session()->flash('message', 'Comanda enviada a cocina correctamente');
     }
     public function enviarComanda()
     {
@@ -134,16 +135,15 @@ class MesaAtender extends Component
             $linea->fechaTicket = $ticket->fechaTicket;
             $linea->save();
         }
+    
         //Imprimir ticket o gestionarlo de alguna forma
-
-
-
-
         $this->comanda->precioTotal = 0;
         $this->comanda->save();
+        session()->flash('message', 'Comanda cerrada, ticket creado correctamente');
     }
-    public function deleteComanda()
+    public function dismissToast()
     {
+        session()->forget('message');
     }
     public function resetProductos()
     {
