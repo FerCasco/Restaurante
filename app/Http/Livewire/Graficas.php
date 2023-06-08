@@ -6,16 +6,13 @@ use Livewire\Component;
 use App\Models\Mercancia as MercanciaModel;
 use App\Models\Producto as ProductoModel;
 use App\Models\ElaboracionesMercancias as ElaboracionesMercanciasModel;
+use App\Models\LineasComanda as LineasComandaModel;
 
 class Graficas extends Component
 {
     public $grafica;
     public $lista;
 
-    public function mount()
-    {
-        //$this->graficaCantidadActual();
-    }
     public function verGrafica($nombre, $script, $listaParam)
     {
         $this->grafica = $nombre;
@@ -26,7 +23,7 @@ class Graficas extends Component
     public function graficaCantidadActual()
     {
         $mercancias = MercanciaModel::all();
-        $this->verGrafica("cantidadActual","ejecutarScript",$mercancias);
+        $this->verGrafica("cantidadActual","ScriptCantidadActual",$mercancias);
     }
 
     public function graficaRentabilidadPlato()
@@ -90,6 +87,7 @@ class Graficas extends Component
     {
         dd();
     }
+
     public function render()
     {
         return view('livewire.graficas');
