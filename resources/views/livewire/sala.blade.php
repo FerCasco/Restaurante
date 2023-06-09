@@ -163,26 +163,4 @@
                 </div>
             </div>
     @endif
-
-    <script>
-        function openModal(nombre){
-            let edit = document.getElementById('toast-warning');
-            let add = document.getElementById('toast-add');
-            let del = document.getElementById('toast-delete');
-            switch (nombre){
-                case 'Edit':
-                    edit.classList.remove('-translate-y-full');
-                    edit.classList.add('translate-y-28');
-                    break;
-                case 'Add':
-                    add.classList.remove('-translate-y-full');
-                    add.classList.add('translate-y-28');
-                    break;
-                case 'Delete':
-                    del.classList.remove('-translate-y-full');
-                    del.classList.add('translate-y-28');
-                    break;
-            }
-        }
-    </script>
 </div>
