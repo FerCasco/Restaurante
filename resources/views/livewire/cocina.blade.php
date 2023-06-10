@@ -52,7 +52,7 @@
         </div>
 
         @if($verEmplatado!=true)
-        <div class="absolute bottom-8 right-0 -translate-x-9 translate-y-4 w-1/4 px-3 shadow-2xl overflow-y-auto bg-gray-50 dark:bg-gray-800"> 
+        <div class="hidden absolute bottom-8 right-0 -translate-x-9 translate-y-4 w-1/4 px-3 shadow-2xl overflow-y-auto bg-gray-50 dark:bg-gray-800">
             <button wire:click="verModalPlato('ver')" type="button"
                     class="w-full flex transition-all items-center justify-center mt-3 mb-3 border border-lime-500 shadow-lg hover:bg-lime-400 bg-lime-200 px-2.5 text-sm hover:shadow-inner text-slate-700 rounded-md dark:hover:bg-lime-900 dark:text-slate-400 dark:hover:text-slate-300 py-4">
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-rounded-plus"
@@ -94,7 +94,7 @@
                                             </select>-->
                                             <input type="text" placeholder="patrón cantidad e ingrediente,..." wire:model="idMercanciaEm" class="w-full" />
                                         <div>
-                                        @if($listElabMerc!=null)                                            
+                                        @if($listElabMerc!=null)
                                             <table class="shadow-md">
                                                 <thead>
                                                     <tr class="bg-gray-200 text-gray-600 uppercase text-sm">
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-            </div>        
+            </div>
         @endif
     </main>
     <!--Emplatado-->
@@ -158,7 +158,7 @@
             </nav>
         </div>
     @endif
-    
-    
+
+
 </div>
 

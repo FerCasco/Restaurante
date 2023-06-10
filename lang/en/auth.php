@@ -10,6 +10,7 @@ return [
     'iniciarSesion' => 'Login',
     'registrarse' => 'Register',
     'cerrarSesion' => 'Logout',
+    'qr'=>'Show Qr code',
 
     /*Formulario de registrar*/
     'nombre' => 'Name',

@@ -79,7 +79,7 @@
                     @error('password') <span class="text-danger error">{{ $message }}</span>@enderror
                 </div>
 
-                <button class="bg-indigo-400 hover:bg-indigo-600 border border-indigo-700 shadow-lg hover:shadow-inner font-medium p-2 md:p-4 text-white w-full rounded-xl" wire:click.prevent="login" >Iniciar Sesión</button>
+                <button class="bg-indigo-400 hover:bg-indigo-600 border border-indigo-700 shadow-lg hover:shadow-inner font-medium p-2 md:p-4 text-white w-full rounded-xl" wire:click.prevent="login" >{{__('auth.iniciarSesion')}}</button>
             </form>
         </div>
     </div>
